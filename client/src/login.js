@@ -1,9 +1,33 @@
 import { Link } from "react-router-dom";
+import image from './pab bottom-logo (1).jpg';
 
 
 const Login=()=>{
     return(
       <div>
+
+<nav class="navbar navbar-expand-sm bg-white navbar-dark container">
+  <div class="container-fluid">
+    <img src={image} className="headerimage"></img>
+    <button class="navbar-toggler loginbtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav login1">
+        <li class="nav-item ">
+          <a class="nav-link login2" href="#">LOGIN</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link login2" href="#">JOB SEEKER</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link login2" href="#">RECRUITER</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
           
 <div class="container mt-5 mb-5" >
     <div class="row">
@@ -18,7 +42,7 @@ const Login=()=>{
             <label for="" class="loginpassword">password</label>
            <input type="password" name="" id=""  class="logininput" placeholder="enter your password"/> <i class="fa-solid fa-eye eyeicon"></i>
             <a href=""><p class="loginforgot">Forgot password?</p></a>
-            <a href="" class=""><button class="loginbutton w-100">Login</button></a>
+            <a href="./home" class=""><button class="loginbutton w-100">Login</button></a>
             <a href=""><h6 class="loginh4">Login via OTP</h6></a>
            <a href="" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
         

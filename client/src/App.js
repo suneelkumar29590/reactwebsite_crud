@@ -3,13 +3,14 @@ import './App.css';
 import { Routes,Route } from 'react-router-dom';
 
 
-import Header from './header';
+
 import Footer from './footer';
 import Default from './default';
 
 import Login from './login';
 
 import Recruiter1 from './recruiter1';
+import Home from './home'
 
 
 
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
 
 
-<Header />
+
       <Routes>
         <Route exact path = "/Default" element ={<Default />}/>
         
@@ -29,11 +30,12 @@ function App() {
         
       
         <Route exact path = "/Recruiter1" element ={<Recruiter1 />}/>
+        <Route exact path = "/home" element ={<Home />}/>
              
 
          
       </Routes>
-      <Footer/>
+      
    
 
 
