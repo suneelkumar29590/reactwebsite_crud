@@ -1,0 +1,35 @@
+GET http://localhost:3003/
+###
+POST http://localhost:5007/signup/
+Content-Type: application/json
+
+{
+    
+"typeofreg":"recruiter1",
+"fullname":"raviteja",
+"email":"rav54123@gmail.com",
+"password":"ravi@756789",
+"mobilenumber":7625266123,
+"gender":"male" 
+
+
+}
+
+###
+GET http://localhost:5007/allusers
+
+###
+GET http://localhost:5007/user/64b6776f7014c05c8e21c7a1
+###
+
+PUT http://localhost:5007/user/64b6608c69ddad95f0a4c2af
+Content-Type: application/json
+
+{
+  "fullname":"alluarjun",
+"mobilenumber":7689543366,
+"gender":"female" 
+}
+###
+
+DELETE http://localhost:5007/user/64b6608c69ddad95f0a4c2af
