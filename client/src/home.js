@@ -14,25 +14,25 @@ function Home (){
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav menubar">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html" style={{color:"blue"}}>Home</a>
+                        <a class="nav-link" href="" style={{color:"blue"}}>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="browsejobs.html" style={{color:"black"}}>Browse Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="" style={{color:"black"}}>Browse Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="job.html" style={{color:"black"}}>Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="/jobs" style={{color:"black"}}>Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" style={{color:"black"}}>services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="payment.html" style={{color:"black"}}>payments</a>
+                        <a class="nav-link dropdown-toggle" href="/payment" style={{color:"black"}}>payments</a>
                     </li>
                     <li class="nav-item">
                         <i class="fa-solid fa-bell bellicon"></i>
                     </li>
                     <li class="nav-item">
-                       <a href="profile.html"> <i class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon" sty></i></a>
+                       <a href="/profile"> <i class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon" sty></i></a>
                     </li>
 
                 </ul>
@@ -471,6 +471,8 @@ function Home (){
         </div>
     </section>
 
+    {/* ...... */}
+
     <div className="container-fluid footer">
         <div className="container py-5">
         <div className="row">
@@ -516,6 +518,25 @@ function Home (){
 
 
           </div>
+
+          <div class="hrtag" style={{marginleft: "50px", width: "90%"}}>
+            <hr/>
+        </div>
+            <div class="col-12 col-md-2">
+
+            </div>
+            <div class="col-12 col-md-3">
+                <p>all rights resereved@2022PABJobs</p>
+            </div>
+            <div class="col-12 col-md-3">
+                <p>Designed by<span class="perfex">@PerfexTechnologies</span></p>
+            </div>
+            <div class="col-12 col-md-4">
+                <i class="fa-brands fa-linkedin footicon px-1"></i>
+                <i class="fa-brands fa-instagram footicon px-1"></i>
+                <i class="fa-brands fa-facebook footicon px-1"></i>
+                <i class="fa-brands fa-twitter footicon px-1"></i>
+            </div>
 
         </div>
         </div>

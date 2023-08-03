@@ -9,8 +9,12 @@ import Default from './default';
 
 import Login from './login';
 
-import Recruiter1 from './recruiter1';
+ 
 import Home from './home'
+import Jobs from './jobs'
+import Payment from './payment';
+import Profile from './profile';
+ 
 
 
 
@@ -22,15 +26,13 @@ function App() {
 
 
       <Routes>
-        <Route exact path = "/Default" element ={<Default />}/>
-        
-        
+        <Route exact path = "/default" element ={<Default />}/>
         <Route exact path='/Login' element={<Login/>} />
-       
-        
-      
-        <Route exact path = "/Recruiter1" element ={<Recruiter1 />}/>
         <Route exact path = "/home" element ={<Home />}/>
+        <Route exact path = "/jobs" element ={<Jobs />}/>
+        <Route exact path = "/payment" element ={<Payment />}/>
+        <Route exact path = "/profile" element ={<Profile />}/>
+      
              
 
          

@@ -1,10 +1,94 @@
 import { Link } from "react-router-dom";
 import image from './pab bottom-logo (1).jpg';
-
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios, { Axios } from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Default=()=>{
+  const [type, settype]= useState("applicant")
+
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [confirmpassword, setconfirmpassword] = useState("");
+  const [phone, setphone] = useState("");
+  
+ 
+  let navigate = useNavigate();
+  const [data, setdata] = useState([]);
+
+  console.log(name);
+
+  const usersData = {
+    type: type,
+    name: name,
+    email: email,
+    contactNumber: phone,
+    password: password,
+    originalPassword: confirmpassword
+  };
+
+  console.log(usersData);
+
+ 
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    if ( 
+      name &&
+      email &&
+      phone &&
+      password &&
+      confirmpassword !== ""
+    ) {
+      axios
+        .post("https://pab-server.onrender.com/auth/signup", usersData)
+        .then((response) =>   {
+          setdata(response.data);
+        
+          console.log(response.data)
+          if (response.status === 200) {
+            
+            toast.success("Registration Successfull", {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored"
+            });
+            
+           
+              setTimeout(function(){
+                navigate('/login')
+               }, 3000)
+            
+          }
+          
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+    
+     else {
+      toast.warning("Enter the Required Details");
+     
+    }
+  };
+
+  console.log(type)
+
+  
     return(
       <div>
+
         <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container">
         <img src={image} className="headerimage"></img>
@@ -28,7 +112,10 @@ const Default=()=>{
     </nav>
         {/* .......... */}
         <div className="defaultbody">
+
       <div className="container mb-5 ">
+     
+
         <div className="row">
           <div className="col-12 col-md-5">
             <div className="card shadow mt-5 logincard">
@@ -42,24 +129,45 @@ const Default=()=>{
               </div>
               <div className=" text-center reactbtngroup mt-3 mb-3">
                 
-              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type"></input></button></a>
-                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type"></input></button></a>
+              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={((e)=>settype(e.target.value))}></input></button></a>
+                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" onChange={((e)=>settype(e.target.value))}></input></button></a>
               </div>
-              <div class="form p-5">
-                        <label for="" id="fullname" class="loginlabel">Full Name</label>
-                        <input type="text" class=" form-control" placeholder="enter your full name" id="input"/>
-                        <label for=""  class="loginlabel">Email ID</label>
-                        <input type="email" class="form-control " placeholder="enter your Email ID" id="input"/>
-                        <label for=""  class="loginlabel">Password</label>
-                        <input type="password" class="form-control " placeholder="minimum 6 charactres" id="input"/>
-                        <label for=""  class="loginlabel">Mobile Number</label><br/>
+             
+              <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+            {/* Same as */}
+            <ToastContainer />
+              <form class="form p-5" onSubmit={ onSubmitForm}>
+                
+                        <label for="" id="fullname" class="loginlabel">{type === "applicant" ? "Fullname":"Company Name"}</label>
+                        <input type="text" class=" form-control" placeholder={type === "applicant" ? "Enter your full name":"Enter Company Name"} id="input" onChange={(e) => setname(e.target.value)} value={name}/>
+
+                        <label for=""  class="loginlabel" >Email ID</label>
+                        <input type="email" class="form-control " placeholder="enter your Email ID" id="input"  onChange={(e) => setemail(e.target.value)} value={email}/>
+                       
+                        <label for=""  class="loginlabel" >Mobile Number</label><br/>
                         <div class="d-flex flex-row">
                             <select name="" id="input" className="mx-1">
                                 <option value="" >+91</option>
                             </select>
 
-                            <input type="text" class="form-control " placeholder="Enter your mobile number" id="input"/>
+                            <input type="text" class="form-control " placeholder="Enter your mobile number" id="input" onChange={(e) => setphone(e.target.value)} value={phone}/>
                         </div>
+                        <label for=""  class="loginlabel" >Password</label>
+                        <input type="password" class="form-control " placeholder="minimum 6 charactres" id="input"  onChange={(e) => setpassword(e.target.value)} value={password}/>
+
+                        <label for=""  class="loginlabel" >confirm Password</label>
+                        <input type="password" class="form-control " placeholder="minimum 6 charactres" id="input"  onChange={(e) => setconfirmpassword(e.target.value)} value={confirmpassword}/>
 
                         <div id="gender">
                            <b>Gender</b> <br/><input type="radio" name="type"/> male <input type="radio" name="type"/> female
@@ -71,7 +179,7 @@ const Default=()=>{
                         <p class="smallpara">By clicking Register,you agree to the terms and conditions & privacy  pabjobs.com
                         </p>
                         <button class="Registerbtn">Register Now</button>
-                    </div>
+                    </form>
             </div>
 
           </div>
