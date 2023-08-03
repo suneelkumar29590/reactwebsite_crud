@@ -117,17 +117,17 @@ const Login=()=>{
             <ToastContainer />
 
             <form  onSubmit={onSubmitBtn}>
-              <div>
+              
             <label for="" class="loginemail">Email ID</label>
-            <input type="text" name="" id="" class="logininput" placeholder="enter your email ID" style={{border: "1px solid blue",height:"40px"}} onChange={(e) => setemail(e.target.value)}
-          value={email}/>
-          </div>
+            <input type="text" name="" id="" class="logininput w-100" placeholder="enter your email ID" style={{border: "1px solid blue",height:"40px",}} onChange={(e) => setemail(e.target.value)}
+          value={email} />
+          
           <br></br>
-          <div>
+          
             <label for="" class="loginpassword">password</label>
-           <input type="password" name="" id=""  class="logininput" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
+           <input type="password" name="" id=""  class="logininput w-100" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
           value={password}/> <i class="fa-solid fa-eye eyeicon"></i>
-          </div>
+         
             <a href=""><p class="loginforgot mt-2">Forgot password?</p></a>
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
             </form>

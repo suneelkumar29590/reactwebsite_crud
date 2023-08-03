@@ -137,8 +137,8 @@ text-align: center;
   text-align: end;
 }
 .eyeicon{
-  margin-top:-20px;
-  margin-left: auto;
+  color: red;
+  
 }
 .loginbutton{
   border-radius: 10px;
