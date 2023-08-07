@@ -17,10 +17,10 @@ function Jobs(){
                         <a class="nav-link" href="/home" style={{color:"blue"}}>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="browsejobs.html" style={{color:"black"}}>Browse Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="/browse" style={{color:"black"}}>Browse Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="job.html" style={{color:"black"}}>Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="" style={{color:"black"}}>Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" style={{color:"black"}}>services</a>

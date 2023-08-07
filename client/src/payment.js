@@ -16,7 +16,7 @@ function Payment(){
                         <a class="nav-link" href="/home" style={{color:"blue"}}>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="" style={{color:"black"}}>Browse Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="/browse" style={{color:"black"}}>Browse Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="/jobs" style={{color:"black"}}>Jobs</a>

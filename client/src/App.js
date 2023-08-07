@@ -14,6 +14,8 @@ import Home from './home'
 import Jobs from './jobs'
 import Payment from './payment';
 import Profile from './profile';
+import Browse from './browse';
+
  
 
 
@@ -32,6 +34,7 @@ function App() {
         <Route exact path = "/jobs" element ={<Jobs />}/>
         <Route exact path = "/payment" element ={<Payment />}/>
         <Route exact path = "/profile" element ={<Profile />}/>
+        <Route exact path = "/browse" element ={<Browse />}/>
       
              
 
@@ -48,3 +51,5 @@ function App() {
 }
 
 export default App;
+
+
