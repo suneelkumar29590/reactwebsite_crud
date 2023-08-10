@@ -935,7 +935,46 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
   width: 100%;
   margin-top: 15px;
 }
+.cities{
+  list-style-type: none;
+ 
+}
 
+/* job by location */
+
+.jobbutton{
+  padding:8px;
+  border: none;
+  background-color: transparent;
+  
+}
+.buttonalpha{
+  padding:10px 20px 10px 20px;
+  border: none;
+  background-color: transparent;
+  margin: 3px;
+}
+.buttonlocation {
+  padding:10px 100px 10px 100px;
+  border-radius: 30px !important;
+  background-color: white!important;
+  font-size: larger;
+  color: black;
+  
+}
+.buttoncontainer{
+  margin-top: 160px;
+}
+
+.categoryBtn12:hover{
+  background-color: gray;
+}
+.anchar{
+  text-decoration: none;
+}
+.jobbutton:hover{
+  background-color: gray;
+}
 
 
 

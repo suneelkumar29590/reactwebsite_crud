@@ -1,0 +1,21 @@
+GET http://localhost:5009/
+
+###
+POST http://localhost:5009/browsejobs
+Content-Type: application/json
+
+{
+
+"companyname":"powerstar",
+"contactnumber":"9848032282",
+"email":"pk@gmail.com",
+"description":"once upon a time their lived a god.",
+"state":"Telagana",
+"country":"India",
+"salary":"13-15 LPA",
+"role":"Web Designer",
+"experience":"3 years",
+"no_of_applications":"90"
+
+}
+

@@ -1,0 +1,18 @@
+GET http://localhost:3009/
+
+###
+POST http://localhost:3009/jobs
+Content-Type: application/json
+
+{
+
+"location":"heyderabad",
+"company":"infosis",
+"description":"king of perfex employee.",
+"state":"Tamilnadu",
+"country":"Australia",
+"experience":"20 years",
+"salary":"30 LPA"
+
+}
+

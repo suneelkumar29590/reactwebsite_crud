@@ -1,14 +1,17 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import image from './pab bottom-logo (1).jpg';
+import { Link,useParams } from "react-router-dom";
 
 
 
 
 
 function Browse(){
+    const params=useParams();
 const [blogslist, setblogslist] = useState([]);
 const [selectedblog, setselectedblog]= useState(null);
+const {cities,skillsets}=(params);
 
 useEffect(()=>{
   fetchblogs()
@@ -268,7 +271,12 @@ console.log(selectedblog);
           </div> <br></br>
           <div className=''>
           <p className='para1'>{blog.jobType}</p>
-          <p className='para1'>{blog.cities}</p>
+          <p>{blog.cities.length > 1 ? 
+             blog.cities.map(cities=>
+                               <li className="cities">
+                                    {cities}
+                               </li> )
+                               :blog.cities}</p>
           <p className='para1'>{blog.experience}</p>
           </div>
           <p className='para'>published one day ago</p>
@@ -283,7 +291,7 @@ console.log(selectedblog);
 <div className='col-md-8 card shadow cardheight h-50'>
         { selectedblog &&
         <div>
-        <div className='card mt-2 mb-3'>
+        <div className='card mt-4 mb-3'>
          <div className='d-flex p-2'>
           <div className='d-flex p-2 col-5 imagepara'>
             <div>
@@ -297,7 +305,15 @@ console.log(selectedblog);
          
           <div className=' col-5 p-3'>
             <h4>{selectedblog.salary}</h4>
-            <p>{selectedblog.cities}</p>
+            <p>{selectedblog.cities.length > 1 ? 
+             selectedblog.cities.map(cities=>
+                               <li className="cities">
+                                    {cities}
+                               </li> )
+                               :selectedblog.cities}</p>
+         
+                     
+                    
             <p>{selectedblog.experience}</p>
             
 
@@ -318,7 +334,7 @@ console.log(selectedblog);
          <p>maxPositions:{selectedblog.maxPositions}</p>
          <p>{selectedblog.country}</p>
          </div>
-         <button className='w-50 h-25 p-4 button'>Apply Now</button>
+         <button className='w-50 h-25 p-2 mt-5 button'>Apply Now</button>
         </div>
          </div>
          <div className='overflow-item'>
@@ -326,16 +342,14 @@ console.log(selectedblog);
          <h6>Roles and Responsibillties</h6>
          <p>{selectedblog.description}</p>
         <h3>Skills & Responsibillties</h3>
-        <p>{selectedblog.skillsets}</p>
+        <p>{selectedblog.skillsets.length > 1 ? 
+             selectedblog.skillsets.map(skillsets=>
+                               <li className="cities">
+                                    {skillsets}
+                               </li> )
+                               :selectedblog.skillsets}</p>
+         
         </div>
-
-        {/* <ul className="skills">
-                            {skills.split(",").map(skills=>
-                               <li className="text-success">
-                                    {skills}
-                               </li> 
-                                )}
-                     </ul> */}
 
         
          

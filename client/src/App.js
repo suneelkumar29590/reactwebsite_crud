@@ -15,6 +15,12 @@ import Jobs from './jobs'
 import Payment from './payment';
 import Profile from './profile';
 import Browse from './browse';
+import Joblocation from './jobbylocation';
+import Jobcompany from './jobbycompany';
+import Jobcategory from './jobbycategory';
+import Jobdesignation from './jobsbydesignation';
+import Jobskills from './jobbyskills';
+
 
  
 
@@ -35,6 +41,13 @@ function App() {
         <Route exact path = "/payment" element ={<Payment />}/>
         <Route exact path = "/profile" element ={<Profile />}/>
         <Route exact path = "/browse" element ={<Browse />}/>
+        <Route exact path = "/joblocation" element ={<Joblocation />}/>
+        <Route exact path = "/jobcompany" element ={<Jobcompany />}/>
+        <Route exact path = "/jobcategory" element ={<Jobcategory />}/>
+        <Route exact path = "/jobdesignation" element ={<Jobdesignation />}/>
+        <Route exact path = "/jobskills" element ={<Jobskills />}/>
+        
+
       
              
 

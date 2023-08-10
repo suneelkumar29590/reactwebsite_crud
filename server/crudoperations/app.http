@@ -1,6 +1,6 @@
-GET http://localhost:5008/
+GET http://localhost:5009/
 ###
-POST http://localhost:5008/signup/
+POST http://localhost:5009/signup/
 Content-Type: application/json
 
 {
@@ -16,13 +16,13 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5009/allusers
+GET http://localhost:5013/allusers
 
 ###
-GET http://localhost:5008/user/64b6776f7014c05c8e21c7a1
+GET http://localhost:5013/user/64b6776f7014c05c8e21c7a1
 ###
 
-PUT http://localhost:5008/user/64b6608c69ddad95f0a4c2af
+PUT http://localhost:5013/user/64b6608c69ddad95f0a4c2af
 Content-Type: application/json
 
 {
@@ -32,4 +32,4 @@ Content-Type: application/json
 }
 ###
 
-DELETE http://localhost:5009/user/64b66155da01105e7707c8bd
+DELETE http://localhost:5013/user/64b66155da01105e7707c8bd

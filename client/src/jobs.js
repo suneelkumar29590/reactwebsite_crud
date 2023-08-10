@@ -1,4 +1,6 @@
+import Joblocation from './jobbylocation';
 import image from './pab bottom-logo (1).jpg';
+import { Link } from 'react-router-dom';
 
 function Jobs(){
     return(
@@ -79,11 +81,11 @@ function Jobs(){
         <div class=" d-flex  parent-container">
             <div class="fixed-container d-flex flex-column p-3 col-3 categoryBtnContainer">
                 <button class=" categoryButton12 m-1 ">All Jobs</button>
-                <button class="categoryBtn12 m-1"> Jobs By location</button>
-                <button class="categoryBtn12 m-1"> Jobs By Company</button>
-                <button class="categoryBtn12 m-1"> Jobs By Category</button>
-                <button class="categoryBtn12 m-1"> Jobs By Designation</button>
-                <button class="categoryBtn12 m-1"> Jobs By Skills</button>
+               <Link to="/Joblocation"><button class="categoryBtn12 m-1 w-100"> Jobs By location</button></Link>
+               <Link to="/Jobcompany"><button class="categoryBtn12 m-1 w-100"> Jobs By Company</button></Link>
+               <Link to="/Jobcategory"><button class="categoryBtn12 m-1 w-100"> Jobs By Category</button></Link>
+               <Link to="/Jobdesignation"><button class="categoryBtn12 m-1 w-100"> Jobs By Designation</button></Link>
+               <Link to="/Jobskills"><button class="categoryBtn12 m-1 w-100"> Jobs By Skills</button></Link>
             </div>
             {/* <!-- <div class="p-2 m-4 col-8 align-items-center">
                 <div class="row">
