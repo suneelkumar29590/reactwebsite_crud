@@ -9,27 +9,28 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Default=()=>{
-  const [type, settype]= useState("applicant")
+  
 
-  const [name, setname] = useState("");
+  const [fullname, setfullname] = useState("");
   const [email, setemail] = useState("");
+  const [mobilenumber, setmobilenumber] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
-  const [phone, setphone] = useState("");
-  
+
+
  
   let navigate = useNavigate();
   const [data, setdata] = useState([]);
 
-  console.log(name);
+  console.log(fullname);
 
   const usersData = {
-    type: type,
-    name: name,
+    
+    fullname: fullname,
     email: email,
-    contactNumber: phone,
+    mobilenumber: mobilenumber,
     password: password,
-    originalPassword: confirmpassword
+    confirmpassword: confirmpassword
   };
 
   console.log(usersData);
@@ -39,17 +40,17 @@ const Default=()=>{
   const onSubmitForm = (e) => {
     e.preventDefault();
     if ( 
-      name &&
+      fullname &&
       email &&
-      phone &&
+      mobilenumber &&
       password &&
       confirmpassword !== ""
     ) {
-      axios
-        .post("https://pab-server.onrender.com/auth/signup", usersData)
-        .then((response) =>   {
+
+      axios.post("http://localhost:5010/signup/", usersData)
+        .then((response) =>{
+          console.log(response.data);
           setdata(response.data);
-        
           console.log(response.data)
           if (response.status === 200) {
             
@@ -73,17 +74,18 @@ const Default=()=>{
           
         })
         .catch((error) => {
-          console.log(error.message);
+          console.log(error);
         });
     }
     
      else {
+
       toast.warning("Enter the Required Details");
      
     }
   };
 
-  console.log(type)
+  
 
   
     return(
@@ -129,8 +131,8 @@ const Default=()=>{
               </div>
               <div className=" text-center reactbtngroup mt-3 mb-3">
                 
-              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={((e)=>settype(e.target.value))}></input></button></a>
-                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" onChange={((e)=>settype(e.target.value))}></input></button></a>
+              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant"></input></button></a>
+                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" ></input></button></a>
               </div>
              
               <ToastContainer
@@ -149,8 +151,8 @@ const Default=()=>{
             <ToastContainer />
               <form class="form p-5" onSubmit={ onSubmitForm}>
                 
-                        <label for="" id="fullname" class="loginlabel">{type === "applicant" ? "Fullname":"Company Name"}</label>
-                        <input type="text" class=" form-control" placeholder={type === "applicant" ? "Enter your full name":"Enter Company Name"} id="input" onChange={(e) => setname(e.target.value)} value={name}/>
+                        <label for="" id="fullname" class="loginlabel">fullname</label>
+                        <input type="text" class=" form-control" placeholder="Enter your full name" id="input" onChange={(e) => setfullname(e.target.value)} value={fullname}/>
 
                         <label for=""  class="loginlabel" >Email ID</label>
                         <input type="email" class="form-control " placeholder="enter your Email ID" id="input"  onChange={(e) => setemail(e.target.value)} value={email}/>
@@ -161,7 +163,7 @@ const Default=()=>{
                                 <option value="" >+91</option>
                             </select>
 
-                            <input type="text" class="form-control " placeholder="Enter your mobile number" id="input" onChange={(e) => setphone(e.target.value)} value={phone}/>
+                            <input type="text" class="form-control " placeholder="Enter your mobile number" id="input" onChange={(e) => setmobilenumber(e.target.value)} value={mobilenumber}/>
                         </div>
                         <label for=""  class="loginlabel" >Password</label>
                         <input type="password" class="form-control " placeholder="minimum 6 charactres" id="input"  onChange={(e) => setpassword(e.target.value)} value={password}/>

@@ -78,12 +78,12 @@ app.post("/browsejobs",async(req,res)=>{
 
 
 
-// // GET all users API
+// GET all users API
 
-// app.get("/allusers", async(req,res)=>{
-//     const allusers =await userData.find({})
-//     res.status(200).send(allusers)
-// })
+app.get("/allusers", async(req,res)=>{
+    const allusers =await browseData.find({})
+    res.status(200).send(allusers)
+})
 
 
 // // specific user
@@ -128,7 +128,9 @@ app.post("/browsejobs",async(req,res)=>{
 
 
 
-app.listen(5009,()=>{
+
+
+app.listen(5021,()=>{
 
     console.log("server running")
 })

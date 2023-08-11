@@ -24,9 +24,8 @@ const Login=()=>{
 
     const usersData = {
         
-        email: email,
-       
-        password: password,
+      email: email,
+      password: password,
         
       };
       console.log(usersData);
@@ -34,7 +33,7 @@ const Login=()=>{
       const onSubmitBtn=e=>{
         e.preventDefault();
     if(email && password !== ''){
-        axios.post("https://pab-server.onrender.com/auth/login",usersData)
+        axios.post("http://localhost:5010/login",usersData)
         .then(response=>{
             if(response.status === 200){
                 let jwtToken = response.data.token

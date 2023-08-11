@@ -1,21 +1,23 @@
-GET http://localhost:5009/
+GET http://localhost:5021/
 
 ###
-POST http://localhost:5009/browsejobs
+POST http://localhost:5021/browsejobs
 Content-Type: application/json
 
 {
 
-"companyname":"powerstar",
-"contactnumber":"9848032282",
-"email":"pk@gmail.com",
+"companyname":" Google",
+"contactnumber":"7644532285",
+"email":"google@gmail.com",
 "description":"once upon a time their lived a god.",
 "state":"Telagana",
 "country":"India",
-"salary":"13-15 LPA",
+"salary":"15-20 LPA",
 "role":"Web Designer",
-"experience":"3 years",
-"no_of_applications":"90"
+"experience":"5 years",
+"no_of_applications":"30"
 
 }
+###
+GET http://localhost:5021/allusers
 

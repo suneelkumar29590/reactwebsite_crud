@@ -1,10 +1,7 @@
 const mongoose=require("mongoose")
 
 const productSchema= new mongoose.Schema({
-    typeofreg:{
-        type:String,
-        require:true
-    },
+   
     fullname:{
         type:String,
         require:true
@@ -13,15 +10,16 @@ const productSchema= new mongoose.Schema({
         type:String,
         require:true
     },
-    password:{
-        type:String,
-        require:true
-    },
     mobilenumber:{
         type:Number,
         require:true
     },
-    gender:{
+    password:{
+        type:String,
+        require:true
+    },
+   
+    confirmpassword:{
         type:String,
         require:true
     },

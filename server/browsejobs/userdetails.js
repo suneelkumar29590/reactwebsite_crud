@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const browseData = new mongoose.Schema({
+  
   companyname: {
     type: String,
      required: true,

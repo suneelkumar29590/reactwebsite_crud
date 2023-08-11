@@ -2,11 +2,14 @@ const express=require("express");  // IMPORTING EXPRESS MODULE FROM THIRD PARTY 
 const mongoose=require("mongoose"); // IMPORTING MONGOOSE
 const cors=require("cors"); // IMPORTING CORS
 const userData=require("./mongoose")
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const middleware=require("./middleware")
 
 const app=express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
 
-
+app.use(cors({origin: "*"}))
 
 
 //mongo db conncetion WITH NODEJS
@@ -26,53 +29,146 @@ app.get("/",(req,res)=>{
 
 // SIGNUP API
 
-app.post("/signup",async(req,res)=>{
 
-    
-console.log(req.body)
-    // res.send("hello db")
+app.post("/signup/", async(req,res)=>{
+
     try{
-       
-
-const user = await userData.findOne({email: req.body.email})   // mongo db condition
-console.log(user)
-
-if(!user  ){  // or if(user === undefined)
-    
-    // user not found excutes below code
-
-    
-const newUser={
-               
-    "typeofreg":req.body.typeofreg,
-    "fullname":req.body.fullname,
-    "email":req.body.email,
-    "password":req.body.password,
-    "mobilenumber":req.body.mobilenumber,
-    "gender": req.body.gender
-
-}
-
-        const userDetails =await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
-        console.log(userDetails)
         
-        res.status(200).send("user created successfully")
-        
+    const{fullname,email,mobilenumber,password, confirmpassword}=req.body
+ 
 
-}else{
+// checking user whether it is exist or not
 
-    // if user mail id is founded send below response
-    res.status(400).json("user already registered")
-    
-}
+    const isUserExist=await userData.findOne({email: email});
+    if (isUserExist){
+       return res.send("user already registered")
+    }
+
+    if(password !==  confirmpassword){
+       return res.send("password not matched")
+    }
+
+
+const hashedpassword=await bcrypt.hash(password, 10)   //generating encrypted password for user
+
+let newUser = new userData({
+    fullname,
+    email,
+    mobilenumber,
+    password:hashedpassword,
+    confirmpassword:hashedpassword
+})
+newUser.save();       //saving to mongodb collections
+res.send("user created succesfully");
+
     }catch(e){
         console.log(e.message)
-         return res.status(500).json("message: e.message")
-
+        res.send("internal server error")
     }
-//    const user=req.body
-//    console.log(user)
+
+    
 })
+
+// app.post("/signup",async(req,res)=>{
+
+    
+// console.log(req.body)
+//     // res.send("hello db")
+//     try{
+       
+
+// const user = await userData.findOne({email: req.body.email})   // mongo db condition
+// console.log(user)
+
+// if(!user  ){  // or if(user === undefined)
+    
+//     // user not found excutes below code
+
+    
+// const newUser={
+               
+    
+//     "fullname":req.body.fullname,
+//     "email":req.body.email,
+//     "mobilenumber":req.body.mobilenumber,
+//     "password":req.body.password,
+//     "confirmpassword": req.body.confirmpassword
+
+// }
+
+//         const userDetails =await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
+//         console.log(userDetails)
+        
+//         res.status(200).send("user created successfully")
+        
+
+// }else{
+
+//     // if user mail id is founded send below response
+//     res.status(400).json("user already registered")
+    
+// }
+//     }catch(e){
+//         console.log(e.message)
+//          return res.status(500).json("message: e.message")
+
+//     }
+// })
+
+
+// login api
+// app.post("/login", async(req,res)=>{
+//     const {email,password} = req.body
+//     const isUserExist= await userData.findOne({email})
+
+//     if(!isUserExist){
+//         res.status(200).send("user created successfully")
+           
+// const newUser={
+    
+//     "email":req.body.email,
+//     "password":req.body.password
+    
+// }
+//         const userDetails =await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
+//         console.log(userDetails)
+        
+        
+//     }else{
+//         res.status(400).json("not matched") 
+//     }
+   
+// })
+
+// login api
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const isUserExist = await userData.findOne({ email });
+
+  if (isUserExist) {
+    const ispasswordmatched = await bcrypt.compare(
+      password,
+      isUserExist.password
+    ); //compare to two passwords
+    if (ispasswordmatched) {
+      let payload = {
+        user: isUserExist.id,
+      };
+      jwt.sign(
+        payload,
+        "jwtpassword",
+        { expiresIn: 36000000 },
+        (err, token) => {
+          if (err) throw err;
+          return res.json({ token });
+        }
+      );
+    } else {
+      return res.send("password not matched");
+    }
+  }
+});
+
 
 
 // GET all users API
@@ -125,7 +221,7 @@ app.delete("/user/:id",async(req,res)=>{
 
 
 
-app.listen(5009,()=>{
+app.listen(5010,()=>{
 
     console.log("server running")
 })

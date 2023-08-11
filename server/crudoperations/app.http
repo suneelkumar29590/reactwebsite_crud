@@ -1,17 +1,26 @@
-GET http://localhost:5009/
+GET http://localhost:5010/
 ###
-POST http://localhost:5009/signup/
+POST http://localhost:5010/signup/
 Content-Type: application/json
 
 {
     
-"typeofreg":"recruiter1",
-"fullname":"raviteja",
-"email":"rav54123@gmail.com",
-"password":"ravi@756789",
-"mobilenumber":7625266123,
-"gender":"male" 
+"fullname":"chiru",
+"email":"chiru@gmail.com",
+"mobilenumber":8765868463,
+"password":"435",
+"confirmpassword":"435" 
 
+}
+###
+POST http://localhost:5010/login
+Content-Type: application/json
+
+
+{
+  
+"email":"chiru@gmail.com",
+"password":"435"
 
 }
 
