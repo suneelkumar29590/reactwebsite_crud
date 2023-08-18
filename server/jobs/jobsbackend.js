@@ -1,7 +1,7 @@
 const express=require("express");  // IMPORTING EXPRESS MODULE FROM THIRD PARTY PACKAGE
 const mongoose=require("mongoose"); // IMPORTING MONGOOSE
 const cors=require("cors"); // IMPORTING CORS
-const jobsData=require("./userdetails")
+const jobsData=require('../crudoperations/userdetails1')
 
 
 const app=express()
@@ -30,7 +30,7 @@ app.post("/jobs",async(req,res)=>{
     try {
         const {
             location,
-            company,
+            companyname,
             description,
           state,
           country,
@@ -40,14 +40,14 @@ app.post("/jobs",async(req,res)=>{
     
         let newUser = new jobsData({
             location,
-            company,
+            companyname,
             description,
             state,
             country,
             experience,
             salary,
         });
-        const isUserExist = await jobsData.findOne({ company: company });
+        const isUserExist = await jobsData.findOne({ companyname: companyname });
 
         if (isUserExist) {
             return res.send("user already registered");
@@ -74,13 +74,13 @@ app.post("/jobs",async(req,res)=>{
 
 // // GET all users API
 
-// app.get("/allusers", async(req,res)=>{
-//     const allusers =await userData.find({})
-//     res.status(200).send(allusers)
-// })
+app.get("/allusers", async(req,res)=>{
+    const allusers =await jobsData.find({})
+    res.status(200).send(allusers)
+})
 
 
-// // specific user
+// specific user
 // app.get("/user/:id", async(req,res)=>{
 //     const{id}=req.params
 // const user=await userData.findOne({_id: id})
@@ -108,17 +108,17 @@ app.post("/jobs",async(req,res)=>{
 
 // // delete
 
-// app.delete("/user/:id",async(req,res)=>{
-//     const{id}=req.params
-//     const deleteUser=await userData.findByIdAndDelete(id)
-//     if(!deleteUser){
-//         res.status(404).json("user not found")
-//     }
-//     res.status(200).json("user data deleted successful") 
+app.delete("/user/:id",async(req,res)=>{
+    const{id}=req.params
+    const deleteUser=await jobsData.findByIdAndDelete(id)
+    if(!deleteUser){
+        res.status(404).json("user not found")
+    }
+    res.status(200).json("user data deleted successful") 
     
 
 
-// })
+})
 
 
 
@@ -126,5 +126,6 @@ app.listen(3009,()=>{
 
     console.log("server running")
 })
+
 
 

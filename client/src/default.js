@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Default=()=>{
   
-
+  const [type, settype] = useState("applicant");
   const [fullname, setfullname] = useState("");
   const [email, setemail] = useState("");
   const [mobilenumber, setmobilenumber] = useState("");
@@ -25,7 +25,7 @@ const Default=()=>{
   console.log(fullname);
 
   const usersData = {
-    
+    type:type,
     fullname: fullname,
     email: email,
     mobilenumber: mobilenumber,
@@ -40,6 +40,7 @@ const Default=()=>{
   const onSubmitForm = (e) => {
     e.preventDefault();
     if ( 
+      type &&
       fullname &&
       email &&
       mobilenumber &&
@@ -84,6 +85,8 @@ const Default=()=>{
      
     }
   };
+
+  console.log(type);
 
   
 
@@ -131,8 +134,8 @@ const Default=()=>{
               </div>
               <div className=" text-center reactbtngroup mt-3 mb-3">
                 
-              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant"></input></button></a>
-                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" ></input></button></a>
+              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={(e)=>settype(e.target.value)}></input></button></a>
+                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" onChange={(e)=>settype(e.target.value)}></input></button></a>
               </div>
              
               <ToastContainer
@@ -151,8 +154,8 @@ const Default=()=>{
             <ToastContainer />
               <form class="form p-5" onSubmit={ onSubmitForm}>
                 
-                        <label for="" id="fullname" class="loginlabel">fullname</label>
-                        <input type="text" class=" form-control" placeholder="Enter your full name" id="input" onChange={(e) => setfullname(e.target.value)} value={fullname}/>
+                        <label for="" id="fullname" class="loginlabel">{type==="applicant" ? "FULLNAME":"COMPANYNAME"}</label>
+                        <input type="text" class=" form-control" placeholder={type==="applicant" ? "enter your fullname" : "enter your companyname"} id="input" onChange={(e) => setfullname(e.target.value)} value={fullname}/>
 
                         <label for=""  class="loginlabel" >Email ID</label>
                         <input type="email" class="form-control " placeholder="enter your Email ID" id="input"  onChange={(e) => setemail(e.target.value)} value={email}/>

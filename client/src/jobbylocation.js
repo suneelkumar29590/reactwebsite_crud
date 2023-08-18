@@ -2,20 +2,28 @@ import image from './pab bottom-logo (1).jpg';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
+
+
 function Joblocation(){
+    const elementRefs = {};
     
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredButtons, setFilteredButtons] = useState([]);
+  const [filteredButtons, setFilteredButtons] = useState('');
+  const [filter, setFilter] = useState([]);
+   
+ 
 
+
+  
   const allButtons = [
-    'ABAPConsultant', 'ABAPDeveloper', 'ABAPProgrammer', 'AcOperator', 'ACTechnician',
-    'AMETrainee', 'ASCHead', 'ASE', 'ASETrainee', 'AVEditor', 'HumanConsultant',
-    'Abstractor', 'AcadamicAssociate', 'AcadamicConsultant', 'Coordinator', 'Counsellor',
-    'AcadamicHead', 'Designer', 'Accountant', 'Administration', 'Auditor', 'Cashier',
-    'Operator', 'Manager', 'Assistant', 'Excutive', 'accountmanager', 'accountExcutive',
-    'Cleark', 'Attender', 'HR', 'TeamLeader', 'Maintenanse', 'Logistics', 'Sales',
-    'Secretary', 'Corparate', 'Site Engg', 'Film', 'Teacher', 'Airline', 'GraphicDesigner',
-    'Shipping', 'Analytics'
+    'Adoni', 'Amaravati', 'Anantapur', 'Chandragiri', 'Chittoor',
+    'Dowlaiswaram', 'Guntur', 'Eluru', 'Kadapa', 'Kakinada', 'Kurnool',
+    'Machilipatnam', 'Visakhapatnam', 'Bhilai', 'Delhi', 'New Delhi',
+    'Ahmadabad', 'Dwarka', 'Faridabad', 'Bilaspur', 'Shimla', ' Jammu',
+    'Bengaluru', 'Bhopal', 'Gwalior', 'Ahmadnagar', 'Mumbai', 'Nagpur',
+    'Imphal', 'Kohima', 'Bhubaneshwar', 'Koraput', 'Puri', 'Puducherry', 'Amritsar',
+    'Chennai', 'Hyderabad', ' Nizamabad', 'Sangareddi', 'Warangal', 'Karimnagar', 'Mahbubnagar',
+    'Khammam', 'Kolkata'
   ];
 
   const handleSearch = () => {
@@ -23,7 +31,19 @@ function Joblocation(){
       button.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredButtons(filtered);
+   
+
+ 
   };
+  const handleButtonOnClick = (buttonName) => {
+    // Handle the click event for each button here
+    setFilter( `${buttonName}`);
+    setSearchTerm(`${buttonName}`);
+    if (elementRefs[buttonName]) {
+        elementRefs[buttonName].style.display = 'none';
+      }
+    
+};
     return(
         <div>
      
@@ -150,6 +170,7 @@ function Joblocation(){
             </div>
 
           </div>
+        
           {/* .... */}
           {/* <div className="container mt-5">
             <div className="row">
@@ -329,6 +350,29 @@ function Joblocation(){
             </div>
 
           </div> */}
+          {/* {searchTerm &&
+          <div>
+          <p className='para616'>{filter} <button className='cross' onClick={handleButtonOnClick}>✖</button></p>
+          <Link to="/browse"><button className='button618'>filter selected<i class="fas fa-search"></i></button></Link>
+          </div>
+          
+          } */}
+          <div className='container'>
+            <div className='row'>
+                <div className='col-md-5'></div>
+            {searchTerm && 
+            <div className='col-md-2' ref={el => elementRefs[allButtons.buttonName] = el}>
+                <p className='para616'>{filter}   
+                <button onClick={e =>handleButtonOnClick(e.target.value)} className='cross'>✖</button></p>
+                 
+                
+                <Link to="/browse"><button className='button618'>filter selected<i class="fas fa-search"></i></button></Link>
+            </div>
+            }
+             </div>    
+          </div>
+
+          
 
 <div className="container mt-5">
      
@@ -338,7 +382,7 @@ function Joblocation(){
        ) : (
          filteredButtons.map((button, index) => (
            <div className="col-12 col-md-3" key={index}>
-             <button className="buttonlocation card w-100 mb-3">{button}</button>
+             <button className="buttonlocation card w-100 mb-3" onClick={() => handleButtonOnClick(button)}>{button}</button>
            </div>
          ))
        )}

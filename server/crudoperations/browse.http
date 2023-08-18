@@ -1,0 +1,23 @@
+GET http://localhost:5010/
+
+###
+POST http://localhost:5010/browsejobs
+Content-Type: application/json
+
+{
+
+"companyname":" Google",
+"contactnumber":"7644532285",
+"email":"google12@gmail.com",
+"description":"Foundational endpoint security controls across all Windows, macOS and Linux endpoints. Boost your organization's security with 7 best practices to secure your workstations. Remove Local Admin",
+"state":"Tamilnadu",
+"country":"India",
+"salary":"15-20 LPA",
+"role":"Ui Deginer",
+"experience":"5 years",
+"no_of_applications":"30"
+
+}
+###
+GET http://localhost:5010/allbrowse
+

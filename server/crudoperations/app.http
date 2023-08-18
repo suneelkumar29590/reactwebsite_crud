@@ -4,12 +4,12 @@ POST http://localhost:5010/signup/
 Content-Type: application/json
 
 {
-    
-"fullname":"chiru",
-"email":"chiru@gmail.com",
-"mobilenumber":8765868463,
-"password":"435",
-"confirmpassword":"435" 
+   "type":"applicant", 
+"fullname":"mohan",
+"email":"mohan34@gmail.com",
+"mobilenumber":9867575667,
+"password":"321",
+"confirmpassword":"321" 
 
 }
 ###

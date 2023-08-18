@@ -1,12 +1,20 @@
 import image from './pab bottom-logo (1).jpg';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
+
+
 function Jobcategory(){
-
-     
+    const elementRefs = {};
+    
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredButtons, setFilteredButtons] = useState([]);
+  const [filteredButtons, setFilteredButtons] = useState('');
+  const [filter, setFilter] = useState([]);
+   
+ 
 
+
+  
   const allButtons = [
     'accounting', 'InteriorDesign', 'Bank', 'Consultant', 'Engineer',
     'ExportImport', 'ContentWriting', 'Merchandiser', 'Security', 'HR/Admin', 'Hotel',
@@ -23,7 +31,19 @@ function Jobcategory(){
       button.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredButtons(filtered);
+   
+
+ 
   };
+  const handleButtonOnClick = (buttonName) => {
+    // Handle the click event for each button here
+    setFilter( `${buttonName}`);
+    setSearchTerm(`${buttonName}`);
+    if (elementRefs[buttonName]) {
+        elementRefs[buttonName].style.display = 'none';
+      }
+    
+};
     return(
         <div>
      
@@ -64,7 +84,7 @@ function Jobcategory(){
     </nav>       
 
             {/* ... */}
-            <div className="container buttoncontainer">
+          <div className="container buttoncontainer">
             <div className="row">
                 <div className="col-12 col-md-2  ">
                     <a href='./jobs' className='anchar'><button className="card shadow jobbutton ">All Jobs</button></a>
@@ -76,7 +96,7 @@ function Jobcategory(){
                 <a href='./jobcompany' className='anchar'> <button className="card shadow jobbutton ">Jobs By Company</button></a>
                 </div>
                 <div className="col-12 col-md-2">
-                <a href='./jobcategory' className='anchar'><button className="card shadow jobbutton bg-primary"> Jobs By Category</button></a>
+                <a href='./jobcategory' className='anchar'><button className="card shadow jobbutton  bg-primary"> Jobs By Category</button></a>
                 </div>
                 <div className="col-12 col-md-2">
                 <a href='./jobdesignation' className='anchar'><button className="card shadow jobbutton ">Jobs By Designation</button></a>
@@ -92,7 +112,7 @@ function Jobcategory(){
           <div className="container mt-5">
             <div className="row">
                 <div className="col-12 col-md-4">
-                    <h5>Featured Jobs By Categories</h5>
+                    <h5>Featured Jobs By Locations</h5>
                 </div>
                 <div className="col-12 col-md-5">
                     
@@ -150,186 +170,211 @@ function Jobcategory(){
             </div>
 
           </div>
+        
           {/* .... */}
           {/* <div className="container mt-5">
             <div className="row">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">accounting</button>
+                    <button className="buttonlocation card w-100">Adilabad</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">InteriorDesign</button>
+                    <button className="buttonlocation card w-100">Agra</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Bank</button>
+                    <button className="buttonlocation card w-100">Nodia</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100 ">ContentWriting</button>
-                </div>
-                
-
-            </div>
-            <div className="row mt-2">
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Consultant</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Engineer</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">ExportImport</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Merchandiser</button>
+                    <button className="buttonlocation card w-100 ">Ahmedabad</button>
                 </div>
                 
 
             </div>
             <div className="row mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Security</button>
+                    <button className="buttonlocation card w-100">Ahmedhanagar</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">HR/Admin</button>
+                    <button className="buttonlocation card w-100">Aizawl</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Hotel</button>
+                    <button className="buttonlocation card w-100">Ajitgarh(Mohali)</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Applicationprgm</button>
-                </div>
-                
-
-            </div>
-            <div className="row mt-2">
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">ClientServer</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">DBA</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Ecommerce</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">ERP</button>
+                    <button className="buttonlocation card w-100">Ajmer</button>
                 </div>
                 
 
             </div>
             <div className="row mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">VLSI</button>
+                    <button className="buttonlocation card w-100">Akola</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">MainFrame</button>
+                    <button className="buttonlocation card w-100">Alappuza</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Middleware</button>
+                    <button className="buttonlocation card w-100">Aligarh</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Mobile</button>
-                </div>
-                
-
-            </div>
-            <div className="row mt-2">
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">NetworkAdministrator</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">It industry</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Testing</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Systemprogramming</button>
+                    <button className="buttonlocation card w-100">Alirajpur</button>
                 </div>
                 
 
             </div>
             <div className="row mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">EDP</button>
+                    <button className="buttonlocation card w-100">Allahabad</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Telecomsoftware</button>
+                    <button className="buttonlocation card w-100">Almora</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Telecom</button>
+                    <button className="buttonlocation card w-100">alwar</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">BPO</button>
-                </div>
-                
-
-            </div>
-            <div className="row mt-2">
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Legal</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Marketing</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Packaging</button>
-                </div>
-                <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Pharma</button>
+                    <button className="buttonlocation card w-100">Ambala</button>
                 </div>
                 
 
             </div>
             <div className="row mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Maintenanse</button>
+                    <button className="buttonlocation card w-100">AmbedkarNagar</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Logistics</button>
+                    <button className="buttonlocation card w-100">Amaravathi</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Sales</button>
+                    <button className="buttonlocation card w-100">Amrelidistrict</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Secretary</button>
+                    <button className="buttonlocation card w-100">Amritsar</button>
+                </div>
+                
+
+            </div>
+            <div className="row mt-2">
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bengaluru</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhopal</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhubaneshwar</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Ahmedabad</button>
+                </div>
+                
+
+            </div>
+            <div className="row mt-2">
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Adilabad</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Agra</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bareilly</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhiwandi</button>
+                </div>
+                
+
+            </div>
+            <div className="row mt-2">
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Borivli</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhavnagar</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bikaner</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bokaro</button>
+                </div>
+                
+
+            </div>
+            <div className="row mt-2">
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhayandar</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bilimora</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Bhatpara</button>
+                </div>
+                <div className="col-12 col-md-3">
+                    <button className="buttonlocation card w-100">Belgaum</button>
                 </div>
                 
             </div>
             <div className="row mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Corparate</button>
+                    <button className="buttonlocation card w-100">Bhagalpur</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Site Engg</button>
+                    <button className="buttonlocation card w-100">Bellary</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Film</button>
+                    <button className="buttonlocation card w-100">Bhilwara</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Teacher</button>
+                    <button className="buttonlocation card w-100">Barddhaman</button>
                 </div>
                 
 
             </div>
             <div className="row mt-2 mt-2">
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Airline</button>
+                    <button className="buttonlocation card w-100">Bali</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">GraphicDesigner</button>
+                    <button className="buttonlocation card w-100">Bilaspur</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Shipping</button>
+                    <button className="buttonlocation card w-100">Bijapur</button>
                 </div>
                 <div className="col-12 col-md-3">
-                    <button className="buttonlocation card w-100">Analytics</button>
+                    <button className="buttonlocation card w-100">Baranagar</button>
                 </div>
                 
 
             </div>
 
           </div> */}
-           <div className="container mt-5">
+          {/* {searchTerm &&
+          <div>
+          <p className='para616'>{filter} <button className='cross' onClick={handleButtonOnClick}>✖</button></p>
+          <Link to="/browse"><button className='button618'>filter selected<i class="fas fa-search"></i></button></Link>
+          </div>
+          
+          } */}
+          <div className='container'>
+            <div className='row'>
+                <div className='col-md-5'></div>
+            {searchTerm && 
+            <div className='col-md-2' ref={el => elementRefs[allButtons.buttonName] = el}>
+                <p className='para616'>{filter}   
+                <button onClick={e =>handleButtonOnClick(e.target.value)} className='cross'>✖</button></p>
+                 
+                
+                <Link to="/browse"><button className='button618'>filter selected<i class="fas fa-search"></i></button></Link>
+            </div>
+            }
+             </div>    
+          </div>
+
+          
+
+<div className="container mt-5">
      
      <div className="row mt-2">
        {filteredButtons.length === 0 ? (
@@ -337,13 +382,12 @@ function Jobcategory(){
        ) : (
          filteredButtons.map((button, index) => (
            <div className="col-12 col-md-3" key={index}>
-             <button className="buttonlocation card w-100 mb-3">{button}</button>
+             <button className="buttonlocation card w-100 mb-3" onClick={() => handleButtonOnClick(button)}>{button}</button>
            </div>
          ))
        )}
      </div>
    </div>
-
 
 
           {/* ................ */}

@@ -975,8 +975,26 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
 .jobbutton:hover{
   background-color: gray;
 }
-
-
+.button618{
+  background-color: #2c0264;
+  padding: 10px 30px;
+  border-radius: 10px;
+  color: white;
+}
+.fa-search{
+  padding: 10px;
+}
+.para616{
+  text-align: center;
+  background-color: #2c0264;
+  padding:5px 10px ;
+  color: white;
+  border-radius: 20px;
+}
+.cross{
+  background-color: #2c0264;
+  color: white;
+}
 
 
 

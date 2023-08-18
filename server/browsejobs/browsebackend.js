@@ -1,7 +1,7 @@
 const express=require("express");  // IMPORTING EXPRESS MODULE FROM THIRD PARTY PACKAGE
 const mongoose=require("mongoose"); // IMPORTING MONGOOSE
 const cors=require("cors"); // IMPORTING CORS
-const browseData=require("./userdetails")
+const browseData=require("../crudoperations/userdetails")
 
 
 const app=express()
