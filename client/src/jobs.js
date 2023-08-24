@@ -16,13 +16,13 @@ function Jobs(){
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav menubar">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home" style={{color:"blue"}}>Home</a>
+                        <a class="nav-link" href="/home" style={{ color: "black" }}>Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="/browse" style={{color:"black"}}>Browse Jobs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="" style={{color:"black"}}>Jobs</a>
+                        <a class="nav-link dropdown-toggle" href="" style={{color:"blue"}}>Jobs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" style={{color:"black"}}>services</a>

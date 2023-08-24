@@ -90,7 +90,7 @@ function Joblocation(){
                     <a href='./jobs' className='anchar'><button className="card shadow jobbutton ">All Jobs</button></a>
                 </div>
                 <div className="col-12 col-md-2">
-                <a href='./joblocation' className='anchar'><button className="card shadow jobbutton bg-primary">Job By Location</button></a>
+                <a href='./joblocation' className='anchar'><button className="card shadow jobbutton" style={{backgroundColor:"#2c0264",color:"white"}}>Job By Location</button></a>
                 </div>
                 <div className="col-12 col-md-2">
                 <a href='./jobcompany' className='anchar'> <button className="card shadow jobbutton ">Jobs By Company</button></a>
@@ -124,7 +124,7 @@ function Joblocation(){
                     <input type="search" id="form1" class="form-control" placeholder="search"  value={searchTerm} onChange={e =>setSearchTerm(e.target.value)}/>
                     
                 </div>
-                <button type="button" class="btn btn-primary" onClick={handleSearch}>
+                <button type="button" class="" onClick={handleSearch} style={{backgroundColor:"#2c0264",color:"white"}}>
                     <i class="fas fa-search"></i>
                 </button>
                 </div>

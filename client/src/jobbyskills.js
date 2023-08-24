@@ -16,14 +16,14 @@ function Jobskills(){
 
   
   const allButtons = [
-    'ABAPConsultant', 'ABAPDeveloper', 'ABAPProgrammer', 'AcOperator', 'ACTechnician',
-    'AMETrainee', 'ASCHead', 'ASE', 'ASETrainee', 'AVEditor', 'HumanConsultant',
-    'Abstractor', 'AcadamicAssociate', 'AcadamicConsultant', 'Coordinator', 'Counsellor',
-    'AcadamicHead', 'Designer', 'Accountant', 'Administration', 'Auditor', 'Cashier',
-    'Operator', 'Manager', 'Assistant', 'Excutive', 'accountmanager', 'accountExcutive',
-    'Cleark', 'Attender', 'HR', 'TeamLeader', 'Maintenanse', 'Logistics', 'Sales',
-    'Secretary', 'Corparate', 'Site Engg', 'Film', 'Teacher', 'Airline', 'GraphicDesigner',
-    'Shipping', 'Analytics'
+    'Angular', 'ASP.net', 'MySQL', 'html', 'css',
+    'Bootstrap', 'JS', 'node', 'express js', 'Mangodb', 'React',
+    'java', 'Phython', '.net', 'c#', 'c',
+    'c+', 'cybersecurity', 'ASP', 'clouding', 'c++', 'medicalcoding',
+    'developer', 'springboot', 'sap', 'django', 'manualtesting', 'automationtesting',
+    'sql', 'DataScience', 'Excel', 'msword', 'networking', 'Jquery', 'xml',
+    'Data Analytics', 'PHP', 'R', 'Go', 'typescript', 'Awscloud', 'GraphicDesigner',
+    'postgresql', 'Analytics'
   ];
 
   const handleSearch = () => {
@@ -102,7 +102,7 @@ function Jobskills(){
                 <a href='./jobdesignation' className='anchar'><button className="card shadow jobbutton ">Jobs By Designation</button></a>
                 </div>
                 <div className="col-12 col-md-2">
-                <a href='./jobskills' className='anchar'><button className="card shadow jobbutton bg-primary ">Jobs By Skills</button></a>
+                <a href='./jobskills' className='anchar'><button className="card shadow jobbutton  " style={{backgroundColor:"#2c0264",color:"white"}}>Jobs By Skills</button></a>
                 </div>
 
             </div>
@@ -124,7 +124,7 @@ function Jobskills(){
                     <input type="search" id="form1" class="form-control" placeholder="search"  value={searchTerm} onChange={e =>setSearchTerm(e.target.value)}/>
                     
                 </div>
-                <button type="button" class="btn btn-primary" onClick={handleSearch}>
+                <button type="button" class="" onClick={handleSearch} style={{backgroundColor:"#2c0264",color:"white"}}>
                     <i class="fas fa-search"></i>
                 </button>
                 </div>

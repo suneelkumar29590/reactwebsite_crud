@@ -18,9 +18,12 @@ import Jobcompany from './jobbycompany';
 import Jobcategory from './jobbycategory';
 import Jobdesignation from './jobsbydesignation';
 import Jobskills from './jobbyskills';
-import Browse12 from './Browser123';
-import SinglePage from './API';
-import AnotherPage from './API1';
+import Resume from './resume';
+
+
+
+
+
  
 
 
@@ -48,9 +51,12 @@ function App() {
         <Route exact path = "/jobcategory" element ={<Jobcategory />}/>
         <Route exact path = "/jobdesignation" element ={<Jobdesignation />}/>
         <Route exact path = "/jobskills" element ={<Jobskills />}/>
-        <Route exact path = "/B" element ={<Browse12 />}/>
-        <Route exact path = "/apicode" element ={<SinglePage />}/>
-        <Route exact path = "/apicode1" element ={<AnotherPage />}/>
+        <Route exact path = "/resume" element ={<Resume/>}/>
+        
+        
+        
+       
+       
        
       
         

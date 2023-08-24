@@ -401,7 +401,7 @@
 import React,{ useEffect, useState } from "react";
 import axios from "axios";
 import image from "./pab bottom-logo (1).jpg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 function Browse() {
   const [blogslist, setblogslist] = useState([]);
   const [selectedblog, setselectedblog] = useState(null);
@@ -411,12 +411,19 @@ function Browse() {
   const [userstate, setuserstate  ] = useState('');
   const [userSalary, setuserSalary  ] = useState('');
 
+  const {state}=useLocation();
+  console.log("params",state)
+ 
+
+
   useEffect(() => {
     fetchblogs();
   }, []);
 
+  const data=useParams();
+
   const fetchblogs = async () => {
-    const api = "http://localhost:5010/allbrowse";
+    const api = "http://localhost:5016/allbrowse";
     const authToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk";
     try {
@@ -426,6 +433,10 @@ function Browse() {
         },
       });
       setblogslist(response.data);
+      if(state?.location)
+      {
+        handleFilter(state?.location, response.data)
+      }
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -481,6 +492,17 @@ const userSalary1 = (e) => {
   console.log(blogslist);
   console.log(selectedblog);
 
+  const handleFilter = (company, alljobs = blogslist) => 
+  {
+    company = Array.isArray(company)  ? company : [company];
+    const filter = alljobs.filter((job)=> {
+      return company.includes(job.companyname)
+    })
+    console.log(filter);
+    setblogslist(filter)
+
+  }
+
   return (
     <div>
       {/* ... */}
@@ -500,7 +522,7 @@ const userSalary1 = (e) => {
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav menubar">
               <li class="nav-item">
-                <a class="nav-link" href="/home" style={{ color: "blue" }}>
+                <a class="nav-link" href="/home" style={{ color: "black" }}>
                   Home
                 </a>
               </li>
@@ -508,7 +530,7 @@ const userSalary1 = (e) => {
                 <a
                   class="nav-link dropdown-toggle"
                   href="/browse"
-                  style={{ color: "black" }}
+                  style={{ color: "blue" }}
                 >
                   Browse Jobs
                 </a>
@@ -947,6 +969,7 @@ const userSalary1 = (e) => {
                           show more jobs in this company
                         </p>
                       </div>
+                      <img src="https://yt3.googleusercontent.com/vnQYDSGtKFu7LenJX864ylaHIDJZlQm33FU7KQnRfKW4slSo77nV0JwkmEXYhUFwtUxMwq5W=s900-c-k-c0x00ffffff-no-rj" width={100}/>
                     </div>
 
                     <div className=" col-5 p-3">
@@ -971,6 +994,7 @@ const userSalary1 = (e) => {
                   <h6>Roles and Responsibillties</h6>
                   <p>{selectedblog.description}</p>
                   <h3>Skills & Responsibillties</h3>
+                  <p>Html,css,bootstrap,js,node,React</p>
                 </div>
               </div>
             )}

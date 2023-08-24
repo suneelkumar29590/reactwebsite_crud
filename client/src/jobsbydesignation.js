@@ -99,7 +99,7 @@ function Jobdesignation(){
                 <a href='./jobcategory' className='anchar'><button className="card shadow jobbutton "> Jobs By Category</button></a>
                 </div>
                 <div className="col-12 col-md-2">
-                <a href='./jobdesignation' className='anchar'><button className="card shadow jobbutton bg-primary">Jobs By Designation</button></a>
+                <a href='./jobdesignation' className='anchar'><button className="card shadow jobbutton" style={{backgroundColor:"#2c0264",color:"white"}}>Jobs By Designation</button></a>
                 </div>
                 <div className="col-12 col-md-2">
                 <a href='./jobskills' className='anchar'><button className="card shadow jobbutton  ">Jobs By Skills</button></a>
@@ -124,7 +124,7 @@ function Jobdesignation(){
                     <input type="search" id="form1" class="form-control" placeholder="search"  value={searchTerm} onChange={e =>setSearchTerm(e.target.value)}/>
                     
                 </div>
-                <button type="button" class="btn btn-primary" onClick={handleSearch}>
+                <button type="button" class="" onClick={handleSearch} style={{backgroundColor:"#2c0264",color:"white"}}>
                     <i class="fas fa-search"></i>
                 </button>
                 </div>

@@ -13,7 +13,7 @@ function Payment(){
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav menubar">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home" style={{color:"blue"}}>Home</a>
+                        <a class="nav-link" href="/home" style={{color:"black"}}>Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="/browse" style={{color:"black"}}>Browse Jobs</a>
@@ -25,7 +25,7 @@ function Payment(){
                         <a class="nav-link dropdown-toggle" href="#" style={{color:"black"}}>services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="payment.html" style={{color:"black"}}>payments</a>
+                        <a class="nav-link dropdown-toggle" href="payment.html" style={{color:"blue"}}>payments</a>
                     </li>
                     <li class="nav-item">
                         <i class="fa-solid fa-bell bellicon"></i>

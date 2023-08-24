@@ -1,23 +1,28 @@
-GET http://localhost:5010/
+GET http://localhost:5016/
 
 ###
-POST http://localhost:5010/browsejobs
+POST http://localhost:5016/browsejobs
 Content-Type: application/json
 
 {
 
-"companyname":" Google",
-"contactnumber":"7644532285",
-"email":"google12@gmail.com",
+"companyname":" Infosis",
+"contactnumber":"8756756585",
+"email":"infosis@gmail.com",
 "description":"Foundational endpoint security controls across all Windows, macOS and Linux endpoints. Boost your organization's security with 7 best practices to secure your workstations. Remove Local Admin",
-"state":"Tamilnadu",
+"state":"maharastra",
 "country":"India",
-"salary":"15-20 LPA",
-"role":"Ui Deginer",
+"salary":"5-10 LPA",
+"role":"Tester",
 "experience":"5 years",
-"no_of_applications":"30"
+"no_of_applications":"60"
 
 }
 ###
-GET http://localhost:5010/allbrowse
+GET http://localhost:5016/allbrowse
 
+###
+DELETE http://localhost:5016/browsejobs/64d3adb113aa8a8b3950189f
+
+###
+GET http://localhost:5016/browsejobs/64def4ac7b42ca9fbff014f6

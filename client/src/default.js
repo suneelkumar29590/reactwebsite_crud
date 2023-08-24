@@ -48,7 +48,7 @@ const Default=()=>{
       confirmpassword !== ""
     ) {
 
-      axios.post("http://localhost:5010/signup/", usersData)
+      axios.post("http://localhost:5016/signup/", usersData)
         .then((response) =>{
           console.log(response.data);
           setdata(response.data);

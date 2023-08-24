@@ -96,7 +96,7 @@ function Jobcategory(){
                 <a href='./jobcompany' className='anchar'> <button className="card shadow jobbutton ">Jobs By Company</button></a>
                 </div>
                 <div className="col-12 col-md-2">
-                <a href='./jobcategory' className='anchar'><button className="card shadow jobbutton  bg-primary"> Jobs By Category</button></a>
+                <a href='./jobcategory' className='anchar'><button className="card shadow jobbutton " style={{backgroundColor:"#2c0264",color:"white"}} > Jobs By Category</button></a>
                 </div>
                 <div className="col-12 col-md-2">
                 <a href='./jobdesignation' className='anchar'><button className="card shadow jobbutton ">Jobs By Designation</button></a>
@@ -124,7 +124,7 @@ function Jobcategory(){
                     <input type="search" id="form1" class="form-control" placeholder="search"  value={searchTerm} onChange={e =>setSearchTerm(e.target.value)}/>
                     
                 </div>
-                <button type="button" class="btn btn-primary" onClick={handleSearch}>
+                <button type="button" class="" onClick={handleSearch}  style={{backgroundColor:"#2c0264",color:"white"}}>
                     <i class="fas fa-search"></i>
                 </button>
                 </div>
@@ -364,6 +364,7 @@ function Jobcategory(){
             <div className='col-md-2' ref={el => elementRefs[allButtons.buttonName] = el}>
                 <p className='para616'>{filter}   
                 <button onClick={e =>handleButtonOnClick(e.target.value)} className='cross'>✖</button></p>
+               
                  
                 
                 <Link to="/browse"><button className='button618'>filter selected<i class="fas fa-search"></i></button></Link>
