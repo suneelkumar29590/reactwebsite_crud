@@ -1,6 +1,75 @@
-import image from './pab bottom-logo (1).jpg';
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
+// import React, { useState } from 'react';
+import image from "./pab bottom-logo (1).jpg";
+import axios, { Axios } from "axios";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Payment(){
+
+    
+//payment Details
+const [paymentname, setpaymentname] = useState("");
+const [paymentemailid, setpaymentemailid] = useState("");
+const [paymentmobile, setpaymentmobile] = useState("");
+const [amount, setamount] = useState("");
+
+
+const [data03, setdata03] = useState([]);
+console.log(paymentname);
+const paymentDetails = {
+    paymentname: paymentname,
+    paymentemailid: paymentemailid,
+    paymentmobile: paymentmobile,
+    amount: amount,
+};
+console.log(paymentDetails);
+const onSubmitFormpaymentDetails = (e) => {
+  e.preventDefault();
+
+  if (
+    paymentname &&
+    paymentemailid &&
+    paymentmobile &&
+    amount !== ""
+  ) {
+    const headers = {
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk",
+    };
+    axios
+      .post("http://localhost:5016/PaymentDetails", paymentDetails, {
+        headers,
+      })
+      .then((response) => {
+        setdata03(response.data);
+
+        console.log(response.data);
+        if (response.status === 200) {
+          toast.success("Registration Successfull", {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  } else {
+    toast.warning("Enter the Required Details");
+  }
+};
+
     return(
         <div>
            <nav class="navbar navbar-expand-sm navbar-dark card shadow">
@@ -40,24 +109,40 @@ function Payment(){
     </nav>
 
     {/* ......... */}
+    <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
      
-    <div class="container4 mt-5">
+    <div class="container4 mt-5" >
         <div class="container2">
             <div class="row">
                 <div class="col-12 col-md-1">
 
                 </div>
+                
                 <div class=" col-md-10 maincard mb-5">
                     <div class="card mt-5 maincard1 d-flex flex-row shadow p-5">
                         <div class="col-md-6 ">
+                       
                             <h1 class="container2heading mt-3">Payment Request</h1>
 
-
-                            <div class="form">
+ 
+                            <form class="form" >
                                 <label for="" id="fullname" class="loginlabel">Name</label>
-                                <input type="text" class=" form-control" placeholder="enter your full name" id="input"/>
+                                <input type="text" class=" form-control" placeholder="enter your full name" id="input" value={paymentname} onChange={(e) =>
+                                      setpaymentname(e.target.value)}/>
                                 <label for="" class="loginlabel">Email ID</label>
-                                <input type="email" class="form-control " placeholder="enter your Email ID" id="input"/>
+                                <input type="email" class="form-control " placeholder="enter your Email ID" id="input" value={paymentemailid} onChange={(e) =>
+                                      setpaymentemailid(e.target.value)}/>
                                 <label for="" class="loginlabel">Mobile Number</label><br/>
                                 <div class="d-flex flex-row">
                                     <select name="" id="number">
@@ -65,17 +150,20 @@ function Payment(){
                                     </select>
 
                                     <input type="text" class="form-control " placeholder="Enter your mobile number"
-                                        id="input"/>
+                                        id="input" value={paymentmobile} onChange={(e) =>
+                                            setpaymentmobile(e.target.value)}/>
                                 </div>
                                 <label for="" class="loginlabel">Amount</label>
                                 <input type="password" class="form-control " placeholder="minimum 6 charactres"
-                                    id="input"/>
+                                    id="input" value={amount} onChange={(e) =>
+                                        setamount(e.target.value)}/>
 
 
 
 
-                                <button class="Registerbtn paybtn w-100 mt-4">Make Payment</button>
-                            </div>
+                                <button class="Registerbtn paybtn w-100 mt-4" onClick={onSubmitFormpaymentDetails}>Make Payment</button>
+                            </form>
+                            
                         </div>
                         <div class=" card1 col-md-3" style={{width: "300px"}}>
                             <img src="https://img.freepik.com/premium-vector/online-registration-sign-up-with-man-sitting-near-smartphone_268404-95.jpg"

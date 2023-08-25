@@ -21,6 +21,7 @@ const resumeData9 = require("./userresumedetails")
 const resumeData10=require("./userresumedetails")
 const resumeData11=require("./userresumedetails")
 const resumeData12=require("./userresumedetails")
+const resumeData13=require("./userresumedetails")
 
 const app=express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
@@ -699,6 +700,30 @@ app.post("/PersonalDetails", middleware, async (req, res) => {
     res.send("Inernal server error");
   }
 });
+
+
+//payment Details
+app.post("/PaymentDetails", middleware, async (req, res) => {
+  try {
+    const { paymentname, paymentemailid, paymentmobile, amount } =
+      req.body;
+
+    let newUser = new resumeData13({
+      paymentname: paymentname,
+      paymentemailid: paymentemailid,
+      paymentmobile: paymentmobile,
+      amount: amount,
+    });
+
+    newUser.save(); //saving mongodb collections
+    return res.send("user Created Successfully");
+  } catch (e) {
+    console.log(e.message);
+    res.send("Inernal server error");
+  }
+});
+
+
 
 
 app.listen(5016,()=>{

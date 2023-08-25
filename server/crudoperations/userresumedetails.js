@@ -263,3 +263,28 @@ const resumeData1 = new mongoose.Schema({
  
  });
  module.exports = mongoose.model("resumeData12", resumeData12);
+
+ 
+//  // start
+
+
+const resumeData13 = new mongoose.Schema({
+  paymentname: {
+    type: String,
+    require: true,
+  },
+  paymentemailid: {
+    type: String,
+    require: true,
+  },
+  paymentmobile: {
+    type: String,
+    require: true,
+  },
+  amount: {
+    type: String,
+    require: true,
+  },
+ 
+ });
+ module.exports = mongoose.model("resumeData13", resumeData13);

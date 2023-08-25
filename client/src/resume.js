@@ -643,6 +643,9 @@ function ResumeDetails() {
     }
   };
 
+
+  // start
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -741,9 +744,9 @@ function ResumeDetails() {
         </div>
       </nav>
       {/* card-sections */}
-      <div class="container mt-5">
+      <div class="container mt-5 ">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 ">
             <div class="card p-3 shadow">
               <div class="d-flex flex-row py-2">
                 <div>
@@ -789,29 +792,29 @@ function ResumeDetails() {
             </div>
             <div class="mt-2 ">
               <button class="w-100 p-2 mt-2 resumebtn shadow" style={{ backgroundColor: "blue", color:"white" }}>Resume</button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              <a href="#headline"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Resume Headline
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#ProfileSummary"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Profile Summary
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#Keyskills"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Key skills
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#Employment"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Employment
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">Education</button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">Projects</button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#Education"><button class="w-100 p-2 mt-2 resumebtn shadow">Education</button></a>
+              <a href="#Projects"><button class="w-100 p-2 mt-2 resumebtn shadow">Projects</button></a>
+              <a href="#accom"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Accomplishment
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#career"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Desired career Profile
-              </button>
-              <button class="w-100 p-2 mt-2 resumebtn shadow">
+              </button></a>
+              <a href="#personal"><button class="w-100 p-2 mt-2 resumebtn shadow">
                 Personal Details
-              </button>
+              </button></a>
             </div>
           </div>
 
@@ -840,7 +843,7 @@ function ResumeDetails() {
                 Supported formates : doc,docx,rtf,pdf,upto 2mb{" "}
               </p>
             </div>
-
+         <section id="headline">        
             <div class="card p-4 mt-3 shadow">
               <div id="ResumeHeadline">
                 <div class="d-flex flex-row">
@@ -928,7 +931,8 @@ function ResumeDetails() {
                 <p>Software Developer currently living in Hyderabad</p>
               </div>
             </div>
-
+            </section>  
+            <section id="ProfileSummary">                    
             <div class="card p-4 mt-3 shadow">
               <div id="ProfileSummary">
                 <div class="d-flex flex-row">
@@ -1016,6 +1020,8 @@ function ResumeDetails() {
                 </p>
               </div>
             </div>
+            </section>
+            <section id="Keyskills">
             <div class="card p-4 mt-3 shadow">
               <div id="KeySkills">
                 <div class="d-flex flex-row">
@@ -1138,6 +1144,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="Employment">
             <div class="card p-4 mt-3 shadow">
               <div id="Employment">
                 <div class="d-flex flex-row">
@@ -1406,6 +1414,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="Education">
             <div class="card p-4 mt-3 shadow">
               <div id="Education">
                 <div class="d-flex flex-row">
@@ -1518,6 +1528,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="Projects">
             <div class="card p-4 mt-3 shadow">
               <div id="Projects">
                 <div class="d-flex flex-row">
@@ -1632,6 +1644,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="accom">
             <div class="card p-4 mt-3 shadow">
               <div>
                 <div class="d-flex flex-row">
@@ -2179,6 +2193,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="career">
             <div class="card p-4 mt-3 shadow">
               <div id="DesiredcareerProfile">
                 <div class="d-flex flex-row">
@@ -2352,6 +2368,8 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
+            <section id="personal">
             <div class="card p-4 mt-3 shadow">
               <div id="Personaldetails">
                 <div class="d-flex flex-row">
@@ -2524,6 +2542,7 @@ function ResumeDetails() {
                 </div>
               </div>
             </div>
+            </section>
           </div>
         </div>
       </div>

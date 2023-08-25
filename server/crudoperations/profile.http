@@ -165,3 +165,17 @@ token :eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMy
      "Address":"vizag"
      
 }
+
+
+###
+POST http://localhost:5016/PaymentDetails
+Content-Type: application/json
+token :eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk
+
+{
+     "paymentname":"suneel kumar",
+     "paymentemailid":"suneelK@gmail.com",
+     "paymentmobile":"8798798768",
+     "amount":"1200"
+     
+}

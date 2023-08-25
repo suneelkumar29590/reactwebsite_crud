@@ -21,7 +21,7 @@ function Profile() {
 
   const [data, setdata] = useState([]);
   console.log(profieeditor);
-  let navigat = useNavigate();
+  let navigate = useNavigate();
 
   const useData = {
     profieeditor: profieeditor,

@@ -131,7 +131,7 @@ const Login=()=>{
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
             </form>
             <a href=""><h6 class="loginh4">Login via OTP</h6></a>
-           <a href="" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
+           <a href="./home" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
         
             </div>
         </div>
