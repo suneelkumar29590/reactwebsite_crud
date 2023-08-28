@@ -496,7 +496,7 @@ const userSalary1 = (e) => {
   {
     company = Array.isArray(company)  ? company : [company];
     const filter = alljobs.filter((job)=> {
-      return company.includes(job.companyname)
+      return company.includes(job.companyname) || company.includes(job.role) || company.includes(job.state)
     })
     console.log(filter);
     setblogslist(filter)

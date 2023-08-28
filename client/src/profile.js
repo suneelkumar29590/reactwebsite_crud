@@ -189,7 +189,11 @@ function Profile() {
         <div class="row">
         <div class="col-md-3">
                 <div class="card">
-                    <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontsize: "200px"}}></i>
+                   <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontsize: "200px"}}> </i> 
+
+{/* <input type="search" ><button class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontsize: "200px"}}></button></input> */}
+
+
                     <a href="profile.html"><button class="p-2 mb-1 profilebutton w-100 active h-25  bg-primary text-white"
                             >Candidate Profile</button></a>
                     <a href="/resume"><button class="p-2 mb-1 profilebutton w-100">Resume</button></a>
@@ -197,7 +201,7 @@ function Profile() {
                     <a href=""><button class="p-2 mb-1 profilebutton w-100"  >Job Alerts</button></a>
                     <a href=""><button class="p-2 mb-1 profilebutton w-100">Saved Jobs</button></a>
                     <a href=""><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
-                    <a href=""><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
+                    <a href="/default"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
                 </div>
 
             </div>
