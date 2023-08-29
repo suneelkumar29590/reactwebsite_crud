@@ -404,7 +404,7 @@ import image from "./pab bottom-logo (1).jpg";
 import { Link, useLocation, useParams } from "react-router-dom";
 function Browse() {
   const [blogslist, setblogslist] = useState([]);
-  const [selectedblog, setselectedblog] = useState(null);
+  const [selectedblog, setselectedblog] = useState("");
   const [userskills, setUserskills] = useState('');
   const [userlocation, setUserLocation] = useState('');
   const [usereperience, setusereperience  ] = useState('');
@@ -433,9 +433,15 @@ function Browse() {
         },
       });
       setblogslist(response.data);
+      if(response.data.length>0)
+      {
+        setselectedblog(response.data[0]);
+
+      }
       if(state?.location)
       {
         handleFilter(state?.location, response.data)
+        
       }
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -457,6 +463,7 @@ function Browse() {
     )
     setblogslist(fillter);
     setusereperience(fillter);
+    setselectedblog(fillter[0])
 
 
 }
@@ -467,6 +474,7 @@ const userState = (e) => {
   )
   setblogslist(fillter);
   setuserstate(fillter);
+  setselectedblog(fillter[0])
 
 
 }
@@ -477,6 +485,7 @@ const userSalary1 = (e) => {
   )
   setblogslist(fillter);
   setuserSalary(fillter);
+  setselectedblog(fillter[0])
 
 
 }
@@ -499,7 +508,8 @@ const userSalary1 = (e) => {
       return company.includes(job.companyname) || company.includes(job.role) || company.includes(job.state)
     })
     console.log(filter);
-    setblogslist(filter)
+    setblogslist(filter);
+    setselectedblog(filter[0])
 
   }
 
@@ -588,7 +598,7 @@ const userSalary1 = (e) => {
               <i class="fa-solid fa-magnifying-glass p-3"></i>
               <input
                 type="text"
-                placeholder="Job title skills or company "
+                placeholder="Job title"
                 class=" p-1 searchBox "
                 value={userskills}
                 onChange={(e) => setUserskills(e.target.value)}
@@ -603,7 +613,7 @@ const userSalary1 = (e) => {
               <i class="fa-solid fa-location-dot p-3"></i>
               <input
                 type="text"
-                placeholder="City, Province or region "
+                placeholder="Companyname, Province or region "
                 class=" p-1 searchBox "
                 value={userlocation}
                 onChange={(e) => setUserLocation(e.target.value)}
@@ -920,10 +930,31 @@ const userSalary1 = (e) => {
           </div>
         </div>
       </section>
+      {blogslist.length >0 ?(
+        <div>
+          {blogslist.map((a)=>(
+            <>
+            <div></div>
+            </>
+          ))}
+        </div>
+      ):(
+        <div className="container mt-5">
+          <div className="row">
+        <div className="col-md-2">
+          <h6> page not fond</h6>
+        </div>
+          </div>
+         
+        </div>
+        
+      )
+    }
 
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 text-center"></div>
+          <h6>No of cards show :{blogslist.length}</h6>
           <ul className="col-12 col-md-4">
             {blogslist.map((blog) => 
             (
@@ -954,8 +985,10 @@ const userSalary1 = (e) => {
           </ul>
 
           <div className="col-md-8 card shadow cardheight h-50">
+          
             {selectedblog && (
               <div>
+                  
                 <div className="card mt-4 mb-3">
                   <div className="d-flex p-2">
                     <div className="d-flex p-2 col-5 imagepara">

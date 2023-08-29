@@ -128,15 +128,20 @@ const Default=()=>{
               <h2>Create an account</h2>
               <p className="parastart">it only takes a couple of minutes to get started!</p>
               </div>
-              <div className=" text-center reactbtngroup">
-                <a href="./Login"><button className="w-25 reactloginbtn shadow mx-1">Login</button></a>
-                <button className="w-25 reactloginbtn shadow ">Signup<i class="fa-solid fa-circle-check "></i></button>
+              <div className=" text-center reactbtngroup d-flex flex-row justify-content-center">
+                <a href="./Login" className="w-100"><button className="w-100 reactloginbtn shadow p-2">Login</button></a>
+                <button className="w-100 reactloginbtn shadow p-2">Signup<i class="fa-solid fa-circle-check "></i></button>
               </div>
-              <div className=" text-center reactbtngroup mt-3 mb-3">
+              <div className=" text-center reactbtngroup mt-3 mb-3 d-flex flex-row justify-content-center">
+              <button className="w-100 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={(e)=>settype(e.target.value)}></input></button>
+                <button className="w-100 reactloginbtn shadow p-2">Recruiters <input type="radio" name="type" value="recruiter" onChange={(e)=>settype(e.target.value)}></input></button>
+              </div>
+              
+              {/* <div className=" text-center reactbtngroup mt-3 mb-3 d-flex flex-row justify-content-center">
                 
-              <a href="./Default"> <button className="w-25 reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={(e)=>settype(e.target.value)}></input></button></a>
-                <a href="./Recruiter1"><button className="w-25 reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" onChange={(e)=>settype(e.target.value)}></input></button></a>
-              </div>
+              <a href="./Default"> <button className=" reactloginbtn1 shadow">Job seekers<input type="radio" name="type" value="applicant" onChange={(e)=>settype(e.target.value)}></input></button></a>
+                <a href="./Recruiter1"><button className=" reactloginbtn shadow">Recruiters <input type="radio" name="type" value="recruiter" onChange={(e)=>settype(e.target.value)}></input></button></a>
+              </div> */}
              
               <ToastContainer
             position="top-right"
@@ -185,9 +190,12 @@ const Default=()=>{
                         </p>
                         <button class="Registerbtn">Register Now</button>
                     </form>
+                    
             </div>
+            
 
           </div>
+          
           <div className="col-12 col-md-1"></div>
           <div class=" col-12 col-lg-4 mt-5">
                 <div class="card card1 shadow" >

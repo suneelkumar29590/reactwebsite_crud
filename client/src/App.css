@@ -1090,6 +1090,18 @@ font-size: 20px;
  
 }
 
+.bird{
+  border: 2px solid black;
+  padding: 20px 20px;
+  border-radius: 100px;
+  text-align: center;
+  color: blue;
+}
+.bird1{
+  border-radius: 100px;
+  
+}
+
 
 
 

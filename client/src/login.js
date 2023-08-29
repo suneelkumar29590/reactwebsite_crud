@@ -125,7 +125,7 @@ const Login=()=>{
           
             <label for="" class="loginpassword">password</label>
            <input type="password" name="" id=""  class="logininput w-100" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
-          value={password}/> <i class="fa-solid fa-eye eyeicon"></i>
+          value={password}/> 
          
             <a href=""><p class="loginforgot mt-2">Forgot password?</p></a>
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>

@@ -6,16 +6,16 @@ Content-Type: application/json
 
 {
 
-"companyname":" Infosis",
-"contactnumber":"8756756585",
-"email":"infosis@gmail.com",
-"description":"Foundational endpoint security controls across all Windows, macOS and Linux endpoints. Boost your organization's security with 7 best practices to secure your workstations. Remove Local Admin",
-"state":"maharastra",
+"companyname":"daedalus",
+"contactnumber":"7847848746",
+"email":"daedalus123@gmail.com",
+"description":"Foundational endpoint security controls across all Windows, macOS and Linux endpoints. Boost your organization's security with 7 best practices to secure your workstations. Remove Local Admin Foundational endpoint security controls across all Windows, macOS and Linux endpoints",
+"state":"Telagana",
 "country":"India",
-"salary":"5-10 LPA",
-"role":"Tester",
-"experience":"5 years",
-"no_of_applications":"60"
+"salary":"15-20 LPA",
+"role":"tester",
+"experience":"3 years",
+"no_of_applications":"80"
 
 }
 ###

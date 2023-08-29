@@ -831,7 +831,7 @@ function ResumeDetails() {
                   type="file"
                   accept=".doc, .docx, .rtx, .pdf"
                   onClick={handleFileChange}
-                />
+                 />
                 {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 {selectedFile && (
                   <div>

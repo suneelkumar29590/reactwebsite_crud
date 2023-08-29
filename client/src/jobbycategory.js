@@ -45,7 +45,9 @@ function Joblocation() {
       setselectloc((blogslist) => blogslist.filter((item) => item !== city));
     } else {
       setselectloc((blogslist) => [...blogslist, city]);
+      
     }
+
   };
   const removeItem =(_id)=>{
     const updatedItem=[...selectloc];
