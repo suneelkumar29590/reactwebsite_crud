@@ -398,29 +398,30 @@
 
 // export default Browse;
 
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import image from "./pab bottom-logo (1).jpg";
 import { Link, useLocation, useParams } from "react-router-dom";
 function Browse() {
   const [blogslist, setblogslist] = useState([]);
   const [selectedblog, setselectedblog] = useState("");
-  const [userskills, setUserskills] = useState('');
-  const [userlocation, setUserLocation] = useState('');
-  const [usereperience, setusereperience  ] = useState('');
-  const [userstate, setuserstate  ] = useState('');
-  const [userSalary, setuserSalary  ] = useState('');
+  const [userskills, setUserskills] = useState("");
+  const [userlocation, setUserLocation] = useState("");
+  const [usereperience, setusereperience] = useState("");
+  const [userstate, setuserstate] = useState("");
+  const [userSalary, setuserSalary] = useState("");
+  
 
-  const {state}=useLocation();
-  console.log("params",state)
- 
-
-
+  const { state } = useLocation();
+  console.log("params", state);
   useEffect(() => {
     fetchblogs();
-  }, []);
+  }, [
+    
+  ]);
 
-  const data=useParams();
+
+  const data = useParams();
 
   const fetchblogs = async () => {
     const api = "http://localhost:5016/allbrowse";
@@ -433,15 +434,11 @@ function Browse() {
         },
       });
       setblogslist(response.data);
-      if(response.data.length>0)
-      {
+      if (response.data.length > 0) {
         setselectedblog(response.data[0]);
-
       }
-      if(state?.location)
-      {
-        handleFilter(state?.location, response.data)
-        
+      if (state?.location) {
+        handleFilter(state?.location, response.data);
       }
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -449,46 +446,39 @@ function Browse() {
   };
 
   const searchBySkills = () => {
-    const filteredJobs = blogslist.filter(blog =>
-      blog.role && blog.role.toLowerCase().includes(userskills.toLowerCase().trim())
-      &&
-      blog.companyname && blog.companyname.toLowerCase().includes(userlocation.toLowerCase().trim())
+    const filteredJobs = blogslist.filter(
+      (blog) =>
+        blog.role &&
+        blog.role.toLowerCase().includes(userskills.toLowerCase().trim()) &&
+        blog.companyname &&
+        blog.companyname
+          .toLowerCase()
+          .includes(userlocation.toLowerCase().trim())
     );
     setblogslist(filteredJobs);
+ 
   };
 
   const userExp = (e) => {
-    const fillter = blogslist.filter((blog) =>
-    blog.experience.includes(e)
-    )
+    const fillter = blogslist.filter((blog) => blog.experience.includes(e));
     setblogslist(fillter);
     setusereperience(fillter);
-    setselectedblog(fillter[0])
+    setselectedblog(fillter[0]);
+  };
 
+  const userState = (e) => {
+    const fillter = blogslist.filter((blog) => blog.state.includes(e));
+    setblogslist(fillter);
+    setuserstate(fillter);
+    setselectedblog(fillter[0]);
+  };
 
-}
-
-const userState = (e) => {
-  const fillter = blogslist.filter((blog) =>
-  blog.state.includes(e)
-  )
-  setblogslist(fillter);
-  setuserstate(fillter);
-  setselectedblog(fillter[0])
-
-
-}
-
-const userSalary1 = (e) => {
-  const fillter = blogslist.filter((blog) =>
-  blog.salary.includes(e)
-  )
-  setblogslist(fillter);
-  setuserSalary(fillter);
-  setselectedblog(fillter[0])
-
-
-}
+  const userSalary1 = (e) => {
+    const fillter = blogslist.filter((blog) => blog.salary.includes(e));
+    setblogslist(fillter);
+    setuserSalary(fillter);
+    setselectedblog(fillter[0]);
+  };
 
   const onclickblogdetails = async (blogid) => {
     // const api=`https://pab-server.onrender.com/api/jobs/${blogid}`
@@ -501,17 +491,19 @@ const userSalary1 = (e) => {
   console.log(blogslist);
   console.log(selectedblog);
 
-  const handleFilter = (company, alljobs = blogslist) => 
-  {
-    company = Array.isArray(company)  ? company : [company];
-    const filter = alljobs.filter((job)=> {
-      return company.includes(job.companyname) || company.includes(job.role) || company.includes(job.state)
-    })
+  const handleFilter = (company, alljobs = blogslist) => {
+    company = Array.isArray(company) ? company : [company];
+    const filter = alljobs.filter((job) => {
+      return (
+        company.includes(job.companyname) ||
+        company.includes(job.role) ||
+        company.includes(job.state)
+      );
+    });
     console.log(filter);
     setblogslist(filter);
-    setselectedblog(filter[0])
-
-  }
+    setselectedblog(filter[0]);
+  };
 
   return (
     <div>
@@ -624,7 +616,9 @@ const userSalary1 = (e) => {
             </div>
           </div>
         </div>
-        <button class=" registerButton11"onClick={searchBySkills}>Search</button>
+        <button class=" registerButton11" onClick={searchBySkills}>
+          Search
+        </button>
       </div>
       {/* .............. */}
 
@@ -642,29 +636,59 @@ const userSalary1 = (e) => {
                   >
                     Experience
                   </button>
-                  <ul class="dropdown-menu" >
-                    <li >
-                      <a class="dropdown-item" href="#" onClick={() => { userExp('10') }}>
-                      10 years
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userExp("10");
+                        }}
+                      >
+                        10 years
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userExp('1 ') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userExp("1 ");
+                        }}
+                      >
                         1 year
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userExp('3') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userExp("3");
+                        }}
+                      >
                         3 year
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userExp('5') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userExp("5");
+                        }}
+                      >
                         5 year
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userExp('4') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userExp("4");
+                        }}
+                      >
                         4 year
                       </a>
                     </li>
@@ -683,27 +707,57 @@ const userSalary1 = (e) => {
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userState('AP') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userState("AP");
+                        }}
+                      >
                         AP
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userState('Telagana') }}>
-                      Telagana
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userState("Telagana");
+                        }}
+                      >
+                        Telagana
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userState('Tamilnadu') }}>
-                      Tamilnadu
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userState("Tamilnadu");
+                        }}
+                      >
+                        Tamilnadu
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userState('karnataka') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userState("karnataka");
+                        }}
+                      >
                         karnataka
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userState('maharastra') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userState("maharastra");
+                        }}
+                      >
                         maharastra
                       </a>
                     </li>
@@ -722,28 +776,57 @@ const userSalary1 = (e) => {
                   </button>
                   <ul class="dropdown-menu">
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userSalary1('23-25 LPA') }}>
-                       
-                      23-25 LPA
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userSalary1("23-25 LPA");
+                        }}
+                      >
+                        23-25 LPA
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userSalary1('3-5 LPA') }}>   
-                    3-5 LPA        
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userSalary1("3-5 LPA");
+                        }}
+                      >
+                        3-5 LPA
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userSalary1('13-15 LPA') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userSalary1("13-15 LPA");
+                        }}
+                      >
                         13-15 LPA
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userSalary1('15-20 LPA') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userSalary1("15-20 LPA");
+                        }}
+                      >
                         15-20 LPA
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#" onClick={() => { userSalary1('10.5-15 LPA') }}>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => {
+                          userSalary1("10.5-15 LPA");
+                        }}
+                      >
                         10.5-15 LPA
                       </a>
                     </li>
@@ -930,35 +1013,32 @@ const userSalary1 = (e) => {
           </div>
         </div>
       </section>
-      {blogslist.length >0 ?(
+      {blogslist.length > 0 ? (
         <div>
-          {blogslist.map((a)=>(
+          {blogslist.map((a) => (
             <>
-            <div></div>
+              <div></div>
             </>
           ))}
         </div>
-      ):(
+      ) : (
         <div className="container mt-5">
           <div className="row">
-        <div className="col-md-2">
-          <h6> page not fond</h6>
-        </div>
+            <div className="col-md-2">
+              <h6> page not fond</h6>
+            </div>
           </div>
-         
         </div>
-        
-      )
-    }
+      )}
 
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 text-center"></div>
           <h6>No of cards show :{blogslist.length}</h6>
           <ul className="col-12 col-md-4">
-            {blogslist.map((blog) => 
-            (
-              <div key={blog._id}
+            {blogslist.map((blog) => (
+              <div
+                key={blog._id}
                 className={`card mb-3 p-2 select shadow ${
                   selectedblog && selectedblog.id === blog._id ? "selected" : ""
                 }`}
@@ -985,24 +1065,25 @@ const userSalary1 = (e) => {
           </ul>
 
           <div className="col-md-8 card shadow cardheight h-50">
-          
             {selectedblog && (
               <div>
-                  
                 <div className="card mt-4 mb-3">
                   <div className="d-flex p-2">
                     <div className="d-flex p-2 col-5 imagepara">
                       <div></div>
                       <div>
                         <h5>{selectedblog.companyname}</h5>
-                        
+
                         <p>
                           Angel Broking
                           <br />
                           show more jobs in this company
                         </p>
                       </div>
-                      <img src="https://yt3.googleusercontent.com/vnQYDSGtKFu7LenJX864ylaHIDJZlQm33FU7KQnRfKW4slSo77nV0JwkmEXYhUFwtUxMwq5W=s900-c-k-c0x00ffffff-no-rj" width={100}/>
+                      <img
+                        src="https://yt3.googleusercontent.com/vnQYDSGtKFu7LenJX864ylaHIDJZlQm33FU7KQnRfKW4slSo77nV0JwkmEXYhUFwtUxMwq5W=s900-c-k-c0x00ffffff-no-rj"
+                        width={100}
+                      />
                     </div>
 
                     <div className=" col-5 p-3">

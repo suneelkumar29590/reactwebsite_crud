@@ -1069,7 +1069,7 @@ function ResumeDetails() {
                           <div class="modal-body">
                             <form action="" onSubmit={onSubmitFormskills}>
                               <div class="resumegroup mb-5 ">
-                                <button class="btnresume shadow p-2 px-3 m-1 ">
+                                <button class="btnresume shadow p-2 px-3 m-1">
                                   Photoshop
                                 </button>
                                 <button class="btnresume shadow p-2 px-3 m-1">
@@ -1117,7 +1117,7 @@ function ResumeDetails() {
                 </div>
                 <hr />
                 <div class="resumegroup  ">
-                  <button class="btnresume p-2 px-3 m-1 ">Photoshop</button>
+                  <button class="btnresume shadow p-2 px-3 m-1 ">Photoshop</button>
                   <button class="btnresume shadow p-2 px-3 m-1">
                     aftereffects
                   </button>

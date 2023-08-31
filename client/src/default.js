@@ -122,6 +122,7 @@ const Default=()=>{
      
 
         <div className="row">
+        <div className="col-12 col-md-1"></div>
           <div className="col-12 col-md-5">
             <div className="card shadow mt-5 logincard">
               <div className="col-12 text-center">

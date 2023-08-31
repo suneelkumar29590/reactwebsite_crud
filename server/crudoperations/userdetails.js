@@ -47,4 +47,4 @@ const browseData = new mongoose.Schema({
     required: true,
   }
 });
-module.exports = mongoose.model("lastData", browseData);
+module.exports = mongoose.model("browseData", browseData);

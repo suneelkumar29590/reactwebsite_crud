@@ -1102,6 +1102,12 @@ font-size: 20px;
   
 }
 
+.code{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the column width as needed */
+  gap: 20px; /* Adjust the gap between items as needed */
+}
+
 
 
 
