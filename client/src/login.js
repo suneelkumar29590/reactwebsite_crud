@@ -17,6 +17,13 @@ const Login=()=>{
 
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+    
+  };
 
     console.log(email);
 
@@ -30,7 +37,7 @@ const Login=()=>{
       };
       console.log(usersData);
 
-      const onSubmitBtn=e=>{
+      const onSubmitBtn=(e)=>{
         e.preventDefault();
     if(email && password !== ''){
         axios.post("http://localhost:5016/login",usersData)
@@ -39,7 +46,7 @@ const Login=()=>{
                 let jwtToken = response.data.token
                 localStorage.setItem("token",jwtToken)
 
-                toast.success("open Home Page", {
+                toast.success("Login successfully", {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -56,10 +63,11 @@ const Login=()=>{
                         
             }
         })
-        .catch(error =>{
+        .catch((error) =>{
             console.log(error.response.data);
             window.alert(error.response.data)
         })
+        
 
     }
     else{
@@ -91,11 +99,14 @@ const Login=()=>{
   </div>
 </nav>
 
-          
-<div class="container mt-5 mb-5" >
+  <div className="logincontainer ">      
+<div class="container py-5 mb-5 ">
     <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="card shadow logincard1 p-4" style={{borderradius: "20px"}}>
+    <div class="col-12 col-md-1">
+
+</div>
+        <div class="col-12 col-md-5">
+            <div class="card shadow logincard1 p-4" style={{borderRadius: "30px"}}>
             <div class="loginheader">
                 <h2 class="loginheader1">Login</h2>
                 <p class="loginpara">It only takes a couple of minutes to get started!</p>
@@ -118,20 +129,22 @@ const Login=()=>{
             <form  onSubmit={onSubmitBtn}>
               
             <label for="" class="loginemail">Email ID</label>
-            <input type="text" name="" id="" class="logininput w-100" placeholder="enter your email ID" style={{border: "1px solid blue",height:"40px",}} onChange={(e) => setemail(e.target.value)}
+            <input type="text" name="" id="" class="logininput w-100 form-control" placeholder="enter your email ID" style={{border: "1px solid blue",height:"40px",}} onChange={(e) => setemail(e.target.value)}
           value={email} />
           
           <br></br>
-          
+          <div className="input-with-icon1">
             <label for="" class="loginpassword">password</label>
-           <input type="password" name="" id=""  class="logininput w-100" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
+           <input  type={showPassword ? 'text' : 'password'} name="" id=""  class="logininput w-100 form-control" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
           value={password}/> 
+           <i className="fa-solid fa-eye icon1" onClick={togglePasswordVisibility}></i>
+          </div>
          
-            <a href=""><p class="loginforgot mt-2">Forgot password?</p></a>
+            <a href="" className="loginforgot"><p class="loginforgot mt-2">Forgot password?</p></a>
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
             </form>
-            <a href=""><h6 class="loginh4">Login via OTP</h6></a>
-           <a href="./home" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
+            <a href=""  className="loginforgot"><h6 class="loginh4">Login via OTP</h6></a>
+           <a href="./home" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow p-2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
         
             </div>
         </div>
@@ -139,10 +152,10 @@ const Login=()=>{
         <div class="col-12 col-md-1">
 
         </div>
-        <div class="col-12 col-md-4 d-none d-md-block" >
-            <div class="card shadow logincard2" style={{borderradius: "20px"}}>
-                <h2 class="pabjobheading">New to pabjobs?</h2>
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/003/689/228/small/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg" alt=""/>
+        <div class="col-12 col-md-3 d-none d-md-block" >
+            <div class="card shadow logincard2 text-center" style={{borderRadius: "20px"}}>
+                <h2 class="pabjobheading ">New to pabjobs?</h2>
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/003/689/228/small/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg" alt="" width={300} height={200}/>
             </div>
             <div class="loginspan1">
                 <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Build your profile and let
@@ -164,8 +177,8 @@ const Login=()=>{
 
 {/* ........ */}
 
-
-<div className="container-fluid footer">
+ 
+<div className="container-fluid footer mt-5">
         <div className="container py-5">
         <div className="row">
           <div className="col-12 col-md-3">
@@ -177,7 +190,8 @@ const Login=()=>{
 
 
           </div>
-          <div className="col-12 col-md-1"></div>
+          <div className="col-md-1"></div>
+          
           <div className="col-12 col-md-2">
             <h3>For Employers</h3>
             <p>{">"}Company profile</p>
@@ -186,7 +200,8 @@ const Login=()=>{
 
 
           </div>
-          <div className="col-12 col-md-1"></div>
+          <div className="col-md-1"></div>
+          
           <div className="col-12 col-md-2">
             <h3>Jobs</h3>
             <p>{">"}All jobs</p>
@@ -198,7 +213,8 @@ const Login=()=>{
 
 
           </div>
-          <div className="col-12 col-md-3">
+          <div className="col-md-1"></div>
+          <div className="col-12 col-md-2">
             <h3> Browse Jobs</h3>
             <p>{">"}Companies</p>
             <p>{">"}Browse jobs</p>
@@ -211,19 +227,23 @@ const Login=()=>{
 
           </div>
 
-          <div class="hrtag" style={{marginleft: "50px", width: "90%"}}>
+          <div class="hrtag" style={{marginleft: "50px", width: "190%"}}>
             <hr/>
         </div>
-            <div class="col-12 col-md-2">
-
-            </div>
+            
             <div class="col-12 col-md-3">
                 <p>all rights resereved@2022PABJobs</p>
             </div>
+            <div class="col-12 col-md-2">
+
+</div>
             <div class="col-12 col-md-3">
                 <p>Designed by<span class="perfex">@PerfexTechnologies</span></p>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-2">
                 <i class="fa-brands fa-linkedin footicon px-1"></i>
                 <i class="fa-brands fa-instagram footicon px-1"></i>
                 <i class="fa-brands fa-facebook footicon px-1"></i>
@@ -234,6 +254,7 @@ const Login=()=>{
         </div>
 
            </div>
+           </div>  
 
 
 

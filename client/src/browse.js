@@ -402,23 +402,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import image from "./pab bottom-logo (1).jpg";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Browse() {
   const [blogslist, setblogslist] = useState([]);
   const [selectedblog, setselectedblog] = useState("");
   const [userskills, setUserskills] = useState("");
   const [userlocation, setUserLocation] = useState("");
-  const [usereperience, setusereperience] = useState("");
+  const [usereperience, setusereperience] = useState([]);
   const [userstate, setuserstate] = useState("");
   const [userSalary, setuserSalary] = useState("");
-  
+
 
   const { state } = useLocation();
   console.log("params", state);
   useEffect(() => {
     fetchblogs();
-  }, [
-    
-  ]);
+  }, [usereperience || userstate || userSalary ]);
 
 
   const data = useParams();
@@ -456,29 +456,101 @@ function Browse() {
           .includes(userlocation.toLowerCase().trim())
     );
     setblogslist(filteredJobs);
- 
+
   };
 
-  const userExp = (e) => {
-    const fillter = blogslist.filter((blog) => blog.experience.includes(e));
-    setblogslist(fillter);
-    setusereperience(fillter);
-    setselectedblog(fillter[0]);
+  // const userExp = (e) => {
+  //   const fillter = blogslist.filter((blog) => blog.experience.includes(e));
+  //   setblogslist(fillter);
+  //   setusereperience(fillter);
+  //   setselectedblog(fillter[0]);
+  // };
+  const userExperience = (e) => {
+    if (e.target.checked) {
+      setusereperience([...usereperience, e.target.value]);
+    } else {
+      setusereperience(
+        usereperience.filter((exp) => exp !== e.target.value)
+      );
+    }
   };
 
-  const userState = (e) => {
-    const fillter = blogslist.filter((blog) => blog.state.includes(e));
-    setblogslist(fillter);
-    setuserstate(fillter);
-    setselectedblog(fillter[0]);
+  const filterJobsByExperience = () => {
+    if (usereperience.length === 0) {
+      setblogslist(blogslist);
+      setselectedblog(blogslist[0]);
+    } else {
+      const filteredBlogs = blogslist.filter((blog) =>
+      usereperience.includes(blog.experience)
+      );
+      setblogslist(filteredBlogs);
+
+      setselectedblog(filteredBlogs[0]);
+    }
   };
+
+  // const userState = (e) => {
+  //   const fillter = blogslist.filter((blog) => blog.state.includes(e));
+  //   setblogslist(fillter);
+  //   setuserstate(fillter);
+  //   setselectedblog(fillter[0]);
+  // };
+
+  const filuserState = (e) => {
+    if (e.target.checked) {
+      setuserstate([...userstate, e.target.value]);
+    } else {
+      setuserstate(
+        userstate.filter((exp) => exp !== e.target.value)
+      );
+    }
+  };
+
+  const filteruserState = () => {
+    if (userstate.length === 0) {
+      setblogslist(blogslist);
+      setselectedblog(blogslist[0]);
+    } else {
+      const filteredBlogs = blogslist.filter((blog) =>
+      userstate.includes(blog.state)
+      );
+      setblogslist(filteredBlogs);
+
+      setselectedblog(filteredBlogs[0]);
+    }
+  };
+
+  // const userSalary1 = (e) => {
+  //   const fillter = blogslist.filter((blog) => blog.salary.includes(e));
+  //   setblogslist(fillter);
+  //   setuserSalary(fillter);
+  //   setselectedblog(fillter[0]);
+  // };
 
   const userSalary1 = (e) => {
-    const fillter = blogslist.filter((blog) => blog.salary.includes(e));
-    setblogslist(fillter);
-    setuserSalary(fillter);
-    setselectedblog(fillter[0]);
+    if (e.target.checked) {
+      setuserSalary([...userSalary, e.target.value]);
+    } else {
+      setuserSalary(
+        userSalary.filter((exp) => exp !== e.target.value)
+      );
+    }
   };
+
+  const filteruserSalary1 = () => {
+    if (userSalary.length === 0) {
+      setblogslist(blogslist);
+      setselectedblog(blogslist[0]);
+    } else {
+      const filteredBlogs = blogslist.filter((blog) =>
+      userSalary.includes(blog.salary)
+      );
+      setblogslist(filteredBlogs);
+
+      setselectedblog(filteredBlogs[0]);
+    }
+  };
+  
 
   const onclickblogdetails = async (blogid) => {
     // const api=`https://pab-server.onrender.com/api/jobs/${blogid}`
@@ -504,6 +576,98 @@ function Browse() {
     setblogslist(filter);
     setselectedblog(filter[0]);
   };
+
+
+  const handleApply = async (blog) => {
+    try {
+      const {
+        companyname,
+        contactnumber,
+        email,
+        description,
+        state,
+        country,
+        salary,
+        role,
+        experience,
+        no_of_applications,
+        img,
+      } = blog;
+      await axios.post("http://localhost:5016/appliedjobs", {
+        companyname,
+        contactnumber,
+        email,
+        description,
+        state,
+        country,
+        salary,
+        role,
+        experience,
+        no_of_applications,
+        img,
+      });
+      toast.success("Successfully applied", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  
+  const handleApplysaved = async (blog) => {
+    try {
+      const {
+        companyname,
+        contactnumber,
+        email,
+        description,
+        state,
+        country,
+        salary,
+        role,
+        experience,
+        no_of_applications,
+        img,
+      } = blog;
+      await axios.post("http://localhost:5016/savedjobs", {
+        companyname,
+        contactnumber,
+        email,
+        description,
+        state,
+        country,
+        salary,
+        role,
+        experience,
+        no_of_applications,
+        img,
+      });
+      toast.success("Successfully applied", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+
 
   return (
     <div>
@@ -567,15 +731,18 @@ function Browse() {
               <li class="nav-item">
                 <i class="fa-solid fa-bell bellicon"></i>
               </li>
-              <li class="nav-item">
-                <a href="/profile">
-                  {" "}
-                  <i
-                    class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon"
-                    sty
-                  ></i>
-                </a>
-              </li>
+              <div class="dropdown">
+                      <a href="/profile" class="dropbtn"> <i class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon"></i></a>
+                    <div class="dropdown-content">
+                      <a href="kphb.html">candidate profile</a>
+                      <a href="">Resume</a>
+                      <a href="">Applied jobs</a>
+                      <a href=""> job alerts</a>
+                      <a href="">saved jobs</a>
+                      <a href="">change password</a>
+                      <a href="/default">log out</a>
+                    </div>
+                  </div> 
             </ul>
           </div>
         </div>
@@ -637,61 +804,62 @@ function Browse() {
                     Experience
                   </button>
                   <ul class="dropdown-menu">
+
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userExp("10");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="3 years"
+                          onChange={userExperience}
+                        />
+                        3 years
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="5 years"
+                          onChange={userExperience}
+                        />
+                        5 years
+                      </label>
+                    </li>
+
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="10 years"
+                          onChange={userExperience}
+                        />
                         10 years
-                      </a>
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userExp("1 ");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value=" 1 years"
+                          onChange={userExperience}
+                        />
                         1 year
-                      </a>
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userExp("3");
-                        }}
-                      >
-                        3 year
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userExp("5");
-                        }}
-                      >
-                        5 year
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userExp("4");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value=" 4 years"
+                          onChange={userExperience}
+                        />
                         4 year
-                      </a>
+                      </label>
                     </li>
+                    
+                    <button onClick={filterJobsByExperience} >
+                      Search
+                    </button>
                   </ul>
                 </div>
               </li>
@@ -706,61 +874,59 @@ function Browse() {
                     Location
                   </button>
                   <ul class="dropdown-menu">
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userState("AP");
-                        }}
-                      >
-                        AP
-                      </a>
+                     <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="Ap"
+                          onChange={filuserState}
+                        />
+                        Ap
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userState("Telagana");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="Telagana"
+                          onChange={filuserState}
+                        />
                         Telagana
-                      </a>
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userState("Tamilnadu");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="Tamilnadu"
+                          onChange={filuserState}
+                        />
                         Tamilnadu
-                      </a>
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userState("karnataka");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="karnataka"
+                          onChange={filuserState}
+                        />
                         karnataka
-                      </a>
+                      </label>
                     </li>
                     <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onClick={() => {
-                          userState("maharastra");
-                        }}
-                      >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="maharastra"
+                          onChange={filuserState}
+                        />
                         maharastra
-                      </a>
+                      </label>
                     </li>
+                    <button onClick={filteruserState} >
+                      Search
+                    </button>
                   </ul>
                 </div>
               </li>
@@ -775,7 +941,7 @@ function Browse() {
                     Salary
                   </button>
                   <ul class="dropdown-menu">
-                    <li>
+                    {/* <li>
                       <a
                         class="dropdown-item"
                         href="#"
@@ -829,7 +995,61 @@ function Browse() {
                       >
                         10.5-15 LPA
                       </a>
+                    </li> */}
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="23-25 LPA"
+                          onChange={userSalary1}
+                        />
+                        23-25 LPA
+                      </label>
                     </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="3-5 LPA"
+                          onChange={userSalary1}
+                        />
+                        3-5 LPA
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="13-15 LPA"
+                          onChange={userSalary1}
+                        />
+                        13-15 LPA
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="15-20 LPA"
+                          onChange={userSalary1}
+                        />
+                        15-20 LPA
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="10.5-15 LPA"
+                          onChange={userSalary1}
+                        />
+                        10.5-15 LPA
+                      </label>
+                    </li>
+                    <button onClick={filteruserSalary1} >
+                      Search
+                    </button>
+
                   </ul>
                 </div>
               </li>
@@ -1039,19 +1259,24 @@ function Browse() {
             {blogslist.map((blog) => (
               <div
                 key={blog._id}
-                className={`card mb-3 p-2 select shadow ${
-                  selectedblog && selectedblog.id === blog._id ? "selected" : ""
-                }`}
+                className={`card mb-3 p-2 select shadow ${selectedblog && selectedblog.id === blog._id ? "selected" : ""
+                  }`}
                 onClick={(e) => onclickblogdetails(blog._id)}
               >
                 <div className="d-flex">
-                  <div className="col-6">
+              <div className="col-2">
+              <img src={blog.img} width={50}/>
+              </div>
+                  <div className="col-4">
                     <h5>{blog.companyname}</h5>
                     <h6>{blog.state}</h6>
                     <p>Angel Broking</p>
                   </div>
                   <p className="col-2"></p>
+                  
                   <p className="col-4">{blog.salary}</p>
+                  
+                        
                 </div>{" "}
                 <br></br>
                 <div className="">
@@ -1065,6 +1290,20 @@ function Browse() {
           </ul>
 
           <div className="col-md-8 card shadow cardheight h-50">
+          <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
+                {/* Same as */}
+                <ToastContainer />
             {selectedblog && (
               <div>
                 <div className="card mt-4 mb-3">
@@ -1080,14 +1319,15 @@ function Browse() {
                           show more jobs in this company
                         </p>
                       </div>
-                      <img
-                        src="https://yt3.googleusercontent.com/vnQYDSGtKFu7LenJX864ylaHIDJZlQm33FU7KQnRfKW4slSo77nV0JwkmEXYhUFwtUxMwq5W=s900-c-k-c0x00ffffff-no-rj"
-                        width={100}
-                      />
+                      <img src={selectedblog.img} width={100}/>
                     </div>
 
                     <div className=" col-5 p-3">
+                      <div className="d-flex justify-content-between">
                       <h4>{selectedblog.salary}</h4>
+                      <i class="fa-solid fa-bookmark book" id="bookItem"  onClick={() => handleApplysaved(selectedblog)}></i>
+                      </div>
+                                                           
                       <p>{selectedblog.experience}</p>
                     </div>
                   </div>
@@ -1098,7 +1338,7 @@ function Browse() {
                       <p>maxPositions:{selectedblog.state}</p>
                       <p>{selectedblog.country}</p>
                     </div>
-                    <button className="w-50 h-25 p-2 mt-5 button">
+                    <button className="w-50 h-25 p-2 mt-5 button" onClick={() => handleApply(selectedblog)}>
                       Apply Now
                     </button>
                   </div>
@@ -1117,69 +1357,83 @@ function Browse() {
       </div>
 
       {/* ... */}
-      <div className="container-fluid footer">
+      
+    <div className="container-fluid footer mt-5">
         <div className="container py-5">
-          <div className="row">
-            <div className="col-12 col-md-3">
-              <img src={image} className="loginimg"></img>
-              <p>
-                we provide a direct access to the walk in opprtunities available
-                on the site. results can be filtered on work experience ,venue
-                ,from location ,empoyer type,and date range.{" "}
-              </p>
-              <p>Toll free Number: </p>
-              <i class="fa-solid fa-phone"></i>
-              <span>1800 833 9448</span>
+        <div className="row">
+          <div className="col-12 col-md-3">
+            <img src={image} className="loginimg"></img>
+            <p>we provide a direct access to the walk in opprtunities available on the site. results can be filtered on work experience ,venue ,from location ,empoyer type,and date range. </p>
+            <p>Toll free Number: </p>
+            <i class="fa-solid fa-phone"></i><span>1800 833 9448</span>
+
+
+
+          </div>
+          <div className="col-md-1"></div>
+          
+          <div className="col-12 col-md-2">
+            <h3>For Employers</h3>
+            <p>{">"}Company profile</p>
+            <p>{">"}Post a job</p>
+            <p>{">"}My jobs</p>
+
+
+          </div>
+          <div className="col-md-1"></div>
+          
+          <div className="col-12 col-md-2">
+            <h3>Jobs</h3>
+            <p>{">"}All jobs</p>
+            <p>{">"}company jobs</p>
+            <p>{">"}Category jobs</p>
+            <p>{">"}Locational jobs</p>
+            <p>{">"}Designation jobs</p>
+            <p>{">"}Skill jobs</p>
+
+
+          </div>
+          <div className="col-md-1"></div>
+          <div className="col-12 col-md-2">
+            <h3> Browse Jobs</h3>
+            <p>{">"}Companies</p>
+            <p>{">"}Browse jobs</p>
+            <p>{">"} jobs</p>
+            <h3>Information</h3>
+            <p>{">"}Terms & Conditions </p>
+            <p>{">"}Privacy Policy</p>
+            <p>{">"}Fraud Alert</p>
+
+
+          </div>
+
+          <div class="hrtag" style={{marginleft: "50px", width: "190%"}}>
+            <hr/>
+        </div>
+            
+            <div class="col-12 col-md-3">
+                <p>all rights resereved@2022PABJobs</p>
             </div>
-            <div className="col-12 col-md-1"></div>
-            <div className="col-12 col-md-2">
-              <h3>For Employers</h3>
-              <p>{">"}Company profile</p>
-              <p>{">"}Post a job</p>
-              <p>{">"}My jobs</p>
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-3">
+                <p>Designed by<span class="perfex">@PerfexTechnologies</span></p>
             </div>
-            <div className="col-12 col-md-1"></div>
-            <div className="col-12 col-md-2">
-              <h3>Jobs</h3>
-              <p>{">"}All jobs</p>
-              <p>{">"}company jobs</p>
-              <p>{">"}Category jobs</p>
-              <p>{">"}Locational jobs</p>
-              <p>{">"}Designation jobs</p>
-              <p>{">"}Skill jobs</p>
-            </div>
-            <div className="col-12 col-md-3">
-              <h3> Browse Jobs</h3>
-              <p>{">"}Companies</p>
-              <p>{">"}Browse jobs</p>
-              <p>{">"} jobs</p>
-              <h3>Information</h3>
-              <p>{">"}Terms & Conditions </p>
-              <p>{">"}Privacy Policy</p>
-              <p>{">"}Fraud Alert</p>
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-2">
+                <i class="fa-brands fa-linkedin footicon px-1"></i>
+                <i class="fa-brands fa-instagram footicon px-1"></i>
+                <i class="fa-brands fa-facebook footicon px-1"></i>
+                <i class="fa-brands fa-twitter footicon px-1"></i>
             </div>
 
-            <div class="hrtag" style={{ marginleft: "50px", width: "90%" }}>
-              <hr />
-            </div>
-            <div class="col-12 col-md-2"></div>
-            <div class="col-12 col-md-3">
-              <p>all rights resereved@2022PABJobs</p>
-            </div>
-            <div class="col-12 col-md-3">
-              <p>
-                Designed by<span class="perfex">@PerfexTechnologies</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4">
-              <i class="fa-brands fa-linkedin footicon px-1"></i>
-              <i class="fa-brands fa-instagram footicon px-1"></i>
-              <i class="fa-brands fa-facebook footicon px-1"></i>
-              <i class="fa-brands fa-twitter footicon px-1"></i>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>
+
+           </div>
     </div>
   );
 }

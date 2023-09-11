@@ -1,29 +1,21 @@
-GET http://localhost:5016/
-
-###
-POST http://localhost:5016/browsejobs
+POST http://localhost:5016/appliedjobs
 Content-Type: application/json
 
 {
 
-"companyname":"Apple solutions",
+"companyname":"Tcs solutions",
 "contactnumber":"9867765645",
-"email":"Apple@gmail.com",
+"email":"tcs@gmail.com",
 "description":"Foundational endpoint security controls across all Windows, macOS and Linux endpoints. Boost your organization's security with 7 best practices to secure your workstations. Remove Local Admin Foundational endpoint security controls across all Windows, macOS and Linux endpoints Foundational endpoint security controls across all Windows, macOS and Linux endpoints.",
 "state":"Telagana",
 "country":"India",
 "salary":"10.5-15 LPA",
-"role":"network develope",
+"role":"network developer",
 "experience":"10 years",
 "no_of_applications":"100",
 "img":"https://companieslogo.com/img/orig/TCS.NS-7401f1bd.png?t=1631949260"
 
 }
-###
-GET http://localhost:5016/allbrowse
 
 ###
-DELETE http://localhost:5016/browsejobs/64d3adb113aa8a8b3950189f
-
-###
-GET http://localhost:5016/browsejobs/64def4ac7b42ca9fbff014f6
+GET http://localhost:5016/allapplied

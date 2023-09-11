@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const browseData = new mongoose.Schema({
+const savedData = new mongoose.Schema({
   
   companyname: {
     type: String,
@@ -52,4 +52,4 @@ const browseData = new mongoose.Schema({
     required: true,
   }
 });
-module.exports = mongoose.model("browseData", browseData);
+module.exports = mongoose.model("savedData", savedData);

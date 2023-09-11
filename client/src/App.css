@@ -65,14 +65,13 @@
   background-color: transparent;
 }
 .reactloginbtn1{
-border-left: black;
-border-top: black;
-border-bottom: black;  
+  border-right: 1px solid black;
+  border: none;
+
   background-color: transparent;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+} 
  
-}
+
 .loginlabel{
   font-weight: bold;
   margin-bottom: 5px;
@@ -160,10 +159,15 @@ text-align: center;
 .loginbutton2{
   border-radius: 10px;
   border: none;
+  background-color: transparent;
 }
 .loginspan1{
   margin-top: 20px;
 }
+.loginspan{
+  font-size: small;
+}
+
 .janlogin{
   color: #2c0264;
   margin-right: 20px;
@@ -180,7 +184,13 @@ text-align: center;
 .defaulticon{
   color: green;
 }
-
+.logincontainer{
+  background-color: #f8f2fb;
+  height: 600px;
+}
+.loginforgot{
+  text-decoration: none;
+}
 
 
 /* home css */
@@ -801,7 +811,7 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
   }
   .profilebutton{
     background-color: transparent;
-    border: none;
+    /* border: none; */
     border-radius: 5px;
     box-shadow: 1px 1px 1px 1px grey;
   }
@@ -1109,7 +1119,94 @@ font-size: 20px;
 }
 
 
+/* profile drpdown */
 
 
+li a:hover {background-color:whitesmoke;} 
 
 
+.dropbtn {
+    
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  
+
+/* CSS file (e.g., styles.css) button default page */
+
+
+.reactloginbtn {
+  transition: opacity 0.1s; /* Add a smooth transition effect */
+  font-weight: bold;
+}
+
+.inactive {
+  opacity: 0.4; /* Decrease the opacity for inactive buttons */
+  
+}
+
+.iconpara{
+  font-size: small;
+}
+
+/* Add this CSS to your component's CSS file or style tag */
+.input-with-icon {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 70%;
+  left: 500px; /* Adjust the left position as needed */
+  transform: translateY(-50%); 
+}
+
+.input-with-icon1 {
+  position: relative;
+}
+
+.icon1 {
+  position: absolute;
+  top: 70%;
+  left: 450px; /* Adjust the left position as needed */
+  transform: translateY(-50%);
+}
+
+
+/* ap;ied jobs */
+.domain{
+  border-radius: 20px;
+  background-color:gray;
+  
+}
+.book{
+  font-size: 30px;
+}

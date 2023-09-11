@@ -6,21 +6,19 @@ Content-Type: application/json
 {
    "type":"applicant", 
 "fullname":"mohan",
-"email":"mohan34@gmail.com",
+"email":"mohan34512134@gmail.com",
 "mobilenumber":9867575667,
 "password":"321",
 "confirmpassword":"321" 
 
 }
 ###
-POST http://localhost:5016/login
+POST http://localhost:5016/login/
 Content-Type: application/json
 
-
-{
-  
-"email":"chiru@gmail.com",
-"password":"435"
+{ 
+"email":"mohan34512134@gmail.com",
+"password":"32156"
 
 }
 

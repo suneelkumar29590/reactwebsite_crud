@@ -2547,6 +2547,7 @@ function ResumeDetails() {
         </div>
       </div>
       {/* ..... */}
+     
       <div className="container-fluid footer mt-5">
         <div className="container py-5">
         <div className="row">
@@ -2559,7 +2560,8 @@ function ResumeDetails() {
 
 
           </div>
-          <div className="col-12 col-md-1"></div>
+          <div className="col-md-1"></div>
+          
           <div className="col-12 col-md-2">
             <h3>For Employers</h3>
             <p>{">"}Company profile</p>
@@ -2568,7 +2570,8 @@ function ResumeDetails() {
 
 
           </div>
-          <div className="col-12 col-md-1"></div>
+          <div className="col-md-1"></div>
+          
           <div className="col-12 col-md-2">
             <h3>Jobs</h3>
             <p>{">"}All jobs</p>
@@ -2580,7 +2583,8 @@ function ResumeDetails() {
 
 
           </div>
-          <div className="col-12 col-md-3">
+          <div className="col-md-1"></div>
+          <div className="col-12 col-md-2">
             <h3> Browse Jobs</h3>
             <p>{">"}Companies</p>
             <p>{">"}Browse jobs</p>
@@ -2593,19 +2597,23 @@ function ResumeDetails() {
 
           </div>
 
-          <div class="hrtag" style={{marginleft: "50px", width: "90%"}}>
+          <div class="hrtag" style={{marginleft: "50px", width: "190%"}}>
             <hr/>
         </div>
-            <div class="col-12 col-md-2">
-
-            </div>
+            
             <div class="col-12 col-md-3">
                 <p>all rights resereved@2022PABJobs</p>
             </div>
+            <div class="col-12 col-md-2">
+
+</div>
             <div class="col-12 col-md-3">
                 <p>Designed by<span class="perfex">@PerfexTechnologies</span></p>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-2">
                 <i class="fa-brands fa-linkedin footicon px-1"></i>
                 <i class="fa-brands fa-instagram footicon px-1"></i>
                 <i class="fa-brands fa-facebook footicon px-1"></i>

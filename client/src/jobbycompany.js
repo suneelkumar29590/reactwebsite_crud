@@ -523,15 +523,18 @@ const handleclick=()=>{
               <li class="nav-item">
                 <i class="fa-solid fa-bell bellicon"></i>
               </li>
-              <li class="nav-item">
-                <a href="/profile">
-                  {" "}
-                  <i
-                    class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon"
-                    sty
-                  ></i>
-                </a>
-              </li>
+              <div class="dropdown">
+                      <a href="/profile" class="dropbtn"> <i class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon"></i></a>
+                    <div class="dropdown-content">
+                      <a href="kphb.html">candidate profile</a>
+                      <a href="">Resume</a>
+                      <a href="">Applied jobs</a>
+                      <a href=""> job alerts</a>
+                      <a href="">saved jobs</a>
+                      <a href="">change password</a>
+                      <a href="/default">log out</a>
+                    </div>
+                  </div> 
             </ul>
           </div>
         </div>
@@ -738,69 +741,83 @@ const handleclick=()=>{
       </div>
       {/* .. */}
 
-      <div className="container-fluid footer mt-5">
+      
+    <div className="container-fluid footer mt-5">
         <div className="container py-5">
-          <div className="row">
-            <div className="col-12 col-md-3">
-              <img src={image} className="loginimg"></img>
-              <p>
-                we provide a direct access to the walk in opprtunities available
-                on the site. results can be filtered on work experience ,venue
-                ,from location ,empoyer type,and date range.{" "}
-              </p>
-              <p>Toll free Number: </p>
-              <i class="fa-solid fa-phone"></i>
-              <span>1800 833 9448</span>
+        <div className="row">
+          <div className="col-12 col-md-3">
+            <img src={image} className="loginimg"></img>
+            <p>we provide a direct access to the walk in opprtunities available on the site. results can be filtered on work experience ,venue ,from location ,empoyer type,and date range. </p>
+            <p>Toll free Number: </p>
+            <i class="fa-solid fa-phone"></i><span>1800 833 9448</span>
+
+
+
+          </div>
+          <div className="col-md-1"></div>
+          
+          <div className="col-12 col-md-2">
+            <h3>For Employers</h3>
+            <p>{">"}Company profile</p>
+            <p>{">"}Post a job</p>
+            <p>{">"}My jobs</p>
+
+
+          </div>
+          <div className="col-md-1"></div>
+          
+          <div className="col-12 col-md-2">
+            <h3>Jobs</h3>
+            <p>{">"}All jobs</p>
+            <p>{">"}company jobs</p>
+            <p>{">"}Category jobs</p>
+            <p>{">"}Locational jobs</p>
+            <p>{">"}Designation jobs</p>
+            <p>{">"}Skill jobs</p>
+
+
+          </div>
+          <div className="col-md-1"></div>
+          <div className="col-12 col-md-2">
+            <h3> Browse Jobs</h3>
+            <p>{">"}Companies</p>
+            <p>{">"}Browse jobs</p>
+            <p>{">"} jobs</p>
+            <h3>Information</h3>
+            <p>{">"}Terms & Conditions </p>
+            <p>{">"}Privacy Policy</p>
+            <p>{">"}Fraud Alert</p>
+
+
+          </div>
+
+          <div class="hrtag" style={{marginleft: "50px", width: "190%"}}>
+            <hr/>
+        </div>
+            
+            <div class="col-12 col-md-3">
+                <p>all rights resereved@2022PABJobs</p>
             </div>
-            <div className="col-12 col-md-1"></div>
-            <div className="col-12 col-md-2">
-              <h3>For Employers</h3>
-              <p>{">"}Company profile</p>
-              <p>{">"}Post a job</p>
-              <p>{">"}My jobs</p>
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-3">
+                <p>Designed by<span class="perfex">@PerfexTechnologies</span></p>
             </div>
-            <div className="col-12 col-md-1"></div>
-            <div className="col-12 col-md-2">
-              <h3>Jobs</h3>
-              <p>{">"}All jobs</p>
-              <p>{">"}company jobs</p>
-              <p>{">"}Category jobs</p>
-              <p>{">"}Locational jobs</p>
-              <p>{">"}Designation jobs</p>
-              <p>{">"}Skill jobs</p>
-            </div>
-            <div className="col-12 col-md-3">
-              <h3> Browse Jobs</h3>
-              <p>{">"}Companies</p>
-              <p>{">"}Browse jobs</p>
-              <p>{">"} jobs</p>
-              <h3>Information</h3>
-              <p>{">"}Terms & Conditions </p>
-              <p>{">"}Privacy Policy</p>
-              <p>{">"}Fraud Alert</p>
+            <div class="col-12 col-md-2">
+
+</div>
+            <div class="col-12 col-md-2">
+                <i class="fa-brands fa-linkedin footicon px-1"></i>
+                <i class="fa-brands fa-instagram footicon px-1"></i>
+                <i class="fa-brands fa-facebook footicon px-1"></i>
+                <i class="fa-brands fa-twitter footicon px-1"></i>
             </div>
 
-            <div class="hrtag" style={{ marginleft: "50px", width: "90%" }}>
-              <hr />
-            </div>
-            <div class="col-12 col-md-2"></div>
-            <div class="col-12 col-md-3">
-              <p>all rights resereved@2022PABJobs</p>
-            </div>
-            <div class="col-12 col-md-3">
-              <p>
-                Designed by<span class="perfex">@PerfexTechnologies</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4">
-              <i class="fa-brands fa-linkedin footicon px-1"></i>
-              <i class="fa-brands fa-instagram footicon px-1"></i>
-              <i class="fa-brands fa-facebook footicon px-1"></i>
-              <i class="fa-brands fa-twitter footicon px-1"></i>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>
+
+           </div>
     </div>
   );
 }

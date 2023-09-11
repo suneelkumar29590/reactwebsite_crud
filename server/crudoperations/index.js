@@ -1,32 +1,34 @@
-const express=require("express");  // IMPORTING EXPRESS MODULE FROM THIRD PARTY PACKAGE
-const mongoose=require("mongoose"); // IMPORTING MONGOOSE
-const cors=require("cors"); // IMPORTING CORS
-const userData=require("./mongoose")
+const express = require("express");  // IMPORTING EXPRESS MODULE FROM THIRD PARTY PACKAGE
+const mongoose = require("mongoose"); // IMPORTING MONGOOSE
+const cors = require("cors"); // IMPORTING CORS
+const userData = require("./mongoose")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const middleware=require("./middleware")
-const browseData=require("./userdetails")
-const jobsData=require('./userdetails1')
+const middleware = require("./middleware")
+const browseData = require("./userdetails")
+const jobsData = require('./userdetails1')
 const profileData = require("./userdetailsprofile")
-const resumeData6=require("./resumeschema")
-const resumeData13=require("./paymentschema")
+const resumeData6 = require("./resumeschema")
+const resumeData13 = require("./paymentschema")
+const appliedData = require("./appliedschema")
+const savedData=require("./savedschema")
 
-const app=express()
+const app = express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
 
-app.use(cors({origin: "*"}))
+app.use(cors({ origin: "*" }))
 
 
 //mongo db conncetion WITH NODEJS
 mongoose.connect("mongodb+srv://suneelkumar29590:UfuEaPytFV46FbTr@cluster0.37lou9p.mongodb.net/?retryWrites=true&w=majority")
-.then((res)=>console.log("db connected"))
-.catch((err)=>console.log(err.message))
+  .then((res) => console.log("db connected"))
+  .catch((err) => console.log(err.message))
 
 
 
 // main api
-app.get("/",(req,res)=>{
-    res.send("hello world")
+app.get("/", (req, res) => {
+  res.send("hello world")
 })
 
 
@@ -35,95 +37,94 @@ app.get("/",(req,res)=>{
 // SIGNUP API
 
 
-app.post("/signup/", async(req,res)=>{
+// app.post("/signup/", async(req,res)=>{
 
-    try{
-        
-    const{type,fullname,email,mobilenumber,password, confirmpassword}=req.body
- 
-
-// checking user whether it is exist or not
-
-    const isUserExist=await userData.findOne({email: email});
-    if (isUserExist){
-       return res.send("user already registered")
-    }
-    const isUserExist1=await userData.findOne({mobilenumber: mobilenumber});
-    if (isUserExist1){
-       return res.send("mobilenumber already registered")
-    }
-
-    if(password !==  confirmpassword){
-       return res.send("password not matched")
-    }
-
-
-const hashedpassword=await bcrypt.hash(password, 10)   //generating encrypted password for user
-
-let newUser = new userData({
-    type,
-    fullname,
-    email,
-    mobilenumber,
-    password:hashedpassword,
-    confirmpassword:hashedpassword
-})
-newUser.save();       //saving to mongodb collections
-res.send("user created succesfully");
-
-    }catch(e){
-        console.log(e.message)
-        res.send("internal server error")
-    }
-
-    
-})
-
-// app.post("/signup",async(req,res)=>{
-
-    
-// console.log(req.body)
-//     // res.send("hello db")
 //     try{
-       
 
-// const user = await userData.findOne({email: req.body.email})   // mongo db condition
-// console.log(user)
+//     const{type,fullname,email,mobilenumber,password, confirmpassword}=req.body
 
-// if(!user  ){  // or if(user === undefined)
-    
-//     // user not found excutes below code
 
-    
-// const newUser={
-               
-    
-//     "fullname":req.body.fullname,
-//     "email":req.body.email,
-//     "mobilenumber":req.body.mobilenumber,
-//     "password":req.body.password,
-//     "confirmpassword": req.body.confirmpassword
+// // checking user whether it is exist or not
 
-// }
+//     const isUserExist=await userData.findOne({email: email});
+//     if (isUserExist){
+//        return res.send("user already registered")
+//     }
+//     const isUserExist1=await userData.findOne({mobilenumber: mobilenumber});
+//     if (isUserExist1){
+//        return res.send("mobilenumber already registered")
+//     }
 
-//         const userDetails =await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
-//         console.log(userDetails)
-        
-//         res.status(200).send("user created successfully")
-        
+//     if(password !==  confirmpassword){
+//        return res.send("password not matched")
+//     }
 
-// }else{
 
-//     // if user mail id is founded send below response
-//     res.status(400).json("user already registered")
-    
-// }
+// const hashedpassword=await bcrypt.hash(password, 10)   //generating encrypted password for user
+
+// let newUser = new userData({
+//     type,
+//     fullname,
+//     email,
+//     mobilenumber,
+//     password:hashedpassword,
+//     confirmpassword:hashedpassword
+// })
+// newUser.save();       //saving to mongodb collections
+// res.send("user created succesfully");
+
 //     }catch(e){
 //         console.log(e.message)
-//          return res.status(500).json("message: e.message")
-
+//         res.send("internal server error")
 //     }
+
+
 // })
+
+app.post("/signup", async (req, res) => {
+
+
+  console.log(req.body)
+  // res.send("hello db")
+  try {
+
+
+    const user = await userData.findOne({ email: req.body.email })   // mongo db condition
+    console.log(user)
+
+    if (!user) {  // or if(user === undefined)
+
+      // user not found excutes below code
+
+
+      const newUser = {
+        type: req.body.type,
+        fullname: req.body.fullname,
+        email: req.body.email,
+        mobilenumber: req.body.mobilenumber,
+        password: req.body.password,
+        confirmpassword: req.body.confirmpassword
+      };
+
+      const userDetails = await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
+      console.log(userDetails)
+
+      res.status(200).send("user created successfully")
+
+
+    } else {
+
+      // if user mail id is founded send below response
+      res.status(400).json("user already registered")
+
+    }
+  } catch (e) {
+    console.log(e.message)
+    return res.status(500).json("message: e.message")
+
+  }
+})
+
 
 
 // login api
@@ -133,34 +134,32 @@ res.send("user created succesfully");
 
 //     if(!isUserExist){
 //         res.status(200).send("user created successfully")
-           
+
 // const newUser={
-    
+
 //     "email":req.body.email,
 //     "password":req.body.password
-    
+
 // }
 //         const userDetails =await userData.create(newUser)   //  POSTING TO COLLECTION OR MODEL
 //         console.log(userDetails)
-        
-        
+
+
 //     }else{
 //         res.status(400).json("not matched") 
 //     }
-   
+
 // })
 
 // login api
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const isUserExist = await userData.findOne({ email });
+  const isUserExist = await userData.findOne({ email,password });
 
   if (isUserExist) {
-    const ispasswordmatched = await bcrypt.compare(
-      password,
-      isUserExist.password
-    ); //compare to two passwords
-    if (ispasswordmatched) {
+
+    if(password === isUserExist.password)
+    {
       let payload = {
         user: isUserExist.id,
       };
@@ -173,9 +172,30 @@ app.post("/login", async (req, res) => {
           return res.json({ token });
         }
       );
-    } else {
+    }
+    else {
       return res.send("password not matched");
     }
+    // const ispasswordmatched = await bcrypt.compare(
+    //   password,
+    //   isUserExist.password
+    // ); //compare to two passwords
+    // if (ispasswordmatched) {
+    //   let payload = {
+    //     user: isUserExist.id,
+    //   };
+    //   jwt.sign(
+    //     payload,
+    //     "jwtpassword",
+    //     { expiresIn: 36000000 },
+    //     (err, token) => {
+    //       if (err) throw err;
+    //       return res.json({ token });
+    //     }
+    //   );
+    // } else {
+    //   return res.send("password not matched");
+    // }
   }
 });
 
@@ -183,48 +203,48 @@ app.post("/login", async (req, res) => {
 
 // GET all users API
 
-app.get("/allusers", async(req,res)=>{
-    const allusers =await userData.find({})
-    res.status(200).send(allusers)
+app.get("/allusers", async (req, res) => {
+  const allusers = await userData.find({})
+  res.status(200).send(allusers)
 })
 
 
 // specific user
-app.get("/user/:id", async(req,res)=>{
-    const{id}=req.params
-const user=await userData.findOne({_id: id})
-if(!user){
+app.get("/user/:id", async (req, res) => {
+  const { id } = req.params
+  const user = await userData.findOne({ _id: id })
+  if (!user) {
     res.status(400).json("user not found")
-}
-res.status(200).json(user) 
+  }
+  res.status(200).json(user)
 })
 
 
 
 //   UPDATE
 
-app.put("/user/:id",async(req,res)=>{
-    const{id}=req.params
-   
-    const user=await userData.findByIdAndUpdate(id, req.body)
-    if(!user){
-        res.status(400).json("user not found")
-    }
-    res.status(200).json("user data updated successful") 
-    
+app.put("/user/:id", async (req, res) => {
+  const { id } = req.params
+
+  const user = await userData.findByIdAndUpdate(id, req.body)
+  if (!user) {
+    res.status(400).json("user not found")
+  }
+  res.status(200).json("user data updated successful")
+
 })
 
 
 // delete
 
-app.delete("/user/:id",async(req,res)=>{
-    const{id}=req.params
-    const deleteUser=await userData.findByIdAndDelete(id)
-    if(!deleteUser){
-        res.status(404).json("user not found")
-    }
-    res.status(200).json("user data deleted successful") 
-    
+app.delete("/user/:id", async (req, res) => {
+  const { id } = req.params
+  const deleteUser = await userData.findByIdAndDelete(id)
+  if (!deleteUser) {
+    res.status(404).json("user not found")
+  }
+  res.status(200).json("user data deleted successful")
+
 
 
 })
@@ -233,88 +253,90 @@ app.delete("/user/:id",async(req,res)=>{
 
 // // browsejobs API
 
-app.post("/browsejobs",async(req,res)=>{
+app.post("/browsejobs", async (req, res) => {
   try {
-      const {
-        companyname,
-        contactnumber,
-         email,
-        description,
-        state,
-        country,
-        salary,
-        role,
-        experience,
-        no_of_applications}=req.body;
+    const {
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img } = req.body;
 
-  
-      let newUser = new browseData({
-          companyname,
-          contactnumber,
-          email,
-          description,
-          state,
-          country,
-          salary,
-          role,
-          experience,
-          no_of_applications,
-      });
 
-      const isUserExist = await browseData.findOne({ email: email });
-      if (isUserExist) {
-        return res.send("user already registered");
-      }
-      
-        newUser.save(); //saving to mongodb collections
-        res.send("user created succesfully");
+    let newUser = new browseData({
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img,
+    });
 
-      
-       
-     
-     
+    const isUserExist = await browseData.findOne({ email: email });
+    if (isUserExist) {
+      return res.send("user already registered");
     }
-     catch (e) {
-      console.log(e.message);
-      res.send("internal server error");
-    }
-  });
 
-  
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+
 // delete
 
-app.delete("/browsejobs/:id",async(req,res)=>{
-  const{id}=req.params
-  const deleteUser=await browseData.findByIdAndDelete(id)
-  if(!deleteUser){
-      res.status(404).json("user not found")
+app.delete("/browsejobs/:id", async (req, res) => {
+  const { id } = req.params
+  const deleteUser = await browseData.findByIdAndDelete(id)
+  if (!deleteUser) {
+    res.status(404).json("user not found")
   }
-  res.status(200).json("user data deleted successful") 
-  
+  res.status(200).json("user data deleted successful")
+
 
 
 })
 // specific user
 
-app.get("/browsejobs/:id", async(req,res)=>{
-  const{id}=req.params
-const user=await browseData.findOne({_id: id})
-if(!user){
-  res.status(400).json("user not found")
-}
-res.status(200).json(user) 
+app.get("/browsejobs/:id", async (req, res) => {
+  const { id } = req.params
+  const user = await browseData.findOne({ _id: id })
+  if (!user) {
+    res.status(400).json("user not found")
+  }
+  res.status(200).json(user)
 })
 
-  
-  
-     
+
+
+
 
 
 
 // GET all users API
 
-app.get("/allbrowse", async(req,res)=>{
-  const allusers =await browseData.find({})
+app.get("/allbrowse", async (req, res) => {
+  const allusers = await browseData.find({})
   res.status(200).send(allusers)
 })
 
@@ -322,56 +344,56 @@ app.get("/allbrowse", async(req,res)=>{
 
 // // jobs API
 
-app.post("/jobs",async(req,res)=>{
+app.post("/jobs", async (req, res) => {
   try {
-      const {
-          location,
-          companyname,
-          description,
-        state,
-        country,
-        experience,
-        salary}=req.body;
+    const {
+      location,
+      companyname,
+      description,
+      state,
+      country,
+      experience,
+      salary } = req.body;
 
-  
-      let newUser = new jobsData({
-          location,
-          companyname,
-          description,
-          state,
-          country,
-          experience,
-          salary,
-      });
-      const isUserExist = await jobsData.findOne({ companyname: companyname });
 
-      if (isUserExist) {
-          return res.send("user already registered");
-        }
-      
-        newUser.save(); //saving to mongodb collections
-        res.send("user created succesfully");
+    let newUser = new jobsData({
+      location,
+      companyname,
+      description,
+      state,
+      country,
+      experience,
+      salary,
+    });
+    const isUserExist = await jobsData.findOne({ companyname: companyname });
 
-      
-       
-     
-     
+    if (isUserExist) {
+      return res.send("user already registered");
     }
-     catch (e) {
-      console.log(e.message);
-      res.send("internal server error");
-    }
-  });
-  
-  
-     
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+
+
 
 
 
 // // GET all users API
 
-app.get("/alljobs", async(req,res)=>{
-  const allusers =await jobsData.find({})
+app.get("/alljobs", async (req, res) => {
+  const allusers = await jobsData.find({})
   res.status(200).send(allusers)
 })
 
@@ -380,45 +402,45 @@ app.get("/alljobs", async(req,res)=>{
 // profile api 
 
 
-app.post("/profile",middleware,async(req,res)=>{
+app.post("/profile", middleware, async (req, res) => {
   try {
-      const {
-        profieeditor,
-        rastram,
-        presentstay,
-        call,
-        box,
-        }=req.body;
-      let newUser = new profileData({
-        profieeditor:profieeditor,
-        rastram: rastram,
-        presentstay :presentstay,
-        call: call,
-        box:box,
-        
-      });
+    const {
+      profieeditor,
+      rastram,
+      presentstay,
+      call,
+      box,
+    } = req.body;
+    let newUser = new profileData({
+      profieeditor: profieeditor,
+      rastram: rastram,
+      presentstay: presentstay,
+      call: call,
+      box: box,
 
-      const isUserExist = await profileData.findOne({ call: call });
-      if (isUserExist) {
-        return res.send("user already registered");
-      }
-      
-        newUser.save(); //saving to mongodb collections
-        res.send("user created succesfully");
+    });
 
-      
-       
-     
-     
+    const isUserExist = await profileData.findOne({ call: call });
+    if (isUserExist) {
+      return res.send("user already registered");
     }
-     catch (e) {
-      console.log(e.message);
-      res.send("internal server error");
-    }
-  });
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
 
 
-  //resume heading post
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+
+//resume heading post
 app.post("/resumeheding1", middleware, async (req, res) => {
   try {
     const { resumeheading } = req.body;
@@ -429,10 +451,10 @@ app.post("/resumeheding1", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ resumeheading: resumeheading });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
-    
+
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -457,8 +479,8 @@ app.post("/profileSummary", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ profileSummary: profileSummary });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -467,8 +489,8 @@ app.post("/profileSummary", middleware, async (req, res) => {
     res.send("Inernal server error");
   }
 });
-app.get("/allprosm", async(req,res)=>{
-  const allusers =await resumeData1.find({})
+app.get("/allprosm", async (req, res) => {
+  const allusers = await resumeData1.find({})
   res.status(200).send(allusers)
 })
 
@@ -484,8 +506,8 @@ app.post("/keySkills", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ KeySkills: KeySkills });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -523,8 +545,8 @@ app.post("/EmploymentDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ CurrentCTC: CurrentCTC });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
 
     newUser.save(); //saving mongodb collections
@@ -550,8 +572,8 @@ app.post("/EducationDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ Year: Year });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -576,8 +598,8 @@ app.post("/ProjectDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ GitHubLink: GitHubLink });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -599,8 +621,8 @@ app.post("/workSample", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ WorkSample: WorkSample });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -625,8 +647,8 @@ app.post("/ResearchDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ PublicationDate: PublicationDate });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -650,8 +672,8 @@ app.post("/PresentationDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ PresentationDate: PresentationDate });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -673,8 +695,8 @@ app.post("/PatentDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ Patent: Patent });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -697,8 +719,8 @@ app.post("/CertificationDetails", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ Date: Date });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -733,8 +755,8 @@ app.post("/careerProfile", middleware, async (req, res) => {
     const isUserExist = await resumeData6.findOne({ Expectedctcsalary: Expectedctcsalary });
 
     if (isUserExist) {
-        return res.send("user already registered");
-      }
+      return res.send("user already registered");
+    }
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -745,44 +767,44 @@ app.post("/careerProfile", middleware, async (req, res) => {
 });
 
 // //Personal Details
-app.post("/PersonalDetails",middleware,async(req,res)=>{
+app.post("/PersonalDetails", middleware, async (req, res) => {
   try {
-      const {
-        DateOfBirth,
-        MaritalStatus,
-        Age,
-        Languages,
-        Gender,
-        Address,
-        }=req.body;
-      let newUser = new resumeData6({
-        DateOfBirth:DateOfBirth,
-        MaritalStatus: MaritalStatus,
-        Age :Age,
-        Languages: Languages,
-        Gender:Gender,
-        Address:Address,
-        
-      });
+    const {
+      DateOfBirth,
+      MaritalStatus,
+      Age,
+      Languages,
+      Gender,
+      Address,
+    } = req.body;
+    let newUser = new resumeData6({
+      DateOfBirth: DateOfBirth,
+      MaritalStatus: MaritalStatus,
+      Age: Age,
+      Languages: Languages,
+      Gender: Gender,
+      Address: Address,
 
-      const isUserExist = await resumeData6.findOne({ Age: Age });
-      if (isUserExist) {
-        return res.send("user already registered");
-      }
-      
-        newUser.save(); //saving to mongodb collections
-        res.send("user created succesfully");
+    });
 
-      
-       
-     
-     
+    const isUserExist = await resumeData6.findOne({ Age: Age });
+    if (isUserExist) {
+      return res.send("user already registered");
     }
-     catch (e) {
-      console.log(e.message);
-      res.send("internal server error");
-    }
-  });
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
 
 
 // //payment Details
@@ -797,12 +819,12 @@ app.post("/PaymentDetails", middleware, async (req, res) => {
       paymentmobile: paymentmobile,
       amount: amount,
     });
-    
+
     const isUserExist = await resumeData13.findOne({ paymentemailid: paymentemailid });
     if (isUserExist) {
       return res.send("user already registered");
     }
-    
+
 
     newUser.save(); //saving mongodb collections
     return res.send("user Created Successfully");
@@ -814,10 +836,130 @@ app.post("/PaymentDetails", middleware, async (req, res) => {
 
 
 
+// // applied jobs API
 
-app.listen(5016,()=>{
+app.post("/appliedjobs", async (req, res) => {
+  try {
+    const {
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img } = req.body;
 
-    console.log("server running")
+
+    let newUser = new appliedData({
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img,
+    });
+
+    const isUserExist = await appliedData.findOne({ email: email });
+    if (isUserExist) {
+      return res.send("user already registered");
+    }
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+
+// // GET all users API
+
+app.get("/allapplied", async (req, res) => {
+  const allusers = await appliedData.find({})
+  res.status(200).send(allusers)
+})
+
+
+// // applied jobs API
+
+app.post("/savedjobs", async (req, res) => {
+  try {
+    const {
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img } = req.body;
+
+
+    let newUser = new savedData({
+      companyname,
+      contactnumber,
+      email,
+      description,
+      state,
+      country,
+      salary,
+      role,
+      experience,
+      no_of_applications,
+      img,
+    });
+
+    const isUserExist = await savedData.findOne({ email: email });
+    if (isUserExist) {
+      return res.send("user already registered");
+    }
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+
+
+// // GET all users API
+
+app.get("/allsaved", async (req, res) => {
+  const allusers = await savedData.find({})
+  res.status(200).send(allusers)
+})
+
+
+app.listen(5016, () => {
+
+  console.log("server running")
 })
 
 
