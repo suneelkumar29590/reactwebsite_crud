@@ -19,9 +19,9 @@ import Jobcategory from './jobbycategory';
 import Jobdesignation from './jobsbydesignation';
 import Jobskills from './jobbyskills';
 import Resume from './resume';
-
 import Applied from './applied';
 import Saved from './savedjobs';
+import Welocome from './welcome';
 
 
 
@@ -58,9 +58,9 @@ function App() {
         <Route exact path = "/jobdesignation" element ={<Jobdesignation />}/>
         <Route exact path = "/jobskills" element ={<Jobskills />}/>
         <Route exact path = "/resume" element ={<Resume/>}/>
-       
         <Route exact path='/apply' element={<Applied/>}/>
         <Route exact path='/saved' element={<Saved/>}/>
+        <Route exact path='/' element={<Welocome/>}/>
        
         
        

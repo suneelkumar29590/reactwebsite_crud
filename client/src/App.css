@@ -1210,3 +1210,43 @@ li a:hover {background-color:whitesmoke;}
 .book{
   font-size: 30px;
 }
+
+
+/* ....... */
+
+/* Welcome.css */
+
+/* Styling for the container */
+.welcome-container {
+  text-align: center;
+  padding: 20px;
+  margin-top: 150px;
+}
+.welcome-container1 {
+ text-decoration: none;
+}
+
+/* Styling for the header */
+.welcome-header {
+  font-size: 36px;
+  color: #0078d4; /* Change the color to your preference */
+  margin-bottom: 20px;
+}
+
+/* Decoration styling (for example, a horizontal line) */
+
+
+/* Animation (example: a simple fade-in animation) */
+.welcome-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

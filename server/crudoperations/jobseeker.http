@@ -4,7 +4,7 @@ POST http://localhost:5016/signup/
 Content-Type: application/json
 
 {
-   "type":"applicant", 
+"type":"applicant", 
 "fullname":"mohan",
 "email":"mohan34512134@gmail.com",
 "mobilenumber":9867575667,

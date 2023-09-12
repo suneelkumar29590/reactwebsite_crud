@@ -651,7 +651,7 @@ function Browse() {
         no_of_applications,
         img,
       });
-      toast.success("Successfully applied", {
+      toast.success("Successfully saved", {
         position: "top-right",
         autoClose: 1000,
         hideProgressBar: false,

@@ -29,51 +29,134 @@ const Login=()=>{
 
 
 
-    const usersData = {
-        
-      email: email,
-      password: password,
-        
-      };
-      console.log(usersData);
 
-      const onSubmitBtn=(e)=>{
-        e.preventDefault();
-    if(email && password !== ''){
-        axios.post("http://localhost:5016/login",usersData)
-        .then(response=>{
-            if(response.status === 200){
-                let jwtToken = response.data.token
-                localStorage.setItem("token",jwtToken)
+    //   const onSubmitBtn=(e)=>{
+    //     e.preventDefault();
+    // if(email && password !== ''){
+    //     axios.post("http://localhost:5016/login",usersData)
+    //     .then(response=>{
+    //         if(response.status === 200){
+    //             let jwtToken = response.data.token
+    //             localStorage.setItem("token",jwtToken)
 
-                toast.success("Login successfully", {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                      });
+    //             toast.success("Login successfully", {
+    //                     position: "top-right",
+    //                     autoClose: 5000,
+    //                     hideProgressBar: false,
+    //                     closeOnClick: true,
+    //                     pauseOnHover: true,
+    //                     draggable: true,
+    //                     progress: undefined,
+    //                     theme: "colored",
+    //                   });
 
-                      setTimeout(function(){
-                        navigate('/home')
-                       }, 3000)
+    //                   setTimeout(function(){
+    //                     navigate('/home')
+    //                    }, 3000)
                         
-            }
-        })
-        .catch((error) =>{
-            console.log(error.response.data);
-            window.alert(error.response.data)
-        })
+    //         }
+    //     })
+    //     .catch((error) =>{
+    //         console.log(error.response.data);
+    //         window.alert(error.response.data)
+    //     })
         
 
-    }
-    else{
+    // }
+    // else{
+    //     toast.warning("Enter the Required Details");
+    // }
+    //   }
+
+   
+
+    const onSubmitBtn = (e) => {
+      e.preventDefault();
+  
+      if (email && password !== "") {
+       
+        const usersData = { email, password };
+  
+        axios
+          .post("http://localhost:5016/login", usersData)
+          .then((response) => {
+            if (response.status === 200) {
+              let jwtToken = response.data.token;
+              localStorage.setItem("token", jwtToken);
+  
+              toast.success("login Successfully!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+  
+           
+              setTimeout(function () {
+                navigate("/Home");
+              }, 3000);
+            }
+          })
+          .catch((error) => {
+            if (error.response) {
+              if (error.response.status === 401) {
+                if (error.response.data.message === "Email not found") {
+                  toast.error("Enter valid email", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                } else if (error.response.data.message === "Incorrect password") {
+                  toast.error("Incorrect password", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                }
+              } else {
+                toast.error("An error occurred on the server. Please try again later.", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+              }
+            } else {
+              toast.error("An error occurred. Please check your network connection and try again.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              console.error(error);
+            }
+          });
+      } else {
         toast.warning("Enter the Required Details");
-    }
       }
+    };
     return(
       <div>
 
