@@ -234,7 +234,7 @@ function Profile() {
                  </div>
               </div>
 
-              <a href="profile.html">
+              <a href="/profile">
                 <button class="p-2 mb-1 profilebutton w-100 active h-25  bg-primary text-white">
                   Candidate Profile
                 </button>
@@ -254,7 +254,7 @@ function Profile() {
               <a href="/saved">
                 <button class="p-2 mb-1 profilebutton w-100">Saved Jobs</button>
               </a>
-              <a href="">
+              <a href="/change">
                 <button class="p-2 mb-1 profilebutton w-100">
                   Change Password
                 </button>

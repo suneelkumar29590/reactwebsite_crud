@@ -104,7 +104,7 @@ const Saved = () => {
                     <a href="/apply"> <button class="p-2 mb-1 profilebutton w-100 active h-25  ">Applied Jobs</button></a>
                         <a href=""><button class="p-2 mb-1 profilebutton w-100 ">Job Alerts</button></a>
                             <a href=""><button class="p-2 mb-1 profilebutton w-100 bg-primary text-white">Saved Jobs</button></a>
-                                <a href=""><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
+                                <a href="/change"><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
                                     <a href="/default"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
                 
           </div>

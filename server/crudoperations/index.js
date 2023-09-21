@@ -901,6 +901,13 @@ app.post("/appliedjobs", async (req, res) => {
       img } = req.body;
 
 
+    
+
+    const isUserExist = await appliedData.findOne({ email: email });
+    if (isUserExist) {
+      return res.status(400).json({error: "user already registered"});
+    }
+
     let newUser = new appliedData({
       companyname,
       contactnumber,
@@ -915,13 +922,8 @@ app.post("/appliedjobs", async (req, res) => {
       img,
     });
 
-    const isUserExist = await appliedData.findOne({ email: email });
-    if (isUserExist) {
-      return res.send("user already registered");
-    }
-
-    newUser.save(); //saving to mongodb collections
-    res.send("user created succesfully");
+    await newUser.save(); //saving to mongodb collections
+    res.status(200).json({message: "user created succesfully"});
 
 
 
@@ -930,7 +932,7 @@ app.post("/appliedjobs", async (req, res) => {
   }
   catch (e) {
     console.log(e.message);
-    res.send("internal server error");
+    res.status(500).json({error: "internal server error"});
   }
 });
 
@@ -943,8 +945,58 @@ app.get("/allapplied", async (req, res) => {
 })
 
 
-// // applied jobs API
+// // saved jobs API
 
+// app.post("/savedjobs", async (req, res) => {
+//   try {
+//     const {
+//       companyname,
+//       contactnumber,
+//       email,
+//       description,
+//       state,
+//       country,
+//       salary,
+//       role,
+//       experience,
+//       no_of_applications,
+//       img } = req.body;
+
+
+//     const isUserExist = await savedData.findOne({ email: email });
+//     if (isUserExist) {
+//       return res.send("user already registered");
+//     }
+
+    
+//     const newUser = new savedData({
+//       companyname,
+//       contactnumber,
+//       email,
+//       description,
+//       state,
+//       country,
+//       salary,
+//       role,
+//       experience,
+//       no_of_applications,
+//       img,
+//     });
+
+
+//     await newUser.save(); //saving to mongodb collections
+//     res.send("user created succesfully");
+
+
+
+
+
+//   }
+//   catch (e) {
+//     console.log(e.message);
+//     res.send("internal server error");
+//   }
+// });
 app.post("/savedjobs", async (req, res) => {
   try {
     const {
@@ -958,10 +1010,16 @@ app.post("/savedjobs", async (req, res) => {
       role,
       experience,
       no_of_applications,
-      img } = req.body;
+      img
+    } = req.body;
 
+    const isUserExist = await savedData.findOne({ email: email });
+    if (isUserExist) {
+      return res.status(400).json({ error: "User already registered" });
+      // Use a 400 Bad Request status code to indicate that the request is invalid.
+    }
 
-    let newUser = new savedData({
+    const newUser = new savedData({
       companyname,
       contactnumber,
       email,
@@ -975,24 +1033,15 @@ app.post("/savedjobs", async (req, res) => {
       img,
     });
 
-    const isUserExist = await savedData.findOne({ email: email });
-    if (isUserExist) {
-      return res.send("user already registered");
-    }
-
-    newUser.save(); //saving to mongodb collections
-    res.send("user created succesfully");
-
-
-
-
-
-  }
-  catch (e) {
+    await newUser.save(); // saving to MongoDB collection
+    res.status(200).json({ message: "User created successfully" });
+  } catch (e) {
     console.log(e.message);
-    res.send("internal server error");
+    res.status(500).json({ error: "Internal server error" });
+    // Use a 500 Internal Server Error status code for unexpected server errors.
   }
 });
+
 
 
 

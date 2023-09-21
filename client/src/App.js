@@ -22,6 +22,7 @@ import Resume from './resume';
 import Applied from './applied';
 import Saved from './savedjobs';
 import Welocome from './welcome';
+import Change from './changepassword';
 
 
 
@@ -61,6 +62,7 @@ function App() {
         <Route exact path='/apply' element={<Applied/>}/>
         <Route exact path='/saved' element={<Saved/>}/>
         <Route exact path='/' element={<Welocome/>}/>
+        <Route exact path='/change' element={<Change />}/>
        
         
        

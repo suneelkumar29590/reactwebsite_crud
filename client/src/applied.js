@@ -104,7 +104,7 @@ const Applied = () => {
                     <a href=""> <button class="p-2 mb-1 profilebutton w-100 active h-25  bg-primary text-white">Applied Jobs</button></a>
                         <a href=""><button class="p-2 mb-1 profilebutton w-100">Job Alerts</button></a>
                             <a href="/saved"><button class="p-2 mb-1 profilebutton w-100">Saved Jobs</button></a>
-                                <a href=""><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
+                                <a href="/change"><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
                                     <a href="/default"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
                 
           </div>

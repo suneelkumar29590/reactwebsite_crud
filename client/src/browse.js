@@ -593,7 +593,7 @@ function Browse() {
         no_of_applications,
         img,
       } = blog;
-      await axios.post("http://localhost:5016/appliedjobs", {
+     const response= await axios.post("http://localhost:5016/appliedjobs", {
         companyname,
         contactnumber,
         email,
@@ -606,6 +606,7 @@ function Browse() {
         no_of_applications,
         img,
       });
+      if(response.status===200){
       toast.success("Successfully applied", {
         position: "top-right",
         autoClose: 1000,
@@ -616,12 +617,26 @@ function Browse() {
         progress: undefined,
         theme: "colored",
       });
-    } catch (error) {
+    }
+    } 
+    catch (error) {
       console.error(error);
+      toast.error("already applied", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      
     }
   };
 
-
+ 
+  
   
   const handleApplysaved = async (blog) => {
     try {
@@ -638,7 +653,7 @@ function Browse() {
         no_of_applications,
         img,
       } = blog;
-      await axios.post("http://localhost:5016/savedjobs", {
+       const response = await axios.post("http://localhost:5016/savedjobs", {
         companyname,
         contactnumber,
         email,
@@ -651,6 +666,7 @@ function Browse() {
         no_of_applications,
         img,
       });
+      if(response.status===200){
       toast.success("Successfully saved", {
         position: "top-right",
         autoClose: 1000,
@@ -661,11 +677,40 @@ function Browse() {
         progress: undefined,
         theme: "colored",
       });
-    } catch (error) {
-      console.error(error);
+    } 
+  }
+  catch (error) {
+      console.error(error); 
+      
+        toast.error("already saved", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      
     }
+    
   };
 
+
+
+
+  
+ 
+
+
+
+
+
+
+ 
+
+  
   
 
 
@@ -840,7 +885,7 @@ function Browse() {
                       <label>
                         <input
                           type="checkbox"
-                          value=" 1 years"
+                          value="1 years"
                           onChange={userExperience}
                         />
                         1 year
@@ -850,7 +895,7 @@ function Browse() {
                       <label>
                         <input
                           type="checkbox"
-                          value=" 4 years"
+                          value="4 years"
                           onChange={userExperience}
                         />
                         4 year
@@ -1325,7 +1370,7 @@ function Browse() {
                     <div className=" col-5 p-3">
                       <div className="d-flex justify-content-between">
                       <h4>{selectedblog.salary}</h4>
-                      <i class="fa-solid fa-bookmark book" id="bookItem"  onClick={() => handleApplysaved(selectedblog)}></i>
+                      <i class="fa-solid fa-bookmark book" id="bookItem"  onClick={() =>{handleApplysaved(selectedblog)}}></i>
                       </div>
                                                            
                       <p>{selectedblog.experience}</p>
