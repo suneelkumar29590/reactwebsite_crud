@@ -247,6 +247,27 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// ...........forgot password api
+
+app.post('/reset-password', async(req, res) => {
+  const { mobilenumber } = req.body;
+
+  const user = await userData.findOne({ mobilenumber });
+
+  if (user) {
+    // Generate and send a reset password link to the mobile number
+    res.status(200).json({ message: 'Reset password link sent to your mobile number' });
+  } else {
+    res.status(404).json({ message: 'User not found with that mobile number' });
+  }
+});
+
+
+
+
+
+
+
 
 // GET all users API
 

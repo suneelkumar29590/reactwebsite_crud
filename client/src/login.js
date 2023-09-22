@@ -223,7 +223,7 @@ const Login=()=>{
            <i className="fa-solid fa-eye icon1" onClick={togglePasswordVisibility}></i>
           </div>
          
-            <a href="" className="loginforgot"><p class="loginforgot mt-2">Forgot password?</p></a>
+            <a href="/forgot" className="loginforgot"><p class="loginforgot mt-2">Forgot password?</p></a>
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
             </form>
             <a href=""  className="loginforgot"><h6 class="loginh4">Login via OTP</h6></a>

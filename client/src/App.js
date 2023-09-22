@@ -23,6 +23,7 @@ import Applied from './applied';
 import Saved from './savedjobs';
 import Welocome from './welcome';
 import Change from './changepassword';
+import ForgotPassword from './fotgotpwd';
 
 
 
@@ -63,6 +64,7 @@ function App() {
         <Route exact path='/saved' element={<Saved/>}/>
         <Route exact path='/' element={<Welocome/>}/>
         <Route exact path='/change' element={<Change />}/>
+        <Route exact path='/forgot' element={<ForgotPassword />}/>
        
         
        
