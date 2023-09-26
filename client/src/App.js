@@ -24,6 +24,10 @@ import Saved from './savedjobs';
 import Welocome from './welcome';
 import Change from './changepassword';
 import ForgotPassword from './fotgotpwd';
+import Otp from './otp';
+import Mblotp from './mobileotp';
+import Newpassword from './newpassword';
+import Loginone from './login1';
 
 
 
@@ -65,6 +69,11 @@ function App() {
         <Route exact path='/' element={<Welocome/>}/>
         <Route exact path='/change' element={<Change />}/>
         <Route exact path='/forgot' element={<ForgotPassword />}/>
+        <Route exact path='/otp' element={<Otp />}/>
+        <Route exact path='/mblotp' element={<Mblotp />}/>
+        <Route exact path='/newpassword' element={<Newpassword/>}/>
+        <Route exact path='/loginone' element={<Loginone/>} />
+
        
         
        

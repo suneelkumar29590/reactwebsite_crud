@@ -7,24 +7,17 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+
+
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
-const Login=()=>{
+const Login1=()=>{
   let navigate = useNavigate();
 
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
-    
-    const handleEmailSubmit = () => {
-      // You can add validation here if needed
-      console.log("Email:", email);
-      navigate(`/newpassword?email=${email}`);
-    };
-
 
 
   const togglePasswordVisibility = () => {
@@ -230,7 +223,7 @@ const Login=()=>{
            <i className="fa-solid fa-eye icon1" onClick={togglePasswordVisibility}></i>
           </div>
          
-            <a href="" className="loginforgot"><p class="loginforgot mt-2" onClick={handleEmailSubmit}>Forgot password?</p></a>
+            <p>Enter password that you received on your phonenumber </p>
             <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
             </form>
             <a href="/mblotp"  className="loginforgot"><h6 class="loginh4">Login via OTP</h6></a>
@@ -351,4 +344,4 @@ const Login=()=>{
            </div>
     )
 }
-export default Login;
+export default Login1;

@@ -1250,7 +1250,11 @@ li a:hover {background-color:whitesmoke;}
   }
 }
 
-
+.latestpassword{
+  letter-spacing: 10px;
+  color: rgb(11, 225, 51);
+  
+}
 
 
 

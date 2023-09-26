@@ -29,6 +29,12 @@ const productSchema= new mongoose.Schema({
         type:String,
         require:true,
     },
+
+ 
+
+
+
+
 })
 
 const userData=mongoose.model("userData",productSchema);

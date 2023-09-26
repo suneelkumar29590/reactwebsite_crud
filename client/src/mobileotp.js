@@ -7,91 +7,29 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+
+
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
-const Login=()=>{
+const Mblotp=()=>{
   let navigate = useNavigate();
 
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+    const [mbl, setmbl] = useState("");
 
-    
-    const handleEmailSubmit = () => {
-      // You can add validation here if needed
-      console.log("Email:", email);
-      navigate(`/newpassword?email=${email}`);
-    };
-
-
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-    
-  };
-
-    console.log(email);
-
-
-
-
-    //   const onSubmitBtn=(e)=>{
-    //     e.preventDefault();
-    // if(email && password !== ''){
-    //     axios.post("http://localhost:5016/login",usersData)
-    //     .then(response=>{
-    //         if(response.status === 200){
-    //             let jwtToken = response.data.token
-    //             localStorage.setItem("token",jwtToken)
-
-    //             toast.success("Login successfully", {
-    //                     position: "top-right",
-    //                     autoClose: 5000,
-    //                     hideProgressBar: false,
-    //                     closeOnClick: true,
-    //                     pauseOnHover: true,
-    //                     draggable: true,
-    //                     progress: undefined,
-    //                     theme: "colored",
-    //                   });
-
-    //                   setTimeout(function(){
-    //                     navigate('/home')
-    //                    }, 3000)
-                        
-    //         }
-    //     })
-    //     .catch((error) =>{
-    //         console.log(error.response.data);
-    //         window.alert(error.response.data)
-    //     })
-        
-
-    // }
-    // else{
-    //     toast.warning("Enter the Required Details");
-    // }
-    //   }
-
-   
 
     const onSubmitBtn = (e) => {
       e.preventDefault();
   
-      if (email && password !== "") {
+      if (mbl !== "") {
        
-        const usersData = { email, password };
+        const usersData = { mbl };
   
         axios
-          .post("http://localhost:5016/login", usersData)
+          .post("http://localhost:5016/generate-otp", usersData)
           .then((response) => {
             if (response.status === 200) {
-              let jwtToken = response.data.token;
-              localStorage.setItem("token", jwtToken);
-  
-              toast.success("login Successfully!", {
+              toast.success("Otp sent successfully", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -104,15 +42,15 @@ const Login=()=>{
   
            
               setTimeout(function () {
-                navigate("/Home");
+                navigate("/otp");
               }, 3000);
             }
           })
           .catch((error) => {
             if (error.response) {
               if (error.response.status === 401) {
-                if (error.response.data.message === "Email not found") {
-                  toast.error("Enter valid email", {
+                if (error.response.data.message === "otp not sent") {
+                  toast.error("otp not sent", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -122,7 +60,7 @@ const Login=()=>{
                     progress: undefined,
                     theme: "colored",
                   });
-                } else if (error.response.data.message === "Incorrect password") {
+                } else if (error.response.data.message === "network error") {
                   toast.error("Incorrect password", {
                     position: "top-right",
                     autoClose: 5000,
@@ -218,22 +156,29 @@ const Login=()=>{
 
             <form  onSubmit={onSubmitBtn}>
               
-            <label for="" class="loginemail">Email ID</label>
-            <input type="text" name="" id="" class="logininput w-100 form-control" placeholder="enter your email ID" style={{border: "1px solid blue",height:"40px",}} onChange={(e) => setemail(e.target.value)}
-          value={email} />
-          
-          <br></br>
-          <div className="input-with-icon1">
-            <label for="" class="loginpassword">password</label>
-           <input  type={showPassword ? 'text' : 'password'} name="" id=""  class="logininput w-100 form-control" placeholder="enter your password" style={{border: "1px solid blue",height:"40px"}}  onChange={(e) => setpassword(e.target.value)}
-          value={password}/> 
-           <i className="fa-solid fa-eye icon1" onClick={togglePasswordVisibility}></i>
-          </div>
-         
-            <a href="" className="loginforgot"><p class="loginforgot mt-2" onClick={handleEmailSubmit}>Forgot password?</p></a>
-            <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Login</button></a>
+           
+            <label for="" class="loginlabel mb-2">
+                    Mobile Number
+                  </label>
+                  <br />
+                  <div class="d-flex flex-row">
+                    <select name="" id="input" className="mx-1">
+                      <option value="">+91</option>
+                    </select>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter your mobile number"
+                      id="input"
+                      onChange={(e) => setmbl(e.target.value)}
+                        value={mbl}
+                    />
+                  </div>
+                  <p className="text-primary mt-2">You will receive otp on this number</p>
+                  <a href="./home" class=""><button class="loginbutton w-100 " style={{height:"40px"}}>Get otp</button></a>
             </form>
-            <a href="/mblotp"  className="loginforgot"><h6 class="loginh4">Login via OTP</h6></a>
+            <a href=""  className="loginforgot"><h6 class="loginh4">Login via Email</h6></a>
+            <p class="text-center">(or)</p>
            <a href="./home" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow p-2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
         
             </div>
@@ -351,4 +296,4 @@ const Login=()=>{
            </div>
     )
 }
-export default Login;
+export default Mblotp;

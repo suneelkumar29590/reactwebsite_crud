@@ -12,6 +12,7 @@ const resumeData6 = require("./resumeschema")
 const resumeData13 = require("./paymentschema")
 const appliedData = require("./appliedschema")
 const savedData=require("./savedschema")
+const otpData=require("./otpscema")
 
 const app = express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
@@ -264,6 +265,42 @@ app.post('/reset-password', async(req, res) => {
 
 
 
+// Generate a random six-digit OTP
+const generateOTP = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+app.post('/generate-otp', async (req, res) => {
+  const { mbl } = req.body;
+  if (!mbl) {
+    return res.status(400).json({ error: 'Mobile number is required' });
+  }
+
+  const otpValue = generateOTP();
+  const otp = new otpData({ otp: otpValue, mbl });
+
+  try {
+    await otp.save(); // Save the OTP and mobile number to the database
+    res.json({ otp: otpValue, mbl });
+  } catch (error) {
+    console.error('Error generating and saving OTP:', error);
+    res.status(500).json({ error: 'Unable to generate OTP' });
+  }
+});
+
+
+// GET all users API
+
+app.get("/allotp", async (req, res) => {
+  const allotp = await otpData.find({})
+  res.status(200).send(allotp)
+})
+
+
+
+
+
+
 
 
 
@@ -275,6 +312,19 @@ app.get("/allusers", async (req, res) => {
   const allusers = await userData.find({})
   res.status(200).send(allusers)
 })
+
+// ..........
+
+app.get("/allusers/:email", async (req, res) => {
+  const { email } = req.params
+  console.log(email);
+  const user = await userData.findOne({ email: email })
+  if (!user) {
+    res.status(400).json("user not found")
+  }
+  res.status(200).json(user)
+})
+
 
 
 // specific user

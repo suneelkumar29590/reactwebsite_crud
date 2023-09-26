@@ -1,109 +1,138 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import image from './pab bottom-logo (1).jpg';
-import React, { useState} from "react";
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
-const ForgotPassword = () => {
-  const [mobilenumber, setmobilenumber] = useState("");
+const Otp = () => {
+    const [latestOtp, setLatestOtp] = useState('');
+    const [latestmbl, setLatestmbl] = useState('');
 
-  const navigate=useNavigate();
+  useEffect(() => {
+    fetchLatestOtp();
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (mobilenumber) {
-      // Make an API request to send a reset password link to the mobile number
-      axios.post("http://localhost:5016/reset-password", { mobilenumber })
-        .then((response) => {
-          if (response.status === 200) {
-            // Handle success, show a success message
-            toast.success("Password reset instructions sent to your mobile number.", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
-            setTimeout(function () {
-              navigate("/newpassword");
-            }, 3000);
-          }
-        })
-        .catch((error) => {
-          // Handle errors, show appropriate error messages
-          toast.error("Mobile number is not valid.", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-          console.error(error);
-        });
-    } else {
-      toast.warning("Enter your mobile number.");
+  const fetchLatestOtp = async () => {
+    try {
+      const response = await axios.get("http://localhost:5016/allotp");
+      if (response.data.length > 0 ) {
+        const latestOtp = response.data[response.data.length - 1].otp; // Get the last OTP from the array
+        const latestmbl = response.data[response.data.length - 1].mbl; 
+        setLatestOtp(latestOtp);
+        setLatestmbl(latestmbl);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-  };    
-    return(
-        <div>
-  <nav class="navbar navbar-expand-sm navbar-dark card shadow mb-5">
-        <div class="container">
-          <img src={image} className="headerimage"></img>
-         
-        </div>
-      </nav>
-    {/* ........... */}
-            <div class="container" >
+  };
+
+  return (
+    <div>
+    <nav class="navbar navbar-expand-sm navbar-dark card shadow">
+    <div class="container">
+      <img src={image} className="headerimage"></img>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavbar"
+        style={{ backgroundcolor: "black" }}
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav menubar">
+          <li class="nav-item">
+            <a class="nav-link" href="/home" style={{ color: "black" }}>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link dropdown-toggle"
+              href="/browse"
+              style={{ color: "black" }}
+            >
+              Browse Jobs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link dropdown-toggle"
+              href="/jobs"
+              style={{ color: "black" }}
+            >
+              Jobs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              style={{ color: "black" }}
+            >
+              services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link dropdown-toggle"
+              href="/payment"
+              style={{ color: "black" }}
+            >
+              payments
+            </a>
+          </li>
+          <li class="nav-item">
+            <i class="fa-solid fa-bell bellicon"></i>
+          </li>
+          <li class="nav-item">
+            <a href="/profile">
+              {" "}
+              <i
+                class=" fa-sharp fa-solid fa-circle-user dropdown-toggle bellicon"
+                style={{ color: "blue" }}
+              ></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {/* ........ */}
+  <div class="container mt-5" >
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card shadow logincard1 p-3" style={{borderRadius: "20px"}}>
                 <div class="loginheader">
-                    <h2 class="loginheader1">Forgotten Password?</h2>
+                    <h2 class="loginheader1">Login</h2>
                     <p class="loginpara">It only takes a couple of minutes to get started!</p>
                 </div>
-                <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <form onSubmit={handleSubmit}>
+               
+        <form>
+        
                 <div class="otpmain">
-                <label for=""  class="loginlabel mb-3">Mobile Number</label><br/>
+                <label for=""  class="loginlabel mb-3">Mobilenumber</label><br/> 
+                <p>{latestmbl}</p>   
+                <label for=""  class="loginlabel mb-3">OTP</label><br/>
                 <div class="d-flex flex-row mb-3">
-                    <select name="" id="input" className="mx-1">
-                      <option value="">+91</option>
-                    </select>
                     <input
                       type="text"
                       class="form-control"
                       placeholder="Enter your mobile number"
                       id="input"
-                      value={mobilenumber}
-                    onChange={(e) => setmobilenumber(e.target.value)}
+                      value={latestOtp}
+                     
                     />
                   </div>
-                        <span class="text-primary">you will receive an Password on this number </span>
+                        <span class="text-primary">you will receive an otp successfully </span>
                     </div>
+                   
                 
                
-                <a href="" class="text-center"><button class="loginbutton w-100 p-1 mt-3">Submit</button></a>
+                <Link to="/home"><a href="" class="text-center"><button class="loginbutton w-100 p-1 mt-3">Login</button></a></Link>
                 </form>
-                <h6 class="loginh4">Login via Email</h6>
+                
                 <p class="text-center">(or)</p>
                 <a href="" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow p-2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
                 <a href="" style={{textAlign: "center"}}><button class="Register1 shadow d-md-none">Register for free</button></a>
@@ -133,9 +162,9 @@ const ForgotPassword = () => {
         </div>
     </div>
 
-{/* ........ */}
+    {/* ..... */}
 
-<div className="container-fluid footer mt-5">
+    <div className="container-fluid footer mt-5">
         <div className="container py-5">
         <div className="row">
           <div className="col-12 col-md-3">
@@ -211,9 +240,8 @@ const ForgotPassword = () => {
         </div>
 
            </div>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default ForgotPassword;
+export default Otp;
