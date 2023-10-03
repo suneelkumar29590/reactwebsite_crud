@@ -259,7 +259,7 @@ function Profile() {
                   Change Password
                 </button>
               </a>
-              <a href="/default">
+              <a href="/login">
                 <button class="p-2 mb-1 profilebutton w-100">Log Out</button>
               </a>
             </div>

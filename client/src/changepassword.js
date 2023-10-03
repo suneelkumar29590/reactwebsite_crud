@@ -90,7 +90,7 @@ const Change=()=>{
                         <a href=""><button class="p-2 mb-1 profilebutton w-100">Job Alerts</button></a>
                             <a href="/saved"><button class="p-2 mb-1 profilebutton w-100">Saved Jobs</button></a>
                                 <a href=""><button class="p-2 mb-1 profilebutton w-100 bg-primary text-white">Change Password</button></a>
-                                    <a href="/default"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
+                                    <a href="/login"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
                 
           </div>
         </div>

@@ -814,6 +814,7 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
     /* border: none; */
     border-radius: 5px;
     box-shadow: 1px 1px 1px 1px grey;
+    border: none;
   }
   .profilebutton:hover{
     background-color: rgb(189, 187, 187);
@@ -828,6 +829,7 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
   }
   .profileselect{
     border-radius: 10px;
+    border-color: #cfc6dc;
   }
   .profilebutton1{
     background-color: rgb(19, 19, 66);
@@ -1257,4 +1259,277 @@ li a:hover {background-color:whitesmoke;}
 }
 
 
+/* ......recriter css */
 
+.profilebutton9{
+  background-color: #2c0264;
+  color: white;
+  border-radius: 10px;
+}
+
+.postback{
+  background-color: #fbf7fd;
+}
+
+/* dashboard css */
+
+.dashbutton{
+  border: none;
+  border-radius: 10px;
+}
+.Dashboardicon{
+color: red;
+font-size: 40px;
+}
+.Dashboardicon1{
+  color:#fabc04;
+  font-size: 40px;
+}
+.Dashboardicon2{
+  color:#34a853;
+  font-size: 40px;
+}
+.Dashboardicon3{
+  color:#4385f5;
+  font-size: 40px;
+}
+
+.dashboardpara{
+  text-align: center;
+  
+}
+.sana{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #310868;
+  color: white;
+}
+.sana1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logindashboard{
+  border-radius: 10px;
+}
+.dashboardicon{
+  font-size: 40px;
+}
+
+/* .by services */
+
+.database-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(19, 5, 69);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: "Arial";
+  margin-right: 15px;
+}
+.transparent-btn{
+  background-color: white;
+  border-width: 1px;
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-size: cover;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  font-family: "Arial";
+  margin-right: 15px;
+}
+
+.buttons-container{
+  background-color: #f0ebf7;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.monthly-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(19, 5, 69);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: "Arial";
+}
+.daily-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(19, 5, 69);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: "Arial";
+  
+}
+.pricing-btn{
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  background-size: cover;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Arial";
+}
+.buy-now-btn{
+  background-color: transparent;
+  border-width: 1px;
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-size: cover;
+  font-size: 10px;
+  font-weight: bold;
+  border-color: #2c0264;
+  font-family: "Arial";
+}
+.home-page-content{
+  background-color:#f8f2f8;
+}
+
+/* jo posting */
+
+.freeJobPostingCard{
+  padding: 10px;
+  margin-right: 10px;
+}
+.transparent-btn-2{
+  background-color: white;
+  border-width: 1px;
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-size: cover;
+  font-size: 10px;
+  font-weight: bold;
+  border-color: #2c0264;
+  font-family: "Arial";
+  margin-right: 15px;
+}
+
+/* .COMBO */
+
+.monthlyLimitHeading{
+  font-weight: bold;
+  font-family: "Arial";
+  text-align: left;
+  color: black;
+}
+
+/* SEARCH CANDIDATE */
+
+
+.find-heading{
+  font-size: 23px;
+  font-weight: bold;
+  color: #2c0264;
+  text-align: center;
+}
+.jobs-for-you-para{
+  font-size: 12px;
+  font-weight: normal;
+  color: #2c0264;
+  text-align: center;
+  font-weight: 500;
+}
+.subhomebutton{
+  background-color: white;
+  color: lightgray;
+  font-size: 12px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+ 
+}
+
+.subbutton1{
+  background-color: #2c0264;
+  color: white;
+border-radius: 10px;
+padding-top: 3px;
+padding-bottom: 3px;
+}
+
+.searchbanner11{
+  background-image: url(https://img.freepik.com/free-vector/realistic-white-golden-geometric-background_79603-2032.jpg);
+  background-position: center;
+  background-size: cover;
+}
+.keySkillsPara{
+  color: lightgray;
+  font-family: "Arial";
+  font-size: 10px;
+  font-weight: bold;
+}
+.email-btn{
+  border: none;
+  background-color: #f8f2f8;
+  font-size: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+.seacrhmorebutton{
+border: none;
+  border-radius: 10px;
+  background-color: white;
+  padding: 7px;
+
+}
+.greenbox{
+  color: green;
+  font-size: 20px;
+  
+}
+.excelbuttonsearch{
+  border-radius: 10px;
+  color: white;
+  background-color: #2c0264;
+  padding: 0 15px;
+}
+.excelcard{
+  border-radius: 10px;
+}
+.excelright{
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: small;
+}
+.excelright1{
+  border-radius: 10px;
+  font-size: small;
+  
+}

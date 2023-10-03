@@ -9,8 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-const Default = () => {
-  const [type, settype] = useState("applicant");
+const Defaultrec = () => {
+  const [type, settype] = useState("recruiter");
   const [fullname, setfullname] = useState("");
   const [email, setemail] = useState("");
   const [mobilenumber, setmobilenumber] = useState("");
@@ -101,7 +101,7 @@ const Default = () => {
             });
 
             setTimeout(function () {
-              navigate("/login");
+              navigate("/logincompany");
             }, 3000);
           }
         })
@@ -176,23 +176,23 @@ const Default = () => {
                   <p className="parastart">it only takes a couple of minutes to get started!</p>
                 </div>
                 <div className=" text-center reactbtngroup d-flex flex-row justify-content-center px-5">
-                  <a href="./Login" className="w-100"><button className="w-100 reactloginbtn shadow p-2" style={{opacity:"0.5"}}>Login</button></a>
+                  <a href="./Logincompany" className="w-100"><button className="w-100 reactloginbtn shadow p-2" style={{opacity:"0.5"}}>Login</button></a>
                   <button className="w-100 reactloginbtn shadow p-2">Signup<i class="fa-solid fa-circle-check "></i></button>
                 </div>
                 <div className=" text-center reactbtngroup mt-3 mb-3 d-flex flex-row justify-content-center px-5">
-                <a href="" className="w-100"><button
+                  <a href="/default" className="w-100"><button
                     className={`w-100 reactloginbtn shadow p-2 ${type === 'applicant' ? '' : 'inactive'}`}
                     onClick={() => handleButtonClick('applicant')}
                   >
                     Job seekers
-                    <input type="radio" name="type" value="applicant" onChange={() => { }} checked={type === 'applicant'} />
+                    <input type="radio" name="type" value="applicant" />
                   </button></a>
-                  <a href="/defaultrec" className="w-100"><button
+                  <a href="/" className="w-100"><button
                     className={`w-100 reactloginbtn shadow p-2 ${type === 'recruiter' ? '' : 'inactive'}`}
                     onClick={() => handleButtonClick('recruiter')}
                   >
                     Recruiters
-                    <input type="radio" name="type" value="recruiter" />
+                    <input type="radio" name="type" value="recruiter" checked />
                   </button></a>
                 </div>
 
@@ -218,8 +218,8 @@ const Default = () => {
                 <ToastContainer />
                 <form class="form p-5" onSubmit={onSubmitForm}>
 
-                  <label for="" id="fullname" class="loginlabel">FULLNAME</label>
-                  <input type="text" class=" form-control" placeholder="enter your fullname" id="input" onChange={(e) => setfullname(e.target.value)} value={fullname} />
+                  <label for="" id="fullname" class="loginlabel">COMPANYNAME</label>
+                  <input type="text" class=" form-control" placeholder="enter your companyname" id="input" onChange={(e) => setfullname(e.target.value)} value={fullname} />
 
                   <label for="" class="loginlabel" >Email ID</label>
                   <input type="email" class="form-control " placeholder="enter your Email ID" id="input" onChange={(e) => setemail(e.target.value)} value={email} />
@@ -414,6 +414,6 @@ const Default = () => {
     </div>
   )
 }
-export default Default;
+export default Defaultrec;
 
 

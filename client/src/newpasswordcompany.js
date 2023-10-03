@@ -1,22 +1,47 @@
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import axios from 'axios';
 import image from './pab bottom-logo (1).jpg';
+import { Link } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
-const Saved = () => {
-  const [blogslist, setBlogslist] = useState([]);
-
+const Newpasswordcompany = () => {
+  const navigate=useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const email = searchParams.get(`email`);
+    const [latestpassword, setlatestpassword] = useState('');
+    
+    console.log("Received Email:", email);
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    if(email){
+    fetchLatestpassword(email);
+    }else {
+      // Handle the case where no email parameter is provided
+      navigate('/');
+    }
+  }, [email,navigate]);
 
-  const fetchBlogs = async () => {
+  const fetchLatestpassword = async (email) => {
     try {
-      const response = await axios.get("http://localhost:5016/allsaved");
-      setBlogslist(response.data);
+      const response = await axios.get(`http://localhost:5016/allusers/${email}`);
+      console.log("API Response:", response); 
+      console.log(response.data.password);
+      setlatestpassword(response.data.password)
+      // if (response.data.length > 0 ) {
+      //   const latestpassword = response.data.password; // Get the last OTP from the array
+      //   console.log();
+      //   setlatestpassword(latestpassword);
+        
+      // }else{
+      //   setlatestpassword('No password found for this email.');
+      // }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  console.log(latestpassword)
+
+  
 
   return (
     <div>
@@ -93,64 +118,66 @@ const Saved = () => {
   </nav>
 
   {/* ........ */}
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-3">
-          <div className="card">
-          
-                    <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "200px"}}></i>
-                    <a href="/profile"><button class="p-2 mb-1 profilebutton w-100">Candidate Profile</button></a>
-                    <a href="/resume"><button class="p-2 mb-1 profilebutton w-100">Resume</button></a>
-                    <a href="/apply"> <button class="p-2 mb-1 profilebutton w-100 active h-25  ">Applied Jobs</button></a>
-                        <a href=""><button class="p-2 mb-1 profilebutton w-100 ">Job Alerts</button></a>
-                            <a href=""><button class="p-2 mb-1 profilebutton w-100 bg-primary text-white">Saved Jobs</button></a>
-                                <a href="/change"><button class="p-2 mb-1 profilebutton w-100">Change Password</button></a>
-                                    <a href="/login"><button class="p-2 mb-1 profilebutton w-100">Log Out</button></a>
-                
-          </div>
-        </div>
-
-        <div className="col-md-8">
-          <div className="card p-3">
-            <h6>saved jobs</h6>
-            <hr />
-            <ul>
-              {blogslist.map((blog) => (
-                <div key={blog._id} className="card p-3 mb-3">
-                  <div className="d-flex flex-row">
-                    <div className="d-flex flex-row col-md-6" style={{ borderRight: "2px solid black", height: "80px" }}>
-                      <img src={blog.img}/>
-                      <div className="p-3">
-                        <h5 className="appliedh2">{blog.companyname}</h5>
-                        <h6 className="small">{blog.role}</h6>
-                        <p className="small">Contact: {blog.contactnumber}</p>
-                      </div>
-                    </div>
-                    <div className="col-md-5">
-                      <h6 style={{ fontWeight: "bold" }} className='px-4'>{blog.salary}</h6>
-                      <i className="fa-solid fa-location-dot p-3"></i><span className="small">{blog.state}</span>
-                      <i className="fa-solid fa-location-dot p-3"></i><span className="small">{blog.country}</span><br />
-                      <i className="fa-solid fa-briefcase p-3"></i><span className="small">{blog.experience}</span>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="d-flex flex-row">
-                    <div className="col-md-1"></div>
-                    <div className="col-md-5">
-                      <p className="small">Email: {blog.email}</p>
-                      <p className="small">Whatsapp: {blog.contactnumber}</p>
-                      <p className="small">job applicants: {blog.no_of_applications}</p>
-                    </div>
-                    <div className="col-md-6">
-                      <button className="domain p-2 w-75 mt-3">Applied</button>
-                    </div>
-                  </div>
+  <div class="container mt-5" >
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card shadow logincard1 p-3" style={{borderRadius: "20px"}}>
+                <div class="loginheader">
+                    <h2 class="loginheader1">Login</h2>
+                    <p class="loginpara">It only takes a couple of minutes to get started!</p>
                 </div>
-              ))}
-            </ul>
-          </div>
+               
+        <form>
+        
+                <div class="otpmain">
+                   
+                <label for=""  class="loginlabel mb-3">password</label><br/>
+                {/* <div class="d-flex flex-row mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter your mobile number"
+                      id="input"
+                      value={latestpassword}
+                     
+                    />
+                  </div> */}
+                  <h2 className='latestpassword'>{latestpassword}</h2>
+                        <span class="text-primary">you will receive an password successfully </span>
+                    </div>
+                   
+                
+               
+                <Link to="/logintwo"><a href="" class="text-center"><button class="loginbutton w-100 p-1 mt-3">Login</button></a></Link>
+                </form>
+                
+                <p class="text-center">(or)</p>
+                <a href="" className="signgoogle"> <span class="logingoogle"><button class="loginbutton2 shadow p-2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVDA2e7vaSAfhljLBVppf2X0b0OuAxTQZqjYZcemxu6Umeik13cJI3HYISVRfEz9SMQA&usqp=CAU" alt="" class="googleimg"/>Sign in with Google</button></span></a>
+                <a href="" style={{textAlign: "center"}}><button class="Register1 shadow d-md-none">Register for free</button></a>
+                </div>
+            </div>
+    
+            <div class="col-12 col-md-1">
+    
+            </div>
+            <div class="col-12 col-md-4 d-none d-md-block" >
+                <div class="card shadow logincard2" style={{borderRadius: "20px"}}>
+                    <h2 class="pabjobheading">New to pabjobs?</h2>
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/003/689/228/small/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg" alt=""/>
+                </div>
+                <div class="loginspan1">
+                    <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Build your profile and let
+                        recruitrs find yon</span> <br/>
+                    <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Get job posting delivered right
+                        to your email</span> <br/>
+                    <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Find a job and grow your
+                        career</span><br/>
+                    <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Find a job and grow your
+                            career</span>         
+                </div>
+                <a href="/default"><button class="Register ">Register for free</button></a>
+            </div>
         </div>
-      </div>
     </div>
 
     {/* ..... */}
@@ -235,4 +262,4 @@ const Saved = () => {
   );
 };
 
-export default Saved;
+export default Newpasswordcompany;

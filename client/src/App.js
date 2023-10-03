@@ -7,6 +7,7 @@ import { Routes,Route } from 'react-router-dom';
 
 import Footer from './footer';
 import Default from './default';
+import Defaultrec from './default1';
 import Login from './login';
 import Home from './home'
 import Jobs from './jobs'
@@ -28,6 +29,20 @@ import Otp from './otp';
 import Mblotp from './mobileotp';
 import Newpassword from './newpassword';
 import Loginone from './login1';
+import Logincompany from './logincompany';
+import Postajob from './postajob';
+import Companyprofile from './companyprofile';
+import Myjobs from './myjobs';
+import Changecompany from './companychangepwd';
+import Mblotpcompany from './companymobileotp';
+import Otpcompany from './otpcompany';
+import Newpasswordcompany from './newpasswordcompany';
+import Logintwo from './login2';
+import Dashboard from './dashboard';
+import Byservices from './byservices';
+import Jobposting from './jobposting';
+import Combo from './combo';
+import Search from './searchcandidates';
 
 
 
@@ -52,7 +67,9 @@ function App() {
 
       <Routes>
         <Route exact path = "/default" element ={<Default />}/>
+        <Route exact path = "/defaultrec" element ={<Defaultrec />}/>
         <Route exact path='/Login' element={<Login/>} />
+        <Route exact path='/Logincompany' element={<Logincompany/>} />
         <Route exact path = "/home" element ={<Home />}/>
         <Route exact path = "/jobs" element ={<Jobs />}/>
         <Route exact path = "/payment" element ={<Payment />}/>
@@ -72,7 +89,21 @@ function App() {
         <Route exact path='/otp' element={<Otp />}/>
         <Route exact path='/mblotp' element={<Mblotp />}/>
         <Route exact path='/newpassword' element={<Newpassword/>}/>
+        <Route exact path='/newpasswordcompany' element={<Newpasswordcompany/>}/>
         <Route exact path='/loginone' element={<Loginone/>} />
+        <Route exact path='/logintwo' element={<Logintwo/>} />
+        <Route exact path='/postajob' element={<Postajob/>} />
+        <Route exact path='/companyprofile' element={<Companyprofile/>} />
+        <Route exact path='/myjobs' element={<Myjobs/>} />
+        <Route exact path='/changecompanypwd' element={<Changecompany/>} />
+        <Route exact path='/companymblotp' element={<Mblotpcompany/>} />
+        <Route exact path='/otpcompany' element={<Otpcompany/>} />
+        <Route exact path='/dashboard' element={<Dashboard/>} />
+        <Route exact path='/byservices' element={<Byservices/>} />
+        <Route exact path='/jobposting' element={<Jobposting/>} />
+        <Route exact path='/combo' element={<Combo/>} />
+        <Route exact path='/search' element={<Search/>} />
+
 
        
         
