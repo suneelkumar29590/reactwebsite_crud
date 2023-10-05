@@ -1,0 +1,48 @@
+GET http://localhost:5016/
+
+###
+POST http://localhost:5016/companyposts/
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk
+
+{
+"postjobtitle":"IT engineer", 
+"postposition":"ux designer",
+"postjobtype":"parttime",
+"postexperience":"1years",
+"postsalary":"23 L/A",
+"postskills":"core java",
+"postregion":"hindu",
+"postlocation":"vizag",
+"postdeadline":"2 weeks",
+"posteducation":"m.tech",
+"postdiscription":"since last one month assignments this project"
+
+}
+
+
+###
+POST http://localhost:5016/companyprofile/
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk
+
+{
+"companyprofileName":"Ediko softtech", 
+"companyprofileWeblink":"www.ediko.com",
+"companyprofileFoundedDate":"12/05/2014",
+"companyprofileIndustryType":"It sector",
+"companyprofileDiscription":"Till running at successfully",
+"companyprofilePhone":9675656568,
+"companyprofileEmail":"ediko123@gmail.com",
+"companyprofileCountry":"India",
+"companyprofileState":"India",
+"companyprofileCity":"Hyderabad",
+"companyprofilePincode":"Hyderabad",
+"companyprofileAddress":"Raydurg,near policestation.",
+"companyprofilelink":"www.linkdn.com",
+"companyprofilelink1":"www.twitter.com",
+"companyprofilelink2":"www.facebook.com",
+"companyprofilelink3":"www.instagram.com",
+"companyprofilelink4":"www.google.com"
+
+}

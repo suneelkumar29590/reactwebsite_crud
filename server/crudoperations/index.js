@@ -13,6 +13,8 @@ const resumeData13 = require("./paymentschema")
 const appliedData = require("./appliedschema")
 const savedData=require("./savedschema")
 const otpData=require("./otpscema")
+const postajob=require("./postajobschema")
+const companyprofileData=require("./companyprofileschema")
 
 const app = express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
@@ -1122,6 +1124,86 @@ app.get("/allsaved", async (req, res) => {
   const allusers = await savedData.find({})
   res.status(200).send(allusers)
 })
+
+// recruiter page start post a job
+
+
+app.post("/companyposts", middleware, async (req, res) => {
+  try {
+    const isUserExist = await postajob.findOne({ postsalary:req.body.postsalary});
+    console.log(isUserExist)
+    if (!isUserExist){
+      let newUser = new postajob({
+        postjobtitle:req.body.postjobtitle,
+        postposition:req.body. postposition,
+        postjobtype: req.body.postjobtype,
+        postexperience: req.body.postexperience,
+        postsalary:req.body. postsalary,
+        postskills: req.body.postskills,
+        postregion: req.body.postregion,
+        postlocation: req.body.postlocation,
+        postdeadline: req.body.postdeadline,
+        posteducation: req.body.posteducation,
+        postdiscription: req.body.postdiscription,
+  
+      });
+      const userdetails = await postajob.create(newUser)
+      console.log(userdetails)
+      res.status(200).send("user created succesfully");
+
+    }else{
+      res.status(400).json("user already registered");
+    }
+
+  }
+  catch (e) {
+    console.log(e.message);
+    return res.status(500).json("internal server error");
+  }
+});
+
+// ...company profile
+
+app.post("/companyprofile", middleware, async (req, res) => {
+  try {
+    const isUserExist = await companyprofileData.findOne({ companyprofileEmail:req.body.companyprofileEmail});
+    console.log(isUserExist)
+    if (!isUserExist){
+      let newUser = new companyprofileData({
+        companyprofileName:req.body.companyprofileName,
+        companyprofileWeblink:req.body. companyprofileWeblink,
+        companyprofileFoundedDate: req.body.companyprofileFoundedDate,
+        companyprofileIndustryType: req.body.companyprofileIndustryType,
+        companyprofileDiscription:req.body. companyprofileDiscription,
+        companyprofilePhone: req.body.companyprofilePhone,
+        companyprofileEmail: req.body.companyprofileEmail,
+        companyprofileCountry: req.body.companyprofileCountry,
+        companyprofileState: req.body.companyprofileState,
+        companyprofileCity: req.body.companyprofileCity,
+        companyprofilePincode: req.body.companyprofilePincode,
+        companyprofileAddress: req.body.companyprofileAddress,
+        companyprofilelink: req.body.companyprofilelink,
+        companyprofilelink1: req.body.companyprofilelink1,
+        companyprofilelink2: req.body.companyprofilelink2,
+        companyprofilelink3: req.body.companyprofilelink3,
+        companyprofilelink4: req.body.companyprofilelink4,
+  
+      });
+      const userdetails = await companyprofileData.create(newUser)
+      console.log(userdetails)
+      res.status(200).send("user created succesfully");
+
+    }else{
+      res.status(400).json("user already registered");
+    }
+
+  }
+  catch (e) {
+    console.log(e.message);
+    return res.status(500).json("internal server error");
+  }
+});
+
 
 
 app.listen(5016, () => {
