@@ -1,0 +1,84 @@
+const mongoose = require("mongoose");
+
+const searchData=new mongoose.Schema({
+    search_img:{
+        type:String,
+        require:true,
+    },
+    search_name:{
+        type:String,
+        require:true,
+    },
+    search_skills:{
+        type:String,
+        require:true,
+    },
+    search_graduation:{
+        type:String,
+        require:true,
+    },
+    search_location:{
+        type:String,
+        require:true,
+    },
+    search_age:{
+        type:String,
+        require:true,
+    },
+    search_dob:{
+        type:String,
+        require:true,
+    },
+    search_experince:{
+        type:String,
+        require:true,
+    },
+    search_type:{
+        type:String,
+        require:true,
+    },
+    search_prefferedlocation:{
+        type:String,
+        require:true,
+    },
+    search_gender:{
+        type:String,
+        require:true,
+    },
+    search_address:{
+        type:String,
+        require:true,
+    },
+    search_designation:{
+        type:String,
+        require:true,
+    },
+    search_department:{
+        type:String,
+        require:true,
+    },
+    search_expectedctc:{
+        type:String,
+        require:true,
+    },
+    search_maritalstatus:{
+        type:String,
+        require:true,
+    },
+    search_languages:{
+        type:String,
+        require:true,
+    },
+    search_industry:{
+        type:String,
+        require:true,
+    },
+    search_shift:{
+        type:String,
+        require:true,
+    },
+
+
+
+});
+module.exports = mongoose.model("searchcandidtae",searchData);

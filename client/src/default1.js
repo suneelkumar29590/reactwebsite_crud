@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Defaultrec = () => {
   const [type, settype] = useState("recruiter");
-  const [fullname, setfullname] = useState("");
+  const [companyname, setcompanyname] = useState("");
   const [email, setemail] = useState("");
   const [mobilenumber, setmobilenumber] = useState("");
   const [password, setpassword] = useState("");
@@ -38,7 +38,7 @@ const Defaultrec = () => {
 
   const usersData = {
     type: type,
-    fullname: fullname,
+    companyname: companyname,
     email: email,
     mobilenumber: mobilenumber,
     password: password,
@@ -74,7 +74,7 @@ const Defaultrec = () => {
 
     if (
       type &&
-      fullname &&
+      companyname &&
       email &&
       isMobileValid &&
       isMobileStartValid && // Validate mobile number
@@ -150,10 +150,10 @@ const Defaultrec = () => {
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav menubar">
               <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="browsejobs.html" style={{ color: "black" }}>Browse Jobs</a>
+                <a class="nav-link dropdown-toggle" href="" style={{ color: "black" }}>Browse Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="job.html" style={{ color: "black" }}>Jobs</a>
+                <a class="nav-link dropdown-toggle" href="" style={{ color: "black" }}>Jobs</a>
               </li>
 
 
@@ -219,7 +219,7 @@ const Defaultrec = () => {
                 <form class="form p-5" onSubmit={onSubmitForm}>
 
                   <label for="" id="fullname" class="loginlabel">COMPANYNAME</label>
-                  <input type="text" class=" form-control" placeholder="enter your companyname" id="input" onChange={(e) => setfullname(e.target.value)} value={fullname} />
+                  <input type="text" class=" form-control" placeholder="enter your companyname" id="input" onChange={(e) => setcompanyname(e.target.value)} value={companyname} />
 
                   <label for="" class="loginlabel" >Email ID</label>
                   <input type="email" class="form-control " placeholder="enter your Email ID" id="input" onChange={(e) => setemail(e.target.value)} value={email} />
@@ -292,11 +292,6 @@ const Defaultrec = () => {
                   {isPasswordMismatch && (
                     <p className="text-danger">Password and Confirm Password do not match.</p>
                   )}
-
-                  <div id="gender">
-                    <b>Gender</b> <br /><input type="radio" name="type" /> male <input type="radio" name="type" /> female
-                    <input type="radio" name="type" /> prefer not to say<br />
-                  </div>
                   <i class="fa-solid fa-square-check greenbox"></i>
                   <label for="">I would like to get latest updates on whatsapp</label>
 
@@ -313,7 +308,7 @@ const Defaultrec = () => {
             <div className="col-12 col-md-1"></div>
             <div class=" col-12 col-lg-3 mt-5">
               <div class="card card1 shadow" >
-                <img src="https://img.freepik.com/premium-vector/online-registration-sign-up-with-man-sitting-near-smartphone_268404-95.jpg"
+                <img src="https://img.freepik.com/premium-vector/online-marketing-flat-illustration-editable-design_203633-1595.jpg"
                   width="300px" height="300px" alt="" id="image" />
               </div>
               <div class="card1para">

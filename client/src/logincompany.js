@@ -245,7 +245,7 @@ const Logincompany=()=>{
         <div class="col-12 col-md-3 d-none d-md-block" >
             <div class="card shadow logincard2 text-center" style={{borderRadius: "20px"}}>
                 <h2 class="pabjobheading ">New to pabjobs?</h2>
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/003/689/228/small/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg" alt="" width={300} height={200}/>
+                <img src="https://img.freepik.com/free-vector/people-using-search-box-query-engine-giving-result_74855-11000.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1696464000&semt=sph" alt="" width={300} height={200}/>
             </div>
             <div class="loginspan1">
                 <i class="fa-solid fa-circle-check janlogin"></i> <span class="loginspan">Build your profile and let

@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
 import image from "./pab bottom-logo (1).jpg";
+import axios from "axios";
 
 const Search=()=>{
+ const [blogslist,setblogslist]=useState([]);
+
+ useEffect(()=>{
+    fetchBlogs();
+ },[])
+
+ const fetchBlogs = async () => {
+    try{
+        const response = await axios.get("http://localhost:5016/allcandidates");
+        setblogslist(response.data);
+    }catch(error){
+        console.error("Error fetching data:", error);
+    }
+ };
     return(
         <div>
              <div className="container">
@@ -110,8 +126,9 @@ const Search=()=>{
     </section>
 
     
-
-    <section class="home-page-content pt-5">
+{blogslist.map((blog)=>(
+<div key={blog._id}>
+<section class="home-page-content pt-5">
 
 
 <div class="row">
@@ -126,8 +143,9 @@ const Search=()=>{
             <p class="col-lg-8 pt-1"> Export data to Excel</p>
         </div>
         <div class="text-center">
-            <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>    
-            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>Sashi Kumar</b></p>
+            {/* <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>     */}
+            <img src={blog.search_img} width={200} className="rounded-circle"/>
+            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>{blog.search_name}</b></p>
         </div>
         <hr/>
         <div class="row">
@@ -145,372 +163,48 @@ const Search=()=>{
         <div class="row m-0">
             <div class="col-lg-3">
                 <p class="m-0">Key Skills</p>
-                <p class="keySkillsPara">Photoshop,Aftereffects, Adobe XD, Premire Pro, Blender, Illustrator...More</p>
+                <p class="keySkillsPara">{blog.search_skills}</p>
                 <p class="m-0">Highest Graduation</p>
-                <p class="keySkillsPara">Bachelor of Arts in Graphic Design</p>
+                <p class="keySkillsPara">{blog.search_graduation}</p>
                 <p class="m-0">Current Location</p>
-                <p class="keySkillsPara">Hyderabad</p>
+                <p class="keySkillsPara">{blog.search_location}</p>
                 <p class="m-0">Age</p>
-                <p class="keySkillsPara">---Years</p>
+                <p class="keySkillsPara">{blog.search_age}</p>
                 <p class="m-0">Date of Birth</p>
-                <p class="keySkillsPara">06 December 1969</p>
+                <p class="keySkillsPara">{blog.search_dob}</p>
             </div>
             <div class="col-lg-3">
                 <p class="m-0">Experience</p>
-                <p class="keySkillsPara">3 Years</p>
+                <p class="keySkillsPara">{blog.search_experince}</p>
                 <p class="m-0">Employment Type</p>
-                <p class="keySkillsPara">Full Time, Permanent</p>
+                <p class="keySkillsPara">{blog.search_type}</p>
                 <p class="m-0">Preffered Location</p>
-                <p class="keySkillsPara">Hyderabad, Pune, Delhi,Chennai</p>
+                <p class="keySkillsPara">{blog.search_prefferedlocation}</p>
                 <p class="m-0">Gender</p>
-                <p class="keySkillsPara">Male</p>
+                <p class="keySkillsPara">{blog.search_gender}</p>
                 <p class="m-0">Address</p>
-                <p class="keySkillsPara">201,Plot 69, Laxmi Nagar, Flm Nagar, Hyderabad</p>
+                <p class="keySkillsPara">{blog.search_address}</p>
                 
             </div>
             <div class="col-lg-3">
                
                 <p class="m-0">Designation</p>
-                <p class="keySkillsPara">UI & UX developer</p>
+                <p class="keySkillsPara">{blog.search_designation}</p>
                 <p class="m-0">Department</p>
-                <p class="keySkillsPara">UX Design & Architectre</p>
+                <p class="keySkillsPara">{blog.search_department}</p>
                 <p class="m-0">Expected CTC</p>
-                <p class="keySkillsPara">5,00,000 - 8,00,000</p>
+                <p class="keySkillsPara">{blog.search_expectedctc}</p>
                 <p class="m-0">Marital Status</p>
-                <p class="keySkillsPara">Single</p>
+                <p class="keySkillsPara">{blog.search_maritalstatus}</p>
                 <p class="m-0">Languages Known</p>
-                <p class="keySkillsPara">Telugu, Hindi, English</p>
+                <p class="keySkillsPara">{blog.search_languages}</p>
             </div>
             <div class="col-lg-3">
                 
                 <p class="m-0">Desired Industry</p>
-                <p class="keySkillsPara">IT Software</p>
+                <p class="keySkillsPara">{blog.search_industry}</p>
                 <p class="m-0">Prefered Shift</p>
-                <p class="keySkillsPara">Day/Night</p>
-            </div>
-        </div>
-    </div>
-   
-
-    <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2"></div>
-
-    
-    <div class="col-lg-2 pt-2 mb-4 shadow" style={{backgroundColor: "white",marginright: "20px",borderradius: "10px"}}>
-        <div class="row">
-            <div class="col-1 m-0">
-                <input type="checkbox"/>
-            </div>
-            <p class="col-lg-8 pt-1"> Export data to Excel</p>
-        </div>
-        <div class="text-center">
-            <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>    
-            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>Ashok Kumar</b></p>
-        </div>
-        <hr/>
-        <div class="row">
-            <button class="col-12 col-md-3 email-btn m-2">Email</button>
-            <button class="col-12 col-md-3 email-btn m-2">Contact</button>
-            <button class="col-12 col-md-3 email-btn m-2">SMS</button>
-        </div>
-        
-    </div>
-    
-   
-
-    
-    <div class="col-lg-6 shadow p-3 mb-4 mx-4" style={{backgroundColor: "white",borderRadius: "10px"}}>
-        <div class="row m-0">
-            <div class="col-lg-3">
-                <p class="m-0">Key Skills</p>
-                <p class="keySkillsPara">Photoshop,Aftereffects, Adobe XD, Premire Pro, Blender, Illustrator...More</p>
-                <p class="m-0">Highest Graduation</p>
-                <p class="keySkillsPara">Bachelor of Arts in Graphic Design</p>
-                <p class="m-0">Current Location</p>
-                <p class="keySkillsPara">Hyderabad</p>
-                <p class="m-0">Age</p>
-                <p class="keySkillsPara">---Years</p>
-                <p class="m-0">Date of Birth</p>
-                <p class="keySkillsPara">06 December 1969</p>
-            </div>
-            <div class="col-lg-3">
-                <p class="m-0">Experience</p>
-                <p class="keySkillsPara">3 Years</p>
-                <p class="m-0">Employment Type</p>
-                <p class="keySkillsPara">Full Time, Permanent</p>
-                <p class="m-0">Preffered Location</p>
-                <p class="keySkillsPara">Hyderabad, Pune, Delhi,Chennai</p>
-                <p class="m-0">Gender</p>
-                <p class="keySkillsPara">Male</p>
-                <p class="m-0">Address</p>
-                <p class="keySkillsPara">201,Plot 69, Laxmi Nagar, Flm Nagar, Hyderabad</p>
-                
-            </div>
-            <div class="col-lg-3">
-               
-                <p class="m-0">Designation</p>
-                <p class="keySkillsPara">UI & UX developer</p>
-                <p class="m-0">Department</p>
-                <p class="keySkillsPara">UX Design & Architectre</p>
-                <p class="m-0">Expected CTC</p>
-                <p class="keySkillsPara">5,00,000 - 8,00,000</p>
-                <p class="m-0">Marital Status</p>
-                <p class="keySkillsPara">Single</p>
-                <p class="m-0">Languages Known</p>
-                <p class="keySkillsPara">Telugu, Hindi, English</p>
-            </div>
-            <div class="col-lg-3">
-                
-                <p class="m-0">Desired Industry</p>
-                <p class="keySkillsPara">IT Software</p>
-                <p class="m-0">Prefered Shift</p>
-                <p class="keySkillsPara">Day/Night</p>
-            </div>
-        </div>
-    </div>
-   
-
-    <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2"></div>
-
-    
-    <div class="col-lg-2 pt-2 mb-4 shadow" style={{backgroundColor: "white",marginright: "20px",borderradius: "10px"}}>
-        <div class="row">
-            <div class="col-1 m-0">
-                <input type="checkbox"/>
-            </div>
-            <p class="col-lg-8 pt-1"> Export data to Excel</p>
-        </div>
-        <div class="text-center">
-            <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>    
-            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>Ganesh</b></p>
-        </div>
-        <hr/>
-        <div class="row">
-            <button class="col-12 col-md-3 email-btn m-2">Email</button>
-            <button class="col-12 col-md-3 email-btn m-2">Contact</button>
-            <button class="col-12 col-md-3 email-btn m-2">SMS</button>
-        </div>
-        
-    </div>
-    
-   
-
-    
-    <div class="col-lg-6 shadow p-3 mb-4 mx-4" style={{backgroundColor: "white",borderRadius: "10px"}}>
-        <div class="row m-0">
-            <div class="col-lg-3">
-                <p class="m-0">Key Skills</p>
-                <p class="keySkillsPara">Photoshop,Aftereffects, Adobe XD, Premire Pro, Blender, Illustrator...More</p>
-                <p class="m-0">Highest Graduation</p>
-                <p class="keySkillsPara">Bachelor of Arts in Graphic Design</p>
-                <p class="m-0">Current Location</p>
-                <p class="keySkillsPara">Hyderabad</p>
-                <p class="m-0">Age</p>
-                <p class="keySkillsPara">---Years</p>
-                <p class="m-0">Date of Birth</p>
-                <p class="keySkillsPara">06 December 1969</p>
-            </div>
-            <div class="col-lg-3">
-                <p class="m-0">Experience</p>
-                <p class="keySkillsPara">3 Years</p>
-                <p class="m-0">Employment Type</p>
-                <p class="keySkillsPara">Full Time, Permanent</p>
-                <p class="m-0">Preffered Location</p>
-                <p class="keySkillsPara">Hyderabad, Pune, Delhi,Chennai</p>
-                <p class="m-0">Gender</p>
-                <p class="keySkillsPara">Male</p>
-                <p class="m-0">Address</p>
-                <p class="keySkillsPara">201,Plot 69, Laxmi Nagar, Flm Nagar, Hyderabad</p>
-                
-            </div>
-            <div class="col-lg-3">
-               
-                <p class="m-0">Designation</p>
-                <p class="keySkillsPara">UI & UX developer</p>
-                <p class="m-0">Department</p>
-                <p class="keySkillsPara">UX Design & Architectre</p>
-                <p class="m-0">Expected CTC</p>
-                <p class="keySkillsPara">5,00,000 - 8,00,000</p>
-                <p class="m-0">Marital Status</p>
-                <p class="keySkillsPara">Single</p>
-                <p class="m-0">Languages Known</p>
-                <p class="keySkillsPara">Telugu, Hindi, English</p>
-            </div>
-            <div class="col-lg-3">
-                
-                <p class="m-0">Desired Industry</p>
-                <p class="keySkillsPara">IT Software</p>
-                <p class="m-0">Prefered Shift</p>
-                <p class="keySkillsPara">Day/Night</p>
-            </div>
-        </div>
-    </div>
-   
-
-    <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2"></div>
-
-    
-    <div class="col-lg-2 pt-2 mb-4 shadow" style={{backgroundColor: "white",marginright: "20px",borderradius: "10px"}}>
-        <div class="row">
-            <div class="col-1 m-0">
-                <input type="checkbox"/>
-            </div>
-            <p class="col-lg-8 pt-1"> Export data to Excel</p>
-        </div>
-        <div class="text-center">
-            <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>    
-            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>Kalyan</b></p>
-        </div>
-        <hr/>
-        <div class="row">
-            <button class="col-12 col-md-3 email-btn m-2">Email</button>
-            <button class="col-12 col-md-3 email-btn m-2">Contact</button>
-            <button class="col-12 col-md-3 email-btn m-2">SMS</button>
-        </div>
-        
-    </div>
-    
-   
-
-    
-    <div class="col-lg-6 shadow p-3 mb-4 mx-4" style={{backgroundColor: "white",borderRadius: "10px"}}>
-        <div class="row m-0">
-            <div class="col-lg-3">
-                <p class="m-0">Key Skills</p>
-                <p class="keySkillsPara">Photoshop,Aftereffects, Adobe XD, Premire Pro, Blender, Illustrator...More</p>
-                <p class="m-0">Highest Graduation</p>
-                <p class="keySkillsPara">Bachelor of Arts in Graphic Design</p>
-                <p class="m-0">Current Location</p>
-                <p class="keySkillsPara">Hyderabad</p>
-                <p class="m-0">Age</p>
-                <p class="keySkillsPara">---Years</p>
-                <p class="m-0">Date of Birth</p>
-                <p class="keySkillsPara">06 December 1969</p>
-            </div>
-            <div class="col-lg-3">
-                <p class="m-0">Experience</p>
-                <p class="keySkillsPara">3 Years</p>
-                <p class="m-0">Employment Type</p>
-                <p class="keySkillsPara">Full Time, Permanent</p>
-                <p class="m-0">Preffered Location</p>
-                <p class="keySkillsPara">Hyderabad, Pune, Delhi,Chennai</p>
-                <p class="m-0">Gender</p>
-                <p class="keySkillsPara">Male</p>
-                <p class="m-0">Address</p>
-                <p class="keySkillsPara">201,Plot 69, Laxmi Nagar, Flm Nagar, Hyderabad</p>
-                
-            </div>
-            <div class="col-lg-3">
-               
-                <p class="m-0">Designation</p>
-                <p class="keySkillsPara">UI & UX developer</p>
-                <p class="m-0">Department</p>
-                <p class="keySkillsPara">UX Design & Architectre</p>
-                <p class="m-0">Expected CTC</p>
-                <p class="keySkillsPara">5,00,000 - 8,00,000</p>
-                <p class="m-0">Marital Status</p>
-                <p class="keySkillsPara">Single</p>
-                <p class="m-0">Languages Known</p>
-                <p class="keySkillsPara">Telugu, Hindi, English</p>
-            </div>
-            <div class="col-lg-3">
-                
-                <p class="m-0">Desired Industry</p>
-                <p class="keySkillsPara">IT Software</p>
-                <p class="m-0">Prefered Shift</p>
-                <p class="keySkillsPara">Day/Night</p>
-            </div>
-        </div>
-    </div>
-   
-
-    <div class="col-lg-1"></div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2"></div>
-
-    
-    <div class="col-lg-2 pt-2 mb-4 shadow" style={{backgroundColor: "white",marginright: "20px",borderradius: "10px"}}>
-        <div class="row">
-            <div class="col-1 m-0">
-                <input type="checkbox"/>
-            </div>
-            <p class="col-lg-8 pt-1"> Export data to Excel</p>
-        </div>
-        <div class="text-center">
-            <i class=" fa-sharp fa-solid fa-circle-user profileicon mb-4 mt-3" style={{fontSize: "100px", color: "gray"}}></i>    
-            <p class="text-center m-0" style={{fontWeight: "bold",fontSize: "20px"}}><b>Ajay</b></p>
-        </div>
-        <hr/>
-        <div class="row">
-            <button class="col-12 col-md-3 email-btn m-2">Email</button>
-            <button class="col-12 col-md-3 email-btn m-2">Contact</button>
-            <button class="col-12 col-md-3 email-btn m-2">SMS</button>
-        </div>
-        
-    </div>
-    
-   
-
-    
-    <div class="col-lg-6 shadow p-3 mb-4 mx-4" style={{backgroundColor: "white",borderRadius: "10px"}}>
-        <div class="row m-0">
-            <div class="col-lg-3">
-                <p class="m-0">Key Skills</p>
-                <p class="keySkillsPara">Photoshop,Aftereffects, Adobe XD, Premire Pro, Blender, Illustrator...More</p>
-                <p class="m-0">Highest Graduation</p>
-                <p class="keySkillsPara">Bachelor of Arts in Graphic Design</p>
-                <p class="m-0">Current Location</p>
-                <p class="keySkillsPara">Hyderabad</p>
-                <p class="m-0">Age</p>
-                <p class="keySkillsPara">---Years</p>
-                <p class="m-0">Date of Birth</p>
-                <p class="keySkillsPara">06 December 1969</p>
-            </div>
-            <div class="col-lg-3">
-                <p class="m-0">Experience</p>
-                <p class="keySkillsPara">3 Years</p>
-                <p class="m-0">Employment Type</p>
-                <p class="keySkillsPara">Full Time, Permanent</p>
-                <p class="m-0">Preffered Location</p>
-                <p class="keySkillsPara">Hyderabad, Pune, Delhi,Chennai</p>
-                <p class="m-0">Gender</p>
-                <p class="keySkillsPara">Male</p>
-                <p class="m-0">Address</p>
-                <p class="keySkillsPara">201,Plot 69, Laxmi Nagar, Flm Nagar, Hyderabad</p>
-                
-            </div>
-            <div class="col-lg-3">
-               
-                <p class="m-0">Designation</p>
-                <p class="keySkillsPara">UI & UX developer</p>
-                <p class="m-0">Department</p>
-                <p class="keySkillsPara">UX Design & Architectre</p>
-                <p class="m-0">Expected CTC</p>
-                <p class="keySkillsPara">5,00,000 - 8,00,000</p>
-                <p class="m-0">Marital Status</p>
-                <p class="keySkillsPara">Single</p>
-                <p class="m-0">Languages Known</p>
-                <p class="keySkillsPara">Telugu, Hindi, English</p>
-            </div>
-            <div class="col-lg-3">
-                
-                <p class="m-0">Desired Industry</p>
-                <p class="keySkillsPara">IT Software</p>
-                <p class="m-0">Prefered Shift</p>
-                <p class="keySkillsPara">Day/Night</p>
+                <p class="keySkillsPara">{blog.search_shift}</p>
             </div>
         </div>
     </div>
@@ -528,7 +222,15 @@ const Search=()=>{
 
 
 
-</section>
+
+
+
+
+
+
+</section>  
+</div>))}
+
 
 {/* ..... */}
 

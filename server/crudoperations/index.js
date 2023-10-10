@@ -15,6 +15,7 @@ const savedData=require("./savedschema")
 const otpData=require("./otpscema")
 const postajob=require("./postajobschema")
 const companyprofileData=require("./companyprofileschema")
+const searchData=require("./searchcandidateschema")
 
 const app = express()
 app.use(express.json())  // ACCEPTING JSON FORMAT DATA AND PARSING TO LOCAL USER
@@ -103,6 +104,7 @@ app.post("/signup", async (req, res) => {
       const newUser = {
         type: req.body.type,
         fullname: req.body.fullname,
+        companyname: req.body.companyname,
         email: req.body.email,
         mobilenumber: req.body.mobilenumber,
         password: req.body.password,
@@ -1203,6 +1205,82 @@ app.post("/companyprofile", middleware, async (req, res) => {
     return res.status(500).json("internal server error");
   }
 });
+
+
+// serach candidate recruiter
+
+app.post("/searchcandidate", async (req, res) => {
+  try {
+    const {
+      search_img,
+      search_name,
+      search_skills,
+      search_graduation,
+      search_location,
+      search_age,
+      search_dob,
+      search_experince,
+      search_type,
+      search_prefferedlocation,
+      search_gender,
+      search_address,
+      search_designation,
+      search_department,
+      search_expectedctc,
+      search_maritalstatus,
+      search_languages,
+      search_industry,
+      search_shift } = req.body;
+
+
+    let newUser = new searchData({
+      search_img,
+      search_name,
+      search_skills,
+      search_graduation,
+      search_location,
+      search_age,
+      search_dob,
+      search_experince,
+      search_type,
+      search_prefferedlocation,
+      search_gender,
+      search_address,
+      search_designation,
+      search_department,
+      search_expectedctc,
+      search_maritalstatus,
+      search_languages,
+      search_industry,
+      search_shift,
+    });
+
+    const isUserExist = await searchData.findOne({ search_name: search_name });
+    if (isUserExist) {
+      return res.send("user already registered");
+    }
+
+    newUser.save(); //saving to mongodb collections
+    res.send("user created succesfully");
+
+
+
+
+
+  }
+  catch (e) {
+    console.log(e.message);
+    res.send("internal server error");
+  }
+});
+
+// all serach candidates
+
+app.get("/allcandidates", async (req, res) => {
+  const allusers = await searchData.find({})
+  res.status(200).send(allusers)
+})
+
 
 
 

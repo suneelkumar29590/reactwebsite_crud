@@ -150,10 +150,10 @@ const Default = () => {
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav menubar">
               <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="browsejobs.html" style={{ color: "black" }}>Browse Jobs</a>
+                <a class="nav-link dropdown-toggle" href="" style={{ color: "black" }}>Browse Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="job.html" style={{ color: "black" }}>Jobs</a>
+                <a class="nav-link dropdown-toggle" href="" style={{ color: "black" }}>Jobs</a>
               </li>
 
 

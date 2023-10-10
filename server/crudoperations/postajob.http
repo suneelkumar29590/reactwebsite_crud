@@ -46,3 +46,36 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyM
 "companyprofilelink4":"www.google.com"
 
 }
+
+
+
+###
+POST http://localhost:5016/searchcandidate/
+Content-Type: application/json
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk
+
+{
+"search_img":"https://media.istockphoto.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=0&k=20&c=EqR2Lffp4tkIYzpqYh8aYIPRr-gmZliRHRxcQC5yylY=", 
+"search_name":"Sravani",
+"search_skills":"HTML,CSS,Express,Mongodb...more",
+"search_graduation":"Bachelor of Administration in HR Department",
+"search_location":"Hyderabad",
+"search_age":"26 years",
+"search_dob":"26 June 1995",
+"search_experince":"6 years",
+"search_type":"Full time,Permanent",
+"search_prefferedlocation":"Bengulur,Hyderabad,Bengulur,Mumbai",
+"search_gender":"female",
+"search_address":"654,Plot 02,Jubllihills,Hyderabad",
+"search_designation":"HR",
+"search_department":"HR Management",
+"search_expectedctc":"5,00,000-8,00,000",
+"search_maritalstatus":"married",
+"search_languages":"Telugu,English,Hindi",
+"search_industry":"IT Software",
+"search_shift":"Day time"
+
+}
+
+###
+GET http://localhost:5016/allcandidates
