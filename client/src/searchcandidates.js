@@ -78,9 +78,9 @@ const Search=()=>{
                     <p class="jobs-for-you-para">5 lakh+ jobs for you to explore</p>
                     <div class="row">
                         <div class="col-lg-2"></div>
-                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-magnifying-glass"></i></span><span style={{paddingTop: "20px"}}>Designation or Skills</span><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
-                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-location-dot"></i></span><span style={{paddingTop: "20px"}}>City, Province or Region</span><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
-                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-location-dot"></i></span><span style={{paddingTop: "20px"}}>Experience</span><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
+                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-magnifying-glass"></i></span><input type="text" placeholder="Designation or Skills" className="searchinput"/><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
+                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-location-dot"></i></span><input type="text" placeholder="City, Province or Region" className="searchinput"/><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
+                        <button type="text" class="col-lg-3 subhomebutton shadow" style={{marginRight: "5px"}}><span style={{float: "left"}}><i class="fa-solid fa-location-dot"></i></span><input type="text" placeholder="Experience in years" className="searchinput"/><i class="fa-solid fa-sort-down" style={{float: "right"}}></i></button>
                         <div class=" text-end mt-2">
                         <button class="seacrhmorebutton shadow">+More filters</button>
                     </div>

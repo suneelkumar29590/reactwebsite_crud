@@ -1537,3 +1537,7 @@ border: none;
 .footicon{
   font-size: 30px;
 }
+.searchinput{
+  border: none;
+  outline: none;
+}
