@@ -1,4 +1,4 @@
-GET http://localhost:5016/allprosm
+GET http://localhost:5016/
 
 ###
 POST http://localhost:5016/profile
@@ -22,7 +22,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMy
 
 
 {
-    "resumeheading": "jkiust"
+    "resumeheading": "ganesh"
 }
 
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjRkNWQ3NGNhNmZmZDVkNWMyMjVkNmJiIiwiaWF0IjoxNjkxNzQ0NTI3LCJleHAiOjE3Mjc3NDQ1Mjd9.jkgWOgy8JfmY2upTDUaxtaEPvGLSFfCxkFMOY2TFDXk
 
 {
-    "profileSummary": "not"
+    "profileSummary": "how"
 }
 
 ###
