@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Postajob=()=>{
 
@@ -20,6 +21,7 @@ const [posteducation,setposteducation] =useState("");
 const [postdiscription,setpostdiscription] =useState("");    
 
 const [data,setdata] =useState([]);
+let navigate = useNavigate();
 const userdata={
     postjobtitle:postjobtitle,
     postposition:postposition,
@@ -56,7 +58,10 @@ const handlepost=(e)=>{
                   progress: undefined,
                   theme: "colored",
                 });
-                setTimeout(function () {}, 3000);
+               
+            setTimeout(function () {
+                navigate("/browse");
+              }, 3000);
               }
         })
         .catch((error) => {
